@@ -11,6 +11,7 @@ import utilities.GDV5;
 public class Score {
 	static Integer score1 = 0;
 	static Integer score2 = 0;
+	static Integer scoreAI = 0;
 	
 	public static void splash(Graphics2D font) {
 		font.setColor(Color.white);
@@ -151,33 +152,33 @@ public class Score {
 		
 		if (PongRunner.ballColor == "T") {
 			font.setFont(new Font("Comic Sans MS", Font.BOLD, 50));
-			font.setColor(Color.gray);
+			font.setColor(Color.black);
 			font.drawString("T", 555, 360);
 		}
 		else if (PongRunner.ballColor == "Y") {
 			font.setFont(new Font("Comic Sans MS", Font.BOLD, 50));
-			font.setColor(Color.gray);
+			font.setColor(Color.black);
 			font.drawString("Y", 605, 360);
 		}
 		else if (PongRunner.ballColor == "U") {
 			font.setFont(new Font("Comic Sans MS", Font.BOLD, 50));
-			font.setColor(Color.gray);
+			font.setColor(Color.black);
 			font.drawString("U", 655, 360);
 		}
 		
 		if (PongRunner.paddleColor == "G") {
 			font.setFont(new Font("Comic Sans MS", Font.BOLD, 50));
-			font.setColor(Color.gray);
+			font.setColor(Color.black);
 			font.drawString("G", 405, 510);
 		}
 		else if (PongRunner.paddleColor == "H") {
 			font.setFont(new Font("Comic Sans MS", Font.BOLD, 50));
-			font.setColor(Color.gray);
+			font.setColor(Color.black);
 			font.drawString("H", 455, 510);
 		}
 		else if (PongRunner.paddleColor == "J") {
 			font.setFont(new Font("Comic Sans MS", Font.BOLD, 50));
-			font.setColor(Color.gray);
+			font.setColor(Color.black);
 			font.drawString("J", 505, 510);
 		}
 		
@@ -229,7 +230,8 @@ public class Score {
 		}
 		if (PongRunner.gameState == 3) {
 			font.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
-			font.drawString("no score for you", 200, 300);
+			font.drawString("Paddle Hits:", 200, 300);
+			font.drawString(scoreAI.toString(), 200, 330);
 		}
 		
 		//score2

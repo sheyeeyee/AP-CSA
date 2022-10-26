@@ -151,7 +151,7 @@ public class PongRunner extends GDV5 { //PongRunner is an instance of the GDV5 c
 			}
 			else ball.vX *= -1;
 		}
-		if ((ball.intersects(p2) && gameState == 1)|| (ball.intersects(p2) && gameState == 3)) {
+		if ((ball.intersects(p2) && gameState == 1) || (ball.intersects(p2) && gameState == 3)) {
 			if (collisionDirection(p2, ball, 5, 5) == 1) {
 				ball.setLocation((int) (Math.random() + respawnLimit * (GDV5.getMaxWindowX() - respawnLimit)), (int) (Math.random() + respawnLimit * (GDV5.getMaxWindowY() - respawnLimit)));
 			}
@@ -169,13 +169,26 @@ public class PongRunner extends GDV5 { //PongRunner is an instance of the GDV5 c
 			}
 			if (GDV5.KeysPressed[KeyEvent.VK_DOWN] && ball.vY < 0) {
 				ball.vX = ball.vX * -1 - 3;
-				ball.vY *= -2;				
+				ball.vY *= -2;
 			}
 			else if (GDV5.KeysPressed[KeyEvent.VK_DOWN] && ball.vY > 0) {
 				ball.vX = ball.vX * -1 + 3;
 				ball.vY *= 2;
 			}
 			else ball.vX *= -1;
+		}
+		
+		if (ball.intersects(p1) && gameState == 3) {
+			if (collisionDirection(p1, ball, 5, 5) == 1) {
+				Score.scoreAI = 0;
+			}
+			else if (collisionDirection(p1, ball, -5, -5) == 3) {
+				Score.scoreAI = 0;
+			}
+			else Score.scoreAI++;
+		}
+		else if (this.getX() < 0 || this.getX() > 1180) {
+			Score.scoreAI = 0;
 		}
 		
 		//top or bottom collisions
@@ -253,7 +266,8 @@ public class PongRunner extends GDV5 { //PongRunner is an instance of the GDV5 c
 		if (GDV5.KeysPressed[KeyEvent.VK_J] && gameState == 5) {
 			paddleColor = "J";
 		}
-		
+
+		//rip pause attempt
 //		boolean pause = false;
 //				
 //		if (PongRunner.KeysPressed[KeyEvent.VK_ESCAPE]) { //have it only affect pause boolean, create another if else for if pause, if !pause
@@ -274,24 +288,23 @@ public class PongRunner extends GDV5 { //PongRunner is an instance of the GDV5 c
 	//single-player mode
 	public void autoMove() {
 		if (PongRunner.gameState == 3) {
+			if (p2.getY() >= 0 && p2.getY() <= 600) {
+				if (ball.getY() >= 100 && ball.getY() <= 700) {
+					p2.setLocation(1200 - 18, (int) ball.getY() - 100);
+				}
+				else if (ball.getY() <= 100) {
+					p2.setLocation(1200 - 18, 0);
+				}
+				else {
+					p2.setLocation(1200 - 18, 600);
+				}
+			}
 //			if (ball.getX() >= 600) {
-//				p2.setLocation(1200 - 18, (int) ball.getY() - 100);
+//			p2.setLocation(1200 - 18, (int) ball.getY() - 100);
 //			}
 //			else if (ball.getX() < 600) {
 //				p2.translate(0, 15);
 //			}
-			if (p2.getY() - 15 >= 0 && ball.getY() > 100) {
-				p2.setLocation(1200 - 18, (int) ball.getY() - 100);
-//				if (p2.getY() == 0) {
-//					p2.translate(0, 10);
-//				}
-			}
-			if (p2.getY() < 600 && ball.getY() < 700) {
-				p2.setLocation(1200 - 18, (int) ball.getY() - 100);
-//				if (p2.getY() == 0) {
-//					p2.translate(0, -10);
-//				}
-			}
 		}
 		if (PongRunner.gameState == 0) {
 			p2.translate(0, 0);
