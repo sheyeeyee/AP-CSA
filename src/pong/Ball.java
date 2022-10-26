@@ -66,7 +66,7 @@ public class Ball extends Rectangle {
 			out = true;
 			count = 0;
 		}
-		if (this.getX() > 1200) {
+		if (this.getX() > 1180) {
 			if (PongRunner.gameState == 4) {
 				vX = -4;
 				vY = -4;

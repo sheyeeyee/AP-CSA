@@ -142,7 +142,7 @@ public class PongRunner extends GDV5 { //PongRunner is an instance of the GDV5 c
 				ball.setLocation((int) (Math.random() + respawnLimit * (GDV5.getMaxWindowX() - respawnLimit)), (int) (Math.random() + respawnLimit * (GDV5.getMaxWindowY() - respawnLimit)));
 			}
 			if (GDV5.KeysPressed[KeyEvent.VK_S] && ball.vY < 0) {
-				ball.vX = ball.vX * -1 + 3;
+				ball.vX = ball.vX * -1 + 3; //reverse direction but add 3 (instead of multiplying... that's too fast)
 				ball.vY *= -2;
 			}
 			else if (GDV5.KeysPressed[KeyEvent.VK_S] && ball.vY > 0) {
@@ -195,8 +195,15 @@ public class PongRunner extends GDV5 { //PongRunner is an instance of the GDV5 c
 	}
 	
 	public static void pause() {
+		//0: splash page
+		//1: easy + normal mode
+		//2: pause page
+		//3: ai mode
+		//4: smash ball mode
+		//5: customization page
+		
 		if (GDV5.KeysPressed[KeyEvent.VK_ESCAPE] && gameState == 0) {
-			gameState = 5;
+			gameState = 5; //customization
 		}
 		if (GDV5.KeysPressed[KeyEvent.VK_Q] && gameState == 5) {
 			gameState = 0;
@@ -219,14 +226,14 @@ public class PongRunner extends GDV5 { //PongRunner is an instance of the GDV5 c
 		if (GDV5.KeysPressed[KeyEvent.VK_ESCAPE] && gameState == 4) {
 			gameState = 2; //pause screen
 		}
+		if (GDV5.KeysPressed[KeyEvent.VK_SPACE] && gameState == 2) {
+			gameState = 1; //resume game
+		}
 		if ((GDV5.KeysPressed[KeyEvent.VK_ENTER] && Score.score1 == 10) || (GDV5.KeysPressed[KeyEvent.VK_ENTER] && Score.score2 == 10)) {
 			gameState = 0; //splash page
 		}
 		if (GDV5.KeysPressed[KeyEvent.VK_Q] && gameState == 2) {
 			gameState = 0; //splash page
-		}
-		if (GDV5.KeysPressed[KeyEvent.VK_SPACE] && gameState == 2) {
-			gameState = 1; //resume game
 		}
 		if (GDV5.KeysPressed[KeyEvent.VK_T] && gameState == 5) {
 			ballColor = "T";
