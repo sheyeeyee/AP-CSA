@@ -185,10 +185,7 @@ public class PongRunner extends GDV5 { //PongRunner is an instance of the GDV5 c
 			else if (collisionDirection(p1, ball, -5, -5) == 3) {
 				Score.scoreAI = 0;
 			}
-			else Score.scoreAI++;
-		}
-		else if (this.getX() < 0 || this.getX() > 1180) {
-			Score.scoreAI = 0;
+			else Score.scoreAI += 1;
 		}
 		
 		//top or bottom collisions

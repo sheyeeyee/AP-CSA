@@ -226,17 +226,16 @@ public class Score {
 		
 		//score1
 		if (PongRunner.gameState == 1 || PongRunner.gameState == 4) {
-			font.drawString(score1.toString(), 200, 300);
+			font.drawString(Score.score1.toString(), 260, 300);
 		}
 		if (PongRunner.gameState == 3) {
-			font.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
-			font.drawString("Paddle Hits:", 200, 300);
-			font.drawString(scoreAI.toString(), 200, 330);
+			font.setFont(new Font("Comic Sans MS", Font.BOLD, 30));
+			font.drawString("Paddle Hits: " + Score.scoreAI.toString(), 190, 290);
 		}
 		
 		//score2
 		font.setFont(new Font("Comic Sans MS", Font.BOLD, 100));
-		font.drawString(score2.toString(), 900, 300);
+		font.drawString(score2.toString(), 880, 300);
 		
 		font.setColor(Color.black);
 		font.setFont(new Font("Comic Sans MS", Font.BOLD, 75));

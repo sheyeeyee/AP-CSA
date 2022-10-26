@@ -63,6 +63,7 @@ public class Ball extends Rectangle {
 			}
 			this.setLocation((int) (winX / 2 - this.getWidth() / 2), winY / 2);
 			Score.score2 += 1;
+			Score.scoreAI = 0;
 			out = true;
 			count = 0;
 		}
@@ -73,6 +74,7 @@ public class Ball extends Rectangle {
 			}
 			this.setLocation((int) (winX / 2 - this.getWidth() / 2), winY / 2);
 			Score.score1 += 1;
+			Score.scoreAI = 0;
 			out = true;
 			count = 0;
 		}
