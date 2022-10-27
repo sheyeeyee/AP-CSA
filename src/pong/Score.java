@@ -22,6 +22,9 @@ public class Score {
 		font.setFont(new Font("Comic Sans MS", Font.BOLD, 50));
 		font.drawString("MMORPG", 550, 375);
 		
+		font.setFont(new Font("Arial", Font.ITALIC, 15));
+		font.drawString("Copyright Shelley Wei :)", 520, 415);
+		
 		font.setColor(new Color(72, 218, 188));
 		font.setFont(new Font("Arial", Font.PLAIN, 25));
 		font.drawString("PRESS THE CORRESPONDING NUMBER FOR GAME MODE", 250, 460);
