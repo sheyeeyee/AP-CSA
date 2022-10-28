@@ -136,10 +136,10 @@ public class Score {
 	
 	public static void menu(Graphics2D font) {
 		font.setFont(new Font("Comic Sans MS", Font.BOLD, 50));
-		font.setColor(Color.gray);
+		font.setColor(Color.darkGray);
 		font.drawString("Customize Ball", 155, 360);
 				
-		font.setColor(Color.gray);
+		font.setColor(Color.darkGray);
 		font.drawString("Customize Paddles", 585, 510);
 		
 		font.setColor(new Color(229, 209, 180));
@@ -168,6 +168,11 @@ public class Score {
 			font.setColor(Color.black);
 			font.drawString("U", 655, 360);
 		}
+		else if (PongRunner.ballColor == "O" || PongRunner.ballColor == "") {
+			font.setFont(new Font("Comic Sans MS", Font.BOLD, 25));
+			font.setColor(Color.black);
+			font.drawString("O for Default Ball Color", 463, 193);
+		}
 		
 		if (PongRunner.paddleColor == "G") {
 			font.setFont(new Font("Comic Sans MS", Font.BOLD, 50));
@@ -184,17 +189,33 @@ public class Score {
 			font.setColor(Color.black);
 			font.drawString("J", 505, 510);
 		}
+		else if (PongRunner.paddleColor == "P" || PongRunner.paddleColor == "") {
+			font.setFont(new Font("Comic Sans MS", Font.BOLD, 25));
+			font.setColor(Color.black);
+			font.drawString("P for Default Paddle Color", 463, 223);
+		}
 		
 		font.setFont(new Font("Comic Sans MS", Font.BOLD, 50));
+		
 		font.setColor(new Color(72, 218, 188));
 		font.drawString("T", 550, 355);
 		font.drawString("G", 400, 505);
+		
 		font.setColor(new Color(180, 224, 229));
 		font.drawString("Y", 600, 355);
 		font.drawString("H", 450, 505);
+		
 		font.setColor(new Color(171, 232, 219));
 		font.drawString("U", 650, 355);
 		font.drawString("J", 500, 505);
+		
+		font.setFont(new Font("Comic Sans MS", Font.BOLD, 25));
+		font.setColor(new Color(186, 170, 146));
+		font.drawString("O for Default Ball Color", 460, 190);
+		
+		font.setFont(new Font("Comic Sans MS", Font.BOLD, 25));
+		font.setColor(new Color(186, 170, 146));
+		font.drawString("P for Default Paddle Color", 460, 220);
 		
 		font.setFont(new Font("Comic Sans MS", Font.BOLD, 25));
 		font.setColor(new Color(205, 205, 205));

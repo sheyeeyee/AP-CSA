@@ -70,7 +70,7 @@ public class PongRunner extends GDV5 { //PongRunner is an instance of the GDV5 c
 			Score.scoreboard(win);
 				
 			//ball
-			if (ballColor == "") {
+			if (ballColor == "O" || ballColor == "") {
 				win.setColor(pastelTan);
 			}
 			if (ballColor == "T") {
@@ -85,7 +85,7 @@ public class PongRunner extends GDV5 { //PongRunner is an instance of the GDV5 c
 			win.fillOval((int) ball.getX(), (int) ball.getY(), (int) ball.getWidth(), (int) ball.getHeight());
 			
 			//paddle1
-			if (paddleColor == "") {
+			if (paddleColor == "P" || paddleColor == "") {
 				win.setColor(pastelTan2);
 			}
 			if (paddleColor == "G") {
@@ -100,7 +100,7 @@ public class PongRunner extends GDV5 { //PongRunner is an instance of the GDV5 c
 			win.fillRect((int) p1.getX(), (int) p1.getY(), (int) p1.getWidth(), (int) p1.getHeight());
 			
 			//paddle2
-			if (paddleColor == "") {
+			if (paddleColor == "P" || paddleColor == "") {
 				win.setColor(pastelTan2);
 			}
 			if (paddleColor == "G") {
@@ -112,7 +112,6 @@ public class PongRunner extends GDV5 { //PongRunner is an instance of the GDV5 c
 			if (paddleColor == "J") {
 				win.setColor(pastelLightGreen);
 			}
-			win.fillRect((int) p1.getX(), (int) p1.getY(), (int) p1.getWidth(), (int) p1.getHeight());
 			win.fillRect((int) p2.getX(), (int) p2.getY(), (int) p2.getWidth(), (int) p2.getHeight());
 		}
 		if (gameState == 2) {
@@ -262,6 +261,12 @@ public class PongRunner extends GDV5 { //PongRunner is an instance of the GDV5 c
 		}
 		if (GDV5.KeysPressed[KeyEvent.VK_J] && gameState == 5) {
 			paddleColor = "J";
+		}
+		if (GDV5.KeysPressed[KeyEvent.VK_O] && gameState == 5) {
+			ballColor = "O";
+		}
+		if (GDV5.KeysPressed[KeyEvent.VK_P] && gameState == 5) {
+			paddleColor = "P";
 		}
 
 		//rip pause attempt
