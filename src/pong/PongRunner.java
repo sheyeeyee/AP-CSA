@@ -19,18 +19,23 @@ public class PongRunner extends GDV5 { //PongRunner is an instance of the GDV5 c
 	int barWidth = 10;
 	
 	Ball ball = new Ball(20); //creating a ball object of size 20
-	static String ballColor = "";
+	static String ballColor = ""; //set up for customization
+	
 	Paddle p1 = new Paddle(pOffset, 300, pWidth, 200); //creating paddles of width 20 and height 200
 	Paddle p2 = new Paddle(getMaxWindowX() - (pWidth + pOffset), 300, pWidth, 200);
-	static String paddleColor = "";
+	static String paddleColor = ""; //set up for customization
+	
+	//new scoreboard object
 	Score scoreboard = new Score();
 	
+	//create customization colors for ball and paddles
 	Color pastelTeal = new Color(72, 218, 188);
 	Color pastelBlue = new Color(180, 224, 229);
 	Color pastelLightGreen = new Color(171, 232, 219);
 	Color pastelTan = new Color(229, 209, 180);
 	Color pastelTan2 = new Color(186, 170, 146);
 	
+	//set up gamestate for different screens
 	static int gameState = 0;
 	
 	
@@ -122,7 +127,7 @@ public class PongRunner extends GDV5 { //PongRunner is an instance of the GDV5 c
 		}
 	}
 	
-	//method for ball to bounce against paddle
+	//method for ball to bounce against paddle (CHALLENGE 1)
 	public void paddleBounce() {
 		if ((ball.intersects(p1) && gameState == 1) || (ball.intersects(p1) && gameState == 3)) {
 			if (collisionDirection(p1, ball, 5, 5) == 1) {
@@ -203,6 +208,7 @@ public class PongRunner extends GDV5 { //PongRunner is an instance of the GDV5 c
 //		}
 	}
 	
+	//CHALLENGE 2
 	public static void pause() {
 		//0: splash page
 		//1: easy + normal mode
@@ -287,6 +293,7 @@ public class PongRunner extends GDV5 { //PongRunner is an instance of the GDV5 c
 //		}
 	}
 	
+	//CHALLENGE 3
 	//single-player mode
 	public void autoMove() {
 		if (PongRunner.gameState == 3) {

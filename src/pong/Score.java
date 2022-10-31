@@ -13,6 +13,7 @@ public class Score {
 	static Integer score2 = 0;
 	static Integer scoreAI = 0;
 	
+	//CHALLENGE 4
 	public static void splash(Graphics2D font) {
 		font.setColor(Color.white);
 		font.setFont(new Font("Comic Sans MS", Font.BOLD, 100));
