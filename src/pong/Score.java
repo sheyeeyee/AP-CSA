@@ -106,6 +106,7 @@ public class Score {
 		font.setColor(Color.white);
 		font.fillRect(890, 690, 30, 30);
 		
+		//CHALLENGE 5
 		font.setColor(Color.black);
 		font.setFont(new Font("Arial", Font.BOLD, 15));
 		font.drawString("/\\", 852, 665);
