@@ -62,6 +62,7 @@ public class PongRunner extends GDV5 { //PongRunner is an instance of the GDV5 c
 			Score.splash(win);
 			Score.score1 = 0;
 			Score.score2 = 0;
+			Score.scoreAI = 0;
 		}
 		if (gameState == 4) {
 			smashBallCommentary(win);

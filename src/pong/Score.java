@@ -286,5 +286,10 @@ public class Score {
 			font.setFont(new Font("Comic Sans MS", Font.PLAIN, 25));
 			font.drawString("nt, nt, better luck next time?", 440, 700);
 		}
+		if (Score.scoreAI >= 3 && Score.score1 < 10 && Score.score2 < 10) {
+			font.setColor(Color.black);
+			font.setFont(new Font("Comic Sans MS", Font.PLAIN, 15));
+			font.drawString("how long can you last...", 300, 350);
+		}
 	}
 }
