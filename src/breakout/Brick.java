@@ -34,10 +34,16 @@ public class Brick extends Rectangle {
 			brick[i] = new Brick(x, y, Color.blue);
 			x += brick[0].width + padding;
 		}
-		for (int i = 0; i < rows; i++) {
-			brick[i] = new Brick(x, y, Color.blue);
-			y += brick[0].width + padding;
-		}
+		
+//		for (int i = 0; i < columns; i++) {
+//			brick[i] = new Brick(x, y, Color.blue);
+//			x += brick[0].width + padding;
+//			
+//			for (int n = 0; n < rows; n++) {
+//				brick[n] = new Brick(x, y, Color.blue);
+//				y += brick[0].width + padding;
+//			}
+//		}
 		return brick;
 	}
 	
