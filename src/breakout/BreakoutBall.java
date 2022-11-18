@@ -22,8 +22,8 @@ public class BreakoutBall extends Rectangle {
 	private static int startY = winY / 2;
 	
 	//creating velocity variables
-	public static int vX;
-	public static int vY;
+	private static int vX = 3;
+	private static int vY = 3;
 	
 	//for reset method
 	private int count = 120;
@@ -36,43 +36,43 @@ public class BreakoutBall extends Rectangle {
 	
 	//method for ball to move (AI)
 	public void move(BreakoutPaddle p) {
-		vX = 5;
-		vY = 5;
-		startX += vX;
-		startY += vY;
-		
-		//if ball goes out at bottom
-		if (this.getY() > GDV5.getMaxWindowY() - this.height) {
-			this.setLocation((int) (winX / 2 - this.getWidth() / 2), winY / 2);
-			count = 0;
-			out = true;
+		//if ball goes to bottom
+		if (this.getY() >= (winY - this.height)) {
+//			this.setLocation((int) (winX / 2 - this.getWidth() / 2), winY / 2);
+//			count = 0;
+//			out = true;
+			vY = -Math.abs(vY);
 		}
 		
 		//ball hits paddle
 		if (this.intersects(p)) {
 			vY *= -1;
 		}
-		
 		//ball hits top
 		if (this.getY() < 0) {
 			vY *= -1;
 		}
+		
 		//ball hits left
 		if (this.getX() < 0) {
 			vX *= -1;
 		}
 		//ball hits right
-		if (this.getY() > winX) {
+		else if (this.getX() > winX - this.width) {
 			vX *= -1;
+			
 		}
-		
+		translate(vX, vY);
 		//reset
+		/*
 		if (count == 120) {
 			this.translate(vX, vY);
 		}
 		else {
-			this.translate(0, 0);
+			th
+			is.translate(0, 0);
 		}
+		*/
 	}
 	
 	public void resetBall() {
