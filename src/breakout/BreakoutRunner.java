@@ -48,7 +48,8 @@ public class BreakoutRunner extends GDV5 {
 	//bc of this, no loops needed since these are being called continuously
 	@Override
 	public void update() { //60 fps, driver called 60 times per second
-		ball.move();
+		ball.move(p);
+		ball.resetBall();
 		p.paddleMove();
 	}
 

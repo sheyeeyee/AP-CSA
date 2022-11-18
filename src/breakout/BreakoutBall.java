@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
+import pong.Ball;
 import utilities.GDV5;
 
 public class BreakoutBall extends Rectangle {
@@ -24,13 +25,17 @@ public class BreakoutBall extends Rectangle {
 	public static int vX;
 	public static int vY;
 	
+	//for reset method
+	private int count = 120;
+	private boolean out = false;
+	
 	//ball constructor
 	public BreakoutBall(int size) {
 		super(startX, startY, size, size);
 	}
 	
 	//method for ball to move (AI)
-	public void move() {
+	public void move(BreakoutPaddle p) {
 		vX = 5;
 		vY = 5;
 		startX += vX;
@@ -39,6 +44,13 @@ public class BreakoutBall extends Rectangle {
 		//if ball goes out at bottom
 		if (this.getY() > GDV5.getMaxWindowY() - this.height) {
 			this.setLocation((int) (winX / 2 - this.getWidth() / 2), winY / 2);
+			count = 0;
+			out = true;
+		}
+		
+		//ball hits paddle
+		if (this.intersects(p)) {
+			vY *= -1;
 		}
 		
 		//ball hits top
@@ -53,6 +65,22 @@ public class BreakoutBall extends Rectangle {
 		if (this.getY() > winX) {
 			vX *= -1;
 		}
-		this.translate(vX,  vY);
+		
+		//reset
+		if (count == 120) {
+			this.translate(vX, vY);
+		}
+		else {
+			this.translate(0, 0);
+		}
+	}
+	
+	public void resetBall() {
+		if (count == 120) {
+			out = false;
+		}
+		if (out) {
+			count++;
+		}
 	}
 }
