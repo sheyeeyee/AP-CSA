@@ -9,33 +9,30 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
-import pong.PongRunner;
 import utilities.GDV5;
 
 public class BreakoutBall extends Rectangle {
-	private int winX = BreakoutRunner.getMaxWindowX();
-	private int winY = BreakoutRunner.getMaxWindowY();
+	//create variable for max window sizes
+	private static int winX = BreakoutRunner.getMaxWindowX();
+	private static int winY = BreakoutRunner.getMaxWindowY();
 	
-	private Color col;
-	private static Color pastelBlue = new Color(180, 224, 229);
-	private static Color pastelTeal = new Color(72, 218, 188);
-	private static Color pastelLightGreen = new Color(171, 232, 219);
-	private static Color pastelTan = new Color(229, 209, 180);
-	private static Color pastelTan2 = new Color(186, 170, 146);
+	//starting ball position
+	private static int startX = (int) (winX / 2 - 20 / 2);
+	private static int startY = winY / 2;
 	
-	private static int startX = 50;
-	private static int startY = 50;
-	
+	//creating velocity variables
 	public static int vX;
 	public static int vY;
 	
+	//ball constructor
 	public BreakoutBall(int size) {
 		super(startX, startY, size, size);
 	}
 	
+	//method for ball to move (AI)
 	public void move() {
-		vX = 10;
-		vY = 10;
+		vX = 5;
+		vY = 5;
 		startX += vX;
 		startY += vY;
 		
@@ -56,8 +53,6 @@ public class BreakoutBall extends Rectangle {
 		if (this.getY() > winX) {
 			vX *= -1;
 		}
-	}
-	
-	public void draw(Graphics2D pb) {
+		this.translate(vX,  vY);
 	}
 }

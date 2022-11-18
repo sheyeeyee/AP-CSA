@@ -12,6 +12,7 @@ import java.awt.event.MouseEvent;
 import utilities.GDV5;
 
 public class Brick extends Rectangle {
+	//colors
 	private Color col;
 	private static Color pastelBlue = new Color(180, 224, 229);
 	private static Color pastelTeal = new Color(72, 218, 188);
@@ -19,22 +20,29 @@ public class Brick extends Rectangle {
 	private static Color pastelTan = new Color(229, 209, 180);
 	private static Color pastelTan2 = new Color(186, 170, 146);
 
+	//position of top row
 	private static int bX = 50;
 	private static int bY = 50;
 	
+	//# of columns and rows
 	private static int columns = 10;
 	private static int rows = 5;
 	
+	//space btwn bricks
 	private static int bPadding = 15;
 	
+	//brick width and height
 	private static int bWidth = (GDV5.getMaxWindowX() - 2 * bX - (columns - 1) * 15) / (columns);
 	private static int bHeight = 30;
 	
+	
+	//brick constructor
 	public Brick(int x, int y, Color c) {
 		super(x, y, bWidth, bHeight);
 		col = c;
 	}
 	
+	//method to create bricks
 	public static Brick[] makeBricks() {
 		int count = 0;
 		
@@ -48,7 +56,7 @@ public class Brick extends Rectangle {
 //		}
 		
 		for (int i = 0; i < brick.length; i++) {
-			brick[i] = new Brick(bX, bY, pastelBlue);
+			brick[i] = new Brick(bX, bY, pastelBlue); //figure out how to have multiple colors later
 			bX += brick[0].width + bPadding;
 			count++;
 			
