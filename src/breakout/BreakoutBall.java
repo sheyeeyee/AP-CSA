@@ -36,12 +36,16 @@ public class BreakoutBall extends Rectangle {
 	
 	//method for ball to move (AI)
 	public void move(BreakoutPaddle p) {
+		//CHALLENGE 1
+//		vX = 3;
+//		vY = 3;
+		
 		//if ball goes to bottom
 		if (this.getY() >= (winY - this.height)) {
 //			this.setLocation((int) (winX / 2 - this.getWidth() / 2), winY / 2);
 //			count = 0;
 //			out = true;
-			vY = -Math.abs(vY);
+			vY *= -1;
 		}
 		
 		//ball hits paddle
@@ -62,17 +66,13 @@ public class BreakoutBall extends Rectangle {
 			vX *= -1;
 			
 		}
-		translate(vX, vY);
 		//reset
-		/*
 		if (count == 120) {
 			this.translate(vX, vY);
 		}
 		else {
-			th
-			is.translate(0, 0);
+			this.translate(0, 0);
 		}
-		*/
 	}
 	
 	public void resetBall() {
