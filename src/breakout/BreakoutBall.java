@@ -22,8 +22,8 @@ public class BreakoutBall extends Rectangle {
 	private static int startY = winY / 2;
 	
 	//creating velocity variables
-	private static int vX = 3;
-	private static int vY = 3;
+	private int vX = 3;
+	private int vY = 3;
 	
 	//for reset method
 	private int count = 120;
@@ -35,7 +35,7 @@ public class BreakoutBall extends Rectangle {
 	}
 	
 	//method for ball to move (AI)
-	public void move(BreakoutPaddle p) {
+	public void move(BreakoutPaddle p, Brick[] brick) {
 		//CHALLENGE 1
 //		vX = 3;
 //		vY = 3;
@@ -66,6 +66,12 @@ public class BreakoutBall extends Rectangle {
 			vX *= -1;
 			
 		}
+		
+		//ball hits bricks
+//		if (this.intersects(brick)) {
+//			vY *= -1;
+//		}
+		
 		//reset
 		if (count == 120) {
 			this.translate(vX, vY);

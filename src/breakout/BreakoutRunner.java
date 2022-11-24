@@ -7,6 +7,8 @@ import java.awt.Stroke;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.Graphics;
+import javax.swing.JFrame;
 
 import utilities.GDV5;
 
@@ -20,14 +22,16 @@ public class BreakoutRunner extends GDV5 {
 	private static int pHeight = 10;
 	private static int pOffset = 8;
 	
-	private Brick[] bricks; //??
-	
+	//creating objects
+	Brick[] bricks;
 	BreakoutBall ball = new BreakoutBall(20);
 	BreakoutPaddle p = new BreakoutPaddle((winX / 2 - pWidth / 2), 800 - pHeight - pOffset, pWidth, pHeight);
 	
-	static String ballColor = "";
-	static String paddleColor = "";
-	
+	//customizing colors
+	String brickColor = "";
+	String ballColor = "";
+	String paddleColor = "";
+
 	//colors
 	private static Color pastelBlue = new Color(180, 224, 229);
 	private static Color pastelTeal = new Color(72, 218, 188);
@@ -35,9 +39,12 @@ public class BreakoutRunner extends GDV5 {
 	private static Color pastelTan = new Color(229, 209, 180);
 	private static Color pastelTan2 = new Color(186, 170, 146);
 	
+	//gamestates
+	public int gameState = 0;
+	
 	public BreakoutRunner() {
 		super();
-		bricks = Brick.makeBricks();
+		bricks = Brick.makeBricks(); //bricks array equals the makeBricks() method
 	}
 	
 	public static void main(String[] args) {
@@ -48,24 +55,30 @@ public class BreakoutRunner extends GDV5 {
 	//bc of this, no loops needed since these are being called continuously
 	@Override
 	public void update() { //60 fps, driver called 60 times per second
-		ball.move(p);
+		ball.move(p, bricks);
 		ball.resetBall();
 		p.paddleMove();
 	}
 
 	@Override
 	public void draw(Graphics2D win) { //at the processor speed (~3000 fps, called 3000 times per second)
-		//bricks
-		for (Brick b:bricks) {
-			b.draw(win);
+		if (gameState == 0) {
+			Pages.home(win);
 		}
 		
-		//ball
-		win.setColor(pastelTan);
-		win.fillOval((int) ball.getX(), (int) ball.getY(), (int) ball.getWidth(), (int) ball.getHeight());
-		
-		//paddle
-		win.setColor(pastelTan2);
-		win.fillRect((int) p.getX(), (int) p.getY(), (int) p.getWidth(), (int) p.getHeight());
+		if (gameState == 1) {
+			//bricks (what is b??)
+			for (Brick b:bricks) {
+				b.draw(win);
+			}
+			
+			//ball
+			win.setColor(pastelTan);
+			win.fillOval((int) ball.getX(), (int) ball.getY(), (int) ball.getWidth(), (int) ball.getHeight());
+			
+			//paddle
+			win.setColor(pastelTan2);
+			win.fillRect((int) p.getX(), (int) p.getY(), (int) p.getWidth(), (int) p.getHeight());
+		}
 	}
 }

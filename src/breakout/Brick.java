@@ -12,8 +12,18 @@ import java.awt.event.MouseEvent;
 import utilities.GDV5;
 
 public class Brick extends Rectangle {
+	//create variable for max window sizes
+	private static int winX = BreakoutRunner.getMaxWindowX();
+	private static int winY = BreakoutRunner.getMaxWindowY();
+	
 	//colors
 	private Color col;
+	
+	//array of colors for bricks
+	private static Color[] colors = {new Color(14, 162, 131), new Color(23, 185, 151), 
+			new Color(32, 205, 169), new Color(72, 218, 188), new Color(82, 234, 202), new Color(86, 246, 213)};
+	
+	//creating color objects for intuitiveness
 	private static Color pastelBlue = new Color(180, 224, 229);
 	private static Color pastelTeal = new Color(72, 218, 188);
 	private static Color pastelLightGreen = new Color(171, 232, 219);
@@ -32,7 +42,7 @@ public class Brick extends Rectangle {
 	private static int bPadding = 15;
 	
 	//brick width and height
-	private static int bWidth = (GDV5.getMaxWindowX() - 2 * bX - (columns - 1) * 15) / (columns);
+	private static int bWidth = (winX - 2 * bX - (columns - 1) * 15) / (columns);
 	private static int bHeight = 30;
 	
 	
@@ -45,7 +55,9 @@ public class Brick extends Rectangle {
 	//method to create bricks
 	public static Brick[] makeBricks() {
 		int count = 0;
+		int count2 = 0;
 		
+		//create brick array
 		Brick[] brick = new Brick[columns * rows];
 //		Brick[] brickColumn = new Brick[columns];
 //		Brick[] brickRow = new Brick[rows];
@@ -56,13 +68,14 @@ public class Brick extends Rectangle {
 //		}
 		
 		for (int i = 0; i < brick.length; i++) {
-			brick[i] = new Brick(bX, bY, pastelBlue); //figure out how to have multiple colors later
+			brick[i] = new Brick(bX, bY, colors[count2]);
 			bX += brick[0].width + bPadding;
 			count++;
 			
 			if (count % columns == 0) {
 				bX = 50;
 				bY += brick[0].height + bPadding;
+				count2++;
 			}
 		}
 		return brick;
