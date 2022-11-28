@@ -22,8 +22,8 @@ public class BreakoutBall extends Rectangle {
 	private static int startY = winY / 2;
 	
 	//creating velocity variables
-	private int vX = 3;
-	private int vY = 3;
+	int vX = 3;
+	int vY = 3;
 	
 	//for reset method
 	private int count = 120;
@@ -64,12 +64,13 @@ public class BreakoutBall extends Rectangle {
 		//ball hits right
 		else if (this.getX() > winX - this.width) {
 			vX *= -1;
-			
 		}
 		
 		//ball hits bricks
-//		if (this.intersects(brick)) {
-//			vY *= -1;
+//		for (int i = 0; i < brick.length; i++) {			
+//			if (this.intersects(brick[i])) {
+//				vY *= -1;
+//			}
 //		}
 		
 		//reset
@@ -80,7 +81,7 @@ public class BreakoutBall extends Rectangle {
 			this.translate(0, 0);
 		}
 	}
-	
+		
 	public void resetBall() {
 		if (count == 120) {
 			out = false;

@@ -40,7 +40,7 @@ public class BreakoutRunner extends GDV5 {
 	private static Color pastelTan2 = new Color(186, 170, 146);
 	
 	//gamestates
-	public int gameState = 0;
+	public int gameState = 1;
 	
 	public BreakoutRunner() {
 		super();
@@ -56,6 +56,7 @@ public class BreakoutRunner extends GDV5 {
 	@Override
 	public void update() { //60 fps, driver called 60 times per second
 		ball.move(p, bricks);
+//		ballHitBricks(ball, bricks);
 		ball.resetBall();
 		p.paddleMove();
 	}
@@ -79,6 +80,19 @@ public class BreakoutRunner extends GDV5 {
 			//paddle
 			win.setColor(pastelTan2);
 			win.fillRect((int) p.getX(), (int) p.getY(), (int) p.getWidth(), (int) p.getHeight());
+		}
+	}
+	
+	public void ballHitBricks(BreakoutBall ball, Brick[] brick) {
+		for (int i = 0; i < brick.length; i++) {			
+			if (ball.intersects(brick[i])) {
+				if (collisionDirection(ball, brick[i], ball.vX, ball.vY) == 1) {
+					ball.vY *= -1;
+				}
+				if (collisionDirection(ball, brick[i], ball.vX, -ball.vY) == 3) {
+					ball.vY *= -1;
+				}
+			}
 		}
 	}
 }
