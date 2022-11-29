@@ -10,8 +10,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 import utilities.GDV5;
+import breakout.BreakoutRunner;
 
-public class BreakoutPaddle extends Rectangle {
+public class BreakoutPaddle extends Rectangle {	
 	private int pVx = 20;
 	
 	public BreakoutPaddle(int pStartX, int pStartY, int pWidth, int pHeight) {
@@ -22,13 +23,13 @@ public class BreakoutPaddle extends Rectangle {
 		if (GDV5.KeysPressed[KeyEvent.VK_A] && this.getX() > 0) { //as long as the paddle is within the upper limit of the window, it goes up
 			this.translate(-pVx, 0);
 		}
-		if (GDV5.KeysPressed[KeyEvent.VK_D] && this.getX() < 1200 - 200) {
+		if (GDV5.KeysPressed[KeyEvent.VK_D] && this.getX() < BreakoutRunner.winX - 200) {
 			this.translate(pVx, 0);
 		}
 		if (GDV5.KeysPressed[KeyEvent.VK_LEFT] && this.getX() > 0) { //as long as the paddle is within the upper limit of the window, it goes up
 			this.translate(-pVx, 0);
 		}
-		if (GDV5.KeysPressed[KeyEvent.VK_RIGHT] && this.getX() < 1200 - 200) {
+		if (GDV5.KeysPressed[KeyEvent.VK_RIGHT] && this.getX() < BreakoutRunner.winX - 200) {
 			this.translate(pVx, 0);
 		}
 	}

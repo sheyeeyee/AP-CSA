@@ -10,12 +10,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 import utilities.GDV5;
+import breakout.BreakoutRunner;
 
-public class Brick extends Rectangle {
-	//create variable for max window sizes
-	private static int winX = BreakoutRunner.getMaxWindowX();
-	private static int winY = BreakoutRunner.getMaxWindowY();
-	
+public class Brick extends Rectangle {	
 	//colors
 	private Color col;
 	
@@ -42,7 +39,7 @@ public class Brick extends Rectangle {
 	private static int bPadding = 15;
 	
 	//brick width and height
-	private static int bWidth = (winX - 2 * bX - (columns - 1) * 15) / (columns);
+	private static int bWidth = (BreakoutRunner.winX - 2 * bX - (columns - 1) * 15) / (columns);
 	private static int bHeight = 30;
 	
 	

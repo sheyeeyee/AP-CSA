@@ -9,21 +9,17 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
-import pong.Ball;
 import utilities.GDV5;
+import breakout.BreakoutRunner;
 
-public class BreakoutBall extends Rectangle {
-	//create variable for max window sizes
-	private static int winX = BreakoutRunner.getMaxWindowX();
-	private static int winY = BreakoutRunner.getMaxWindowY();
-	
+public class BreakoutBall extends Rectangle {	
 	//starting ball position
-	private static int startX = (int) (winX / 2 - 20 / 2);
-	private static int startY = winY / 2;
+	private static int startX = (int) (BreakoutRunner.winX / 2 - 20 / 2);
+	private static int startY = BreakoutRunner.winY / 2;
 	
-	//creating velocity variables
-	int vX = 3;
-	int vY = 3;
+	//creating velocity variables (public)
+	public int vX = 3;
+	public int vY = 3;
 	
 	//for reset method
 	private int count = 120;
@@ -41,7 +37,7 @@ public class BreakoutBall extends Rectangle {
 //		vY = 3;
 		
 		//if ball goes to bottom
-		if (this.getY() >= (winY - this.height)) {
+		if (this.getY() >= (BreakoutRunner.winY - this.height)) {
 //			this.setLocation((int) (winX / 2 - this.getWidth() / 2), winY / 2);
 //			count = 0;
 //			out = true;
@@ -62,7 +58,7 @@ public class BreakoutBall extends Rectangle {
 			vX *= -1;
 		}
 		//ball hits right
-		else if (this.getX() > winX - this.width) {
+		else if (this.getX() > BreakoutRunner.winX - this.width) {
 			vX *= -1;
 		}
 		

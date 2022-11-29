@@ -14,18 +14,18 @@ import utilities.GDV5;
 
 public class BreakoutRunner extends GDV5 {
 	//create variable for max window sizes
-	private static int winX = BreakoutRunner.getMaxWindowX();
-	private static int winY = BreakoutRunner.getMaxWindowY();
+	public static int winX = getMaxWindowX();
+	public static int winY = getMaxWindowY();
 	
 	//set paddle parameters
 	private static int pWidth = 200;
-	private static int pHeight = 10;
-	private static int pOffset = 8;
+	private static int pHeight = 15;
+	private static int pOffset = 20;
 	
 	//creating objects
 	Brick[] bricks;
 	BreakoutBall ball = new BreakoutBall(20);
-	BreakoutPaddle p = new BreakoutPaddle((winX / 2 - pWidth / 2), 800 - pHeight - pOffset, pWidth, pHeight);
+	BreakoutPaddle p = new BreakoutPaddle((winX / 2 - pWidth / 2), winY - pHeight - pOffset, pWidth, pHeight);
 	
 	//customizing colors
 	String brickColor = "";
@@ -90,34 +90,35 @@ public class BreakoutRunner extends GDV5 {
 				if (collisionDirection(ball, brick[i], ball.vX, ball.vY) == 1) {
 					ball.vY *= -1;
 				}
-				else if (collisionDirection(ball, brick[i], -ball.vX, ball.vY) == 1) {
+				if (collisionDirection(ball, brick[i], -ball.vX, ball.vY) == 1) {
 					ball.vY *= -1;
 				}
 				
 				//ball intersects bottom
 				if (collisionDirection(ball, brick[i], -ball.vX, -ball.vY) == 3) {
-					ball.vY *= -1;
+					ball.vY = -ball.vY * -1;
 				}
-				else if (collisionDirection(ball, brick[i], ball.vX, -ball.vY) == 3) {
-					ball.vY *= -1;
+				if (collisionDirection(ball, brick[i], ball.vX, -ball.vY) == 3) {
+					ball.vY = -ball.vY * -1;
 				}
 				
 				//ball intersects left
 				if (collisionDirection(ball, brick[i], ball.vX, ball.vY) == 2) {
 					ball.vX *= -1;
 				}
-				else if (collisionDirection(ball, brick[i], ball.vX, -ball.vY) == 2) {
+				if (collisionDirection(ball, brick[i], ball.vX, -ball.vY) == 2) {
 					ball.vX *= -1;
 				}
 				
 				//ball intersects right
 				if (collisionDirection(ball, brick[i], -ball.vX, ball.vY) == 0) {
-					ball.vX *= -1;
+					ball.vX = -ball.vX * -1;
 				}
-				else if (collisionDirection(ball, brick[i], -ball.vX, -ball.vY) == 0) {
-					ball.vX *= -1;
+				if (collisionDirection(ball, brick[i], -ball.vX, -ball.vY) == 0) {
+					ball.vX = -ball.vX * -1;
 				}
 			}
 		}
+		System.out.println("vY: " + ball.vY + " " + "vX: " + ball.vX);
 	}
 }
