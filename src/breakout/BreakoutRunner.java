@@ -56,7 +56,7 @@ public class BreakoutRunner extends GDV5 {
 	@Override
 	public void update() { //60 fps, driver called 60 times per second
 		ball.move(p, bricks);
-//		ballHitBricks(ball, bricks);
+		ballHitBricks(ball, bricks);
 		ball.resetBall();
 		p.paddleMove();
 	}
@@ -86,11 +86,36 @@ public class BreakoutRunner extends GDV5 {
 	public void ballHitBricks(BreakoutBall ball, Brick[] brick) {
 		for (int i = 0; i < brick.length; i++) {			
 			if (ball.intersects(brick[i])) {
+				//ball intersects top
 				if (collisionDirection(ball, brick[i], ball.vX, ball.vY) == 1) {
 					ball.vY *= -1;
 				}
-				if (collisionDirection(ball, brick[i], ball.vX, -ball.vY) == 3) {
+				else if (collisionDirection(ball, brick[i], -ball.vX, ball.vY) == 1) {
 					ball.vY *= -1;
+				}
+				
+				//ball intersects bottom
+				if (collisionDirection(ball, brick[i], -ball.vX, -ball.vY) == 3) {
+					ball.vY *= -1;
+				}
+				else if (collisionDirection(ball, brick[i], ball.vX, -ball.vY) == 3) {
+					ball.vY *= -1;
+				}
+				
+				//ball intersects left
+				if (collisionDirection(ball, brick[i], ball.vX, ball.vY) == 2) {
+					ball.vX *= -1;
+				}
+				else if (collisionDirection(ball, brick[i], ball.vX, -ball.vY) == 2) {
+					ball.vX *= -1;
+				}
+				
+				//ball intersects right
+				if (collisionDirection(ball, brick[i], -ball.vX, ball.vY) == 0) {
+					ball.vX *= -1;
+				}
+				else if (collisionDirection(ball, brick[i], -ball.vX, -ball.vY) == 0) {
+					ball.vX *= -1;
 				}
 			}
 		}
