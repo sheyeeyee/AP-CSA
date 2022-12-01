@@ -23,7 +23,7 @@ public class BreakoutRunner extends GDV5 {
 	private static int pOffset = 20;
 	
 	//creating objects
-	Brick[] bricks;
+	Brick[] brickObjects;
 	BreakoutBall ball = new BreakoutBall(20);
 	BreakoutPaddle p = new BreakoutPaddle((winX / 2 - pWidth / 2), winY - pHeight - pOffset, pWidth, pHeight);
 	
@@ -44,7 +44,7 @@ public class BreakoutRunner extends GDV5 {
 	
 	public BreakoutRunner() {
 		super();
-		bricks = Brick.makeBricks(); //bricks array equals the makeBricks() method
+		brickObjects = Brick.makeBricks(); //bricks array equals the makeBricks() method
 	}
 	
 	public static void main(String[] args) {
@@ -55,8 +55,8 @@ public class BreakoutRunner extends GDV5 {
 	//bc of this, no loops needed since these are being called continuously
 	@Override
 	public void update() { //60 fps, driver called 60 times per second
-		ball.move(p, bricks);
-		ballHitBricks(ball, bricks);
+		ball.move(p, brickObjects);
+		ballHitBricks(ball, brickObjects);
 		ball.resetBall();
 		p.paddleMove();
 	}
@@ -69,7 +69,7 @@ public class BreakoutRunner extends GDV5 {
 		
 		if (gameState == 1) {
 			//bricks (syntactic sugar)
-			for (Brick b:bricks) {
+			for (Brick b:brickObjects) {
 				b.draw(win);
 			}
 			
@@ -84,7 +84,7 @@ public class BreakoutRunner extends GDV5 {
 	}
 	
 	public void ballHitBricks(BreakoutBall ball, Brick[] brick) {
-		for (Brick b:bricks) {
+		for (Brick b:brickObjects) {
 			if (ball.intersects(b)) {
 				//ball intersects top
 				if (collisionDirection(b, ball, ball.vX, ball.vY) == 1) {
@@ -93,19 +93,19 @@ public class BreakoutRunner extends GDV5 {
 				}
 				
 				//ball intersects bottom
-				if (collisionDirection(b, ball, ball.vX, ball.vY) == 3) {
+				else if (collisionDirection(b, ball, ball.vX, ball.vY) == 3) {
 					ball.vY = Math.abs(ball.vY);
 					System.out.println("vY: " + ball.vY + " " + "vX: " + ball.vX);
 				}
 				
 				//ball intersects left
-				if (collisionDirection(b, ball, ball.vX, ball.vY) == 2) {
+				else if (collisionDirection(b, ball, ball.vX, ball.vY) == 2) {
 					ball.vX = -Math.abs(ball.vX);
 					System.out.println("vY: " + ball.vY + " " + "vX: " + ball.vX);
 				}
 				
 				//ball intersects right
-				if (collisionDirection(b, ball, ball.vX, ball.vY) == 0) {
+				else if (collisionDirection(b, ball, ball.vX, ball.vY) == 0) {
 					ball.vX = Math.abs(ball.vX);
 					System.out.println("vY: " + ball.vY + " " + "vX: " + ball.vX);
 				}

@@ -18,8 +18,12 @@ public class BreakoutBall extends Rectangle {
 	private static int startY = BreakoutRunner.winY / 2;
 	
 	//creating velocity variables (public)
-	public int vX = 8;
-	public int vY = -8;
+	public int vX = 5;
+	public int vY = 5;
+	
+	private int nVX = 1;
+	private int countA;
+	private int countD;
 	
 	//for reset method
 	private int count = 120;
@@ -37,16 +41,28 @@ public class BreakoutBall extends Rectangle {
 //		vY = 3;
 		
 		//if ball goes to bottom
-		if (this.getY() >= (BreakoutRunner.winY - this.height)) {
-//			this.setLocation((int) (winX / 2 - this.getWidth() / 2), winY / 2);
-//			count = 0;
-//			out = true;
-			vY = -Math.abs(vY);
+		if (this.getY() >= BreakoutRunner.winY) {
+			this.setLocation((int) (BreakoutRunner.winX / 2 - this.getWidth() / 2), BreakoutRunner.winY / 2);
+			count = 0;
+			out = true;
+//			vY = -Math.abs(vY);
 		}
 		
 		//ball hits paddle
 		if (this.intersects(p)) {
 			vY = -Math.abs(vY);
+			
+//			if (GDV5.KeysPressed[KeyEvent.VK_A] || GDV5.KeysPressed[KeyEvent.VK_LEFT]) {
+//				vX = vX - nVX;
+//				vY = -Math.abs(vY);
+//				countA++;
+//			}
+//			else if (GDV5.KeysPressed[KeyEvent.VK_D] || GDV5.KeysPressed[KeyEvent.VK_RIGHT]) {
+//				vX = vX + nVX;
+//				vY = -Math.abs(vY);
+//				countD++;
+//			}
+//			else vY = -Math.abs(vY);
 		}
 		//ball hits top
 		if (this.getY() < 0) {
@@ -72,6 +88,14 @@ public class BreakoutBall extends Rectangle {
 		//reset
 		if (count == 120) {
 			this.translate(vX, vY);
+			
+//			if (countA > 0) {
+//				this.translate(vX + (countA * nVX), vY);
+//			}
+//			else if (countD > 0) {
+//				this.translate(vX - (countD * nVX), vY);
+//			}
+//			else this.translate(vX, vY);
 		}
 		else {
 			this.translate(0, 0);

@@ -36,10 +36,10 @@ public class Brick extends Rectangle {
 	private static int rows = 5;
 	
 	//space btwn bricks
-	private static int bPadding = 15;
+	private static int bPadding = 5;
 	
 	//brick width and height
-	private static int bWidth = (BreakoutRunner.winX - 2 * bX - (columns - 1) * 15) / (columns);
+	private static int bWidth = (BreakoutRunner.winX - (2 * bX) - (columns - 1) * bPadding) / (columns);
 	private static int bHeight = 30;
 	
 	
@@ -55,7 +55,7 @@ public class Brick extends Rectangle {
 		int count2 = 0;
 		
 		//create brick array
-		Brick[] brick = new Brick[columns * rows];
+		Brick[] brickArray = new Brick[columns * rows];
 //		Brick[] brickColumn = new Brick[columns];
 //		Brick[] brickRow = new Brick[rows];
 		
@@ -64,18 +64,18 @@ public class Brick extends Rectangle {
 //			x += brick[0].width + padding;
 //		}
 		
-		for (int i = 0; i < brick.length; i++) {
-			brick[i] = new Brick(bX, bY, colors[count2]);
-			bX += brick[0].width + bPadding;
+		for (int i = 0; i < brickArray.length; i++) {
+			brickArray[i] = new Brick(bX, bY, colors[count2]);
+			bX += brickArray[0].width + bPadding;
 			count++;
 			
 			if (count % columns == 0) {
 				bX = 50;
-				bY += brick[0].height + bPadding;
+				bY += brickArray[0].height + bPadding;
 				count2++;
 			}
 		}
-		return brick;
+		return brickArray;
 	}
 	
 	public void draw(Graphics2D pb) {
