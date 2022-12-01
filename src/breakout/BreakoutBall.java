@@ -18,8 +18,8 @@ public class BreakoutBall extends Rectangle {
 	private static int startY = BreakoutRunner.winY / 2;
 	
 	//creating velocity variables (public)
-	public int vX = 3;
-	public int vY = 3;
+	public int vX = 5;
+	public int vY = -5;
 	
 	//for reset method
 	private int count = 120;
@@ -41,25 +41,25 @@ public class BreakoutBall extends Rectangle {
 //			this.setLocation((int) (winX / 2 - this.getWidth() / 2), winY / 2);
 //			count = 0;
 //			out = true;
-			vY *= -1;
+			vY = -Math.abs(vY);
 		}
 		
 		//ball hits paddle
 		if (this.intersects(p)) {
-			vY *= -1;
+			vY = -Math.abs(vY);
 		}
 		//ball hits top
 		if (this.getY() < 0) {
-			vY *= -1;
+			vY = Math.abs(vY);
 		}
 		
 		//ball hits left
 		if (this.getX() < 0) {
-			vX *= -1;
+			vX = Math.abs(vX);
 		}
 		//ball hits right
 		else if (this.getX() > BreakoutRunner.winX - this.width) {
-			vX *= -1;
+			vX = -Math.abs(vX);
 		}
 		
 		//ball hits bricks

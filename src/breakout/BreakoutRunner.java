@@ -68,7 +68,7 @@ public class BreakoutRunner extends GDV5 {
 		}
 		
 		if (gameState == 1) {
-			//bricks (what is b??)
+			//bricks (syntactic sugar)
 			for (Brick b:bricks) {
 				b.draw(win);
 			}
@@ -84,38 +84,26 @@ public class BreakoutRunner extends GDV5 {
 	}
 	
 	public void ballHitBricks(BreakoutBall ball, Brick[] brick) {
-		for (int i = 0; i < brick.length; i++) {			
-			if (ball.intersects(brick[i])) {
+		for (Brick b:bricks) {
+			if (ball.intersects(b)) {
 				//ball intersects top
-				if (collisionDirection(ball, brick[i], ball.vX, ball.vY) == 1) {
-					ball.vY *= -1;
-				}
-				if (collisionDirection(ball, brick[i], -ball.vX, ball.vY) == 1) {
-					ball.vY *= -1;
+				if (collisionDirection(ball, b, ball.vX, ball.vY) == 1) {
+					ball.vY = -Math.abs(ball.vY);
 				}
 				
 				//ball intersects bottom
-				if (collisionDirection(ball, brick[i], -ball.vX, -ball.vY) == 3) {
-					ball.vY = -ball.vY * -1;
-				}
-				if (collisionDirection(ball, brick[i], ball.vX, -ball.vY) == 3) {
-					ball.vY = -ball.vY * -1;
+				if (collisionDirection(ball, b, ball.vX, ball.vY) == 3) {
+					ball.vY = Math.abs(ball.vY);
 				}
 				
 				//ball intersects left
-				if (collisionDirection(ball, brick[i], ball.vX, ball.vY) == 2) {
-					ball.vX *= -1;
-				}
-				if (collisionDirection(ball, brick[i], ball.vX, -ball.vY) == 2) {
-					ball.vX *= -1;
+				if (collisionDirection(ball, b, ball.vX, ball.vY) == 2) {
+					ball.vX = -Math.abs(ball.vX);
 				}
 				
 				//ball intersects right
-				if (collisionDirection(ball, brick[i], -ball.vX, ball.vY) == 0) {
-					ball.vX = -ball.vX * -1;
-				}
-				if (collisionDirection(ball, brick[i], -ball.vX, -ball.vY) == 0) {
-					ball.vX = -ball.vX * -1;
+				if (collisionDirection(ball, b, ball.vX, ball.vY) == 0) {
+					ball.vX = Math.abs(ball.vX);
 				}
 			}
 		}
