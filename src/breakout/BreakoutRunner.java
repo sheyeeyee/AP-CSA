@@ -87,26 +87,29 @@ public class BreakoutRunner extends GDV5 {
 		for (Brick b:bricks) {
 			if (ball.intersects(b)) {
 				//ball intersects top
-				if (collisionDirection(ball, b, ball.vX, ball.vY) == 1) {
+				if (collisionDirection(b, ball, ball.vX, ball.vY) == 1) {
 					ball.vY = -Math.abs(ball.vY);
+					System.out.println("vY: " + ball.vY + " " + "vX: " + ball.vX);
 				}
 				
 				//ball intersects bottom
-				if (collisionDirection(ball, b, ball.vX, ball.vY) == 3) {
+				if (collisionDirection(b, ball, ball.vX, ball.vY) == 3) {
 					ball.vY = Math.abs(ball.vY);
+					System.out.println("vY: " + ball.vY + " " + "vX: " + ball.vX);
 				}
 				
 				//ball intersects left
-				if (collisionDirection(ball, b, ball.vX, ball.vY) == 2) {
+				if (collisionDirection(b, ball, ball.vX, ball.vY) == 2) {
 					ball.vX = -Math.abs(ball.vX);
+					System.out.println("vY: " + ball.vY + " " + "vX: " + ball.vX);
 				}
 				
 				//ball intersects right
-				if (collisionDirection(ball, b, ball.vX, ball.vY) == 0) {
+				if (collisionDirection(b, ball, ball.vX, ball.vY) == 0) {
 					ball.vX = Math.abs(ball.vX);
+					System.out.println("vY: " + ball.vY + " " + "vX: " + ball.vX);
 				}
 			}
 		}
-		System.out.println("vY: " + ball.vY + " " + "vX: " + ball.vX);
 	}
 }

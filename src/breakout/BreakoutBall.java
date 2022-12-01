@@ -18,8 +18,8 @@ public class BreakoutBall extends Rectangle {
 	private static int startY = BreakoutRunner.winY / 2;
 	
 	//creating velocity variables (public)
-	public int vX = 5;
-	public int vY = -5;
+	public int vX = 8;
+	public int vY = -8;
 	
 	//for reset method
 	private int count = 120;
