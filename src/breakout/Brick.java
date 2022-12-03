@@ -17,15 +17,9 @@ public class Brick extends Rectangle {
 	private Color col;
 	
 	//array of colors for bricks
-	private static Color[] colors = {new Color(14, 162, 131), new Color(23, 185, 151), 
-			new Color(32, 205, 169), new Color(72, 218, 188), new Color(82, 234, 202), new Color(86, 246, 213)};
-	
-	//creating color objects for intuitiveness
-	private static Color pastelBlue = new Color(180, 224, 229);
-	private static Color pastelTeal = new Color(72, 218, 188);
-	private static Color pastelLightGreen = new Color(171, 232, 219);
-	private static Color pastelTan = new Color(229, 209, 180);
-	private static Color pastelTan2 = new Color(186, 170, 146);
+	private static Color[] colors = {Colors.pastelTeal1, Colors.pastelTeal2, Colors.pastelTeal3, 
+			Colors.pastelTeal4, Colors.pastelTeal5, Colors.pastelTeal6, Colors.pastelTeal7, 
+			Colors.pastelTeal8, Colors.pastelTeal9};
 
 	//position of top row
 	private static int bX = 50;
@@ -33,7 +27,7 @@ public class Brick extends Rectangle {
 	
 	//# of columns and rows
 	private static int columns = 10;
-	private static int rows = 5;
+	private static int rows = 8;
 	
 	//space btwn bricks
 	private static int bPadding = 5;
@@ -50,7 +44,7 @@ public class Brick extends Rectangle {
 	}
 	
 	//method to create bricks
-	public static Brick[] makeBricks() {
+	public static Brick[] makeBricks() { //makeBricks(int columns, int rows)
 		int count = 0;
 		int count2 = 0;
 		

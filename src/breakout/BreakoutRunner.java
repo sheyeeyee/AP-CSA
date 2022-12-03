@@ -19,7 +19,7 @@ public class BreakoutRunner extends GDV5 {
 	
 	//set paddle parameters
 	private static int pWidth = 200;
-	private static int pHeight = 15;
+	private static int pHeight = 10;
 	private static int pOffset = 20;
 	
 	//creating objects
@@ -31,13 +31,6 @@ public class BreakoutRunner extends GDV5 {
 	String brickColor = "";
 	String ballColor = "";
 	String paddleColor = "";
-
-	//colors
-	private static Color pastelBlue = new Color(180, 224, 229);
-	private static Color pastelTeal = new Color(72, 218, 188);
-	private static Color pastelLightGreen = new Color(171, 232, 219);
-	private static Color pastelTan = new Color(229, 209, 180);
-	private static Color pastelTan2 = new Color(186, 170, 146);
 	
 	//gamestates
 	public int gameState = 1;
@@ -74,11 +67,11 @@ public class BreakoutRunner extends GDV5 {
 			}
 			
 			//ball
-			win.setColor(pastelTan);
+			win.setColor(Colors.pastelTan);
 			win.fillOval((int) ball.getX(), (int) ball.getY(), (int) ball.getWidth(), (int) ball.getHeight());
 			
 			//paddle
-			win.setColor(pastelTan2);
+			win.setColor(Colors.pastelTan2);
 			win.fillRect((int) p.getX(), (int) p.getY(), (int) p.getWidth(), (int) p.getHeight());
 		}
 	}
@@ -88,27 +81,35 @@ public class BreakoutRunner extends GDV5 {
 			if (ball.intersects(b)) {
 				//ball intersects top
 				if (collisionDirection(b, ball, ball.vX, ball.vY) == 1) {
+					if (ball.vX < 3 && ball.vX > 0) ball.vX = ball.vX + (int) (Math.random() * 2 + 1);
+					else if (ball.vX > -3 && ball.vX < 0) ball.vX = ball.vX - (int) (Math.random() * 2 + 1);
+					else if (ball.vX < -3) ball.vX = ball.vX + (int) (Math.random() * 2 + 1);
+					else ball.vX = ball.vX - (int) (Math.random() * 2 + 1);
 					ball.vY = -Math.abs(ball.vY);
-					System.out.println("vY: " + ball.vY + " " + "vX: " + ball.vX);
+					System.out.println("T vY: " + ball.vY + " " + "vX: " + ball.vX);
 				}
 				
 				//ball intersects bottom
 				else if (collisionDirection(b, ball, ball.vX, ball.vY) == 3) {
+					ball.vX = ball.vX + (int) (Math.random() * 2 + 1);
 					ball.vY = Math.abs(ball.vY);
-					System.out.println("vY: " + ball.vY + " " + "vX: " + ball.vX);
+					System.out.println("B vY: " + ball.vY + " " + "vX: " + ball.vX);
 				}
 				
 				//ball intersects left
 				else if (collisionDirection(b, ball, ball.vX, ball.vY) == 2) {
 					ball.vX = -Math.abs(ball.vX);
-					System.out.println("vY: " + ball.vY + " " + "vX: " + ball.vX);
+					ball.vY = ball.vY + (int) (Math.random() * 2 + 1);
+					System.out.println("L vY: " + ball.vY + " " + "vX: " + ball.vX);
 				}
 				
 				//ball intersects right
 				else if (collisionDirection(b, ball, ball.vX, ball.vY) == 0) {
 					ball.vX = Math.abs(ball.vX);
-					System.out.println("vY: " + ball.vY + " " + "vX: " + ball.vX);
+					ball.vY = ball.vY + (int) (Math.random() * 2 + 1);
+					System.out.println("R vY: " + ball.vY + " " + "vX: " + ball.vX);
 				}
+				b.setLocation(-100, -100);
 			}
 		}
 	}
