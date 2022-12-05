@@ -11,6 +11,7 @@ import java.awt.event.MouseEvent;
 
 import utilities.GDV5;
 import breakout.BreakoutRunner;
+import pong.Ball;
 
 public class BreakoutBall extends Rectangle {	
 	//starting ball position
@@ -51,6 +52,7 @@ public class BreakoutBall extends Rectangle {
 		//ball hits paddle
 		if (this.intersects(p)) {
 			vY = -Math.abs(vY);
+			System.out.println("P vX: " + vX + " vY: " + vY);
 			
 //			if (GDV5.KeysPressed[KeyEvent.VK_A] || GDV5.KeysPressed[KeyEvent.VK_LEFT]) {
 //				vX = vX - nVX;

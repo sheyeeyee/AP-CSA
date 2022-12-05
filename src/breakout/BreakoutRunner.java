@@ -22,8 +22,14 @@ public class BreakoutRunner extends GDV5 {
 	private static int pHeight = 10;
 	private static int pOffset = 20;
 	
+	//set ball random movement limit
+	private static int mvmtMax = 4;
+	private static int mvmtMin = 0;
+	private static int mvmt = mvmtMax - mvmtMin;
+	
 	//creating objects
 	Brick[] brickObjects;
+	Particles[] particleObjects;
 	BreakoutBall ball = new BreakoutBall(20);
 	BreakoutPaddle p = new BreakoutPaddle((winX / 2 - pWidth / 2), winY - pHeight - pOffset, pWidth, pHeight);
 	
@@ -38,6 +44,7 @@ public class BreakoutRunner extends GDV5 {
 	public BreakoutRunner() {
 		super();
 		brickObjects = Brick.makeBricks(); //bricks array equals the makeBricks() method
+		particleObjects = Particles.makeParticles();
 	}
 	
 	public static void main(String[] args) {
@@ -81,34 +88,45 @@ public class BreakoutRunner extends GDV5 {
 			if (ball.intersects(b)) {
 				//ball intersects top
 				if (collisionDirection(b, ball, ball.vX, ball.vY) == 1) {
-					if (ball.vX < 3 && ball.vX > 0) ball.vX = ball.vX + (int) (Math.random() * 2 + 1);
-					else if (ball.vX > -3 && ball.vX < 0) ball.vX = ball.vX - (int) (Math.random() * 2 + 1);
-					else if (ball.vX < -3) ball.vX = ball.vX + (int) (Math.random() * 2 + 1);
-					else ball.vX = ball.vX - (int) (Math.random() * 2 + 1);
+					if (1 < ball.vX && ball.vX < 4) ball.vX = ball.vX + (int) (Math.random() * mvmt + mvmtMin);
+					else if (-4 < ball.vX && ball.vX < -1) ball.vX = ball.vX - (int) (Math.random() * mvmt + mvmtMin);
+					else if (ball.vX < -4) ball.vX = ball.vX + (int) (Math.random() * mvmt + mvmtMin);
+					else ball.vX = ball.vX - (int) (Math.random() + mvmtMin);
 					ball.vY = -Math.abs(ball.vY);
-					System.out.println("T vY: " + ball.vY + " " + "vX: " + ball.vX);
+					System.out.println("T vX: " + ball.vX + " vY: " + ball.vY);
 				}
 				
 				//ball intersects bottom
 				else if (collisionDirection(b, ball, ball.vX, ball.vY) == 3) {
-					ball.vX = ball.vX + (int) (Math.random() * 2 + 1);
+					if (1 < ball.vX && ball.vX < 4) ball.vX = ball.vX + (int) (Math.random() * mvmt + mvmtMin);
+					else if (-4 < ball.vX && ball.vX < -1) ball.vX = ball.vX - (int) (Math.random() * mvmt + mvmtMin);
+					else if (ball.vX < -4) ball.vX = ball.vX + (int) (Math.random() * mvmt + mvmtMin);
+					else ball.vX = ball.vX - (int) (Math.random() + mvmtMin);
 					ball.vY = Math.abs(ball.vY);
-					System.out.println("B vY: " + ball.vY + " " + "vX: " + ball.vX);
+					System.out.println("B vX: " + ball.vX + " vY: " + ball.vY);
 				}
 				
 				//ball intersects left
 				else if (collisionDirection(b, ball, ball.vX, ball.vY) == 2) {
 					ball.vX = -Math.abs(ball.vX);
-					ball.vY = ball.vY + (int) (Math.random() * 2 + 1);
-					System.out.println("L vY: " + ball.vY + " " + "vX: " + ball.vX);
+					if (1 < ball.vY && ball.vY < 4) ball.vY = ball.vY + (int) (Math.random() * mvmt + mvmtMin);
+					else if (-4 < ball.vY && ball.vY < -1) ball.vY = ball.vY - (int) (Math.random() * mvmt + mvmtMin);
+					else if (ball.vY < -4) ball.vY = ball.vY + (int) (Math.random() * mvmt + mvmtMin);
+					else ball.vY = ball.vY - (int) (Math.random() + mvmtMin);
+					System.out.println("L vX: " + ball.vX + " vY: " + ball.vY);
 				}
 				
 				//ball intersects right
 				else if (collisionDirection(b, ball, ball.vX, ball.vY) == 0) {
 					ball.vX = Math.abs(ball.vX);
-					ball.vY = ball.vY + (int) (Math.random() * 2 + 1);
-					System.out.println("R vY: " + ball.vY + " " + "vX: " + ball.vX);
+					if (1 < ball.vY && ball.vY < 4) ball.vY = ball.vY + (int) (Math.random() * mvmt + mvmtMin);
+					else if (-4 < ball.vY && ball.vY < -1) ball.vY = ball.vY - (int) (Math.random() * mvmt + mvmtMin);
+					else if (ball.vY < -4) ball.vY = ball.vY + (int) (Math.random() * mvmt + mvmtMin);
+					else ball.vY = ball.vY - (int) (Math.random() + mvmtMin);
+					System.out.println("R vX: " + ball.vX + " vY: " + ball.vY);
 				}
+				
+				//"remove" brick (move the brick to a part of the window that isn't visible)
 				b.setLocation(-100, -100);
 			}
 		}

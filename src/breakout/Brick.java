@@ -22,8 +22,8 @@ public class Brick extends Rectangle {
 			Colors.pastelTeal8, Colors.pastelTeal9};
 
 	//position of top row
-	private static int bX = 50;
-	private static int bY = 50;
+	public static int bX = 50;
+	public static int bY = 50;
 	
 	//# of columns and rows
 	private static int columns = 10;
@@ -33,8 +33,8 @@ public class Brick extends Rectangle {
 	private static int bPadding = 5;
 	
 	//brick width and height
-	private static int bWidth = (BreakoutRunner.winX - (2 * bX) - (columns - 1) * bPadding) / (columns);
-	private static int bHeight = 30;
+	public static int bWidth = (BreakoutRunner.winX - (2 * bX) - (columns - 1) * bPadding) / (columns);
+	public static int bHeight = 30;
 	
 	
 	//brick constructor
@@ -60,12 +60,12 @@ public class Brick extends Rectangle {
 		
 		for (int i = 0; i < brickArray.length; i++) {
 			brickArray[i] = new Brick(bX, bY, colors[count2]);
-			bX += brickArray[0].width + bPadding;
+			bX += bWidth + bPadding;
 			count++;
 			
 			if (count % columns == 0) {
 				bX = 50;
-				bY += brickArray[0].height + bPadding;
+				bY += bHeight + bPadding;
 				count2++;
 			}
 		}
