@@ -10,12 +10,13 @@ import java.awt.event.MouseEvent;
 import java.awt.Graphics;
 import javax.swing.JFrame;
 
+import pong.Score;
 import utilities.GDV5;
 
 public class BreakoutRunner extends GDV5 {
 	//create variable for max window sizes
-	public static int winX = getMaxWindowX();
-	public static int winY = getMaxWindowY();
+	private static int winX = getMaxWindowX();
+	private static int winY = getMaxWindowY();
 	
 	//set paddle parameters
 	private static int pWidth = 200;
@@ -23,7 +24,7 @@ public class BreakoutRunner extends GDV5 {
 	private static int pOffset = 20;
 	
 	//set ball random movement limit
-	private static int mvmtMax = 4;
+	private static int mvmtMax = 5;
 	private static int mvmtMin = 0;
 	private static int mvmt = mvmtMax - mvmtMin;
 	
@@ -34,17 +35,18 @@ public class BreakoutRunner extends GDV5 {
 	BreakoutPaddle p = new BreakoutPaddle((winX / 2 - pWidth / 2), winY - pHeight - pOffset, pWidth, pHeight);
 	
 	//customizing colors
-	String brickColor = "";
-	String ballColor = "";
-	String paddleColor = "";
+	private static String brickColor = "";
+	private static String ballColor = "";
+	private static String paddleColor = "";
 	
 	//gamestates
-	public int gameState = 1;
+	private static int gameState = 0;
+	private static boolean gameStart = false;
 	
 	public BreakoutRunner() {
 		super();
 		brickObjects = Brick.makeBricks(); //bricks array equals the makeBricks() method
-		particleObjects = Particles.makeParticles();
+//		particleObjects = Particles.makeParticles();
 	}
 	
 	public static void main(String[] args) {
@@ -59,15 +61,17 @@ public class BreakoutRunner extends GDV5 {
 		ballHitBricks(ball, brickObjects);
 		ball.resetBall();
 		p.paddleMove();
+		gameState();
 	}
 
 	@Override
 	public void draw(Graphics2D win) { //at the processor speed (~3000 fps, called 3000 times per second)
 		if (gameState == 0) {
 			Pages.home(win);
+			//Pages.setScore(0);
 		}
 		
-		if (gameState == 1) {
+		if (gameStart) {
 			//bricks (syntactic sugar)
 			for (Brick b:brickObjects) {
 				b.draw(win);
@@ -83,6 +87,91 @@ public class BreakoutRunner extends GDV5 {
 		}
 	}
 	
+	
+	//getters
+	public static int getWinX() {
+		return winX;
+	}
+	public static int getWinY() {
+		return winY;
+	}
+	public static int getGameState() {
+		return gameState;
+	}
+	public static boolean getGameStart() {
+		return gameStart;
+	}
+	
+	public static void gameState() {
+		//0: splash page
+		//1: easy mode
+		//2: medium mode
+		//3: hard mode
+		//4: pause page
+		//5: customization page
+				
+		if (GDV5.KeysPressed[KeyEvent.VK_ESCAPE] && gameState == 0) {
+			gameState = 5; //customization
+		}
+		else if (GDV5.KeysPressed[KeyEvent.VK_Q] && gameState == 5) {
+			gameState = 0;
+		}
+		else if (GDV5.KeysPressed[KeyEvent.VK_1] && gameState == 0) {
+			gameState = 1;
+			gameStart = true;
+		}
+		else if (GDV5.KeysPressed[KeyEvent.VK_2] && gameState == 0) {
+			gameState = 2;
+			gameStart = true;
+		}
+		else if (GDV5.KeysPressed[KeyEvent.VK_3] && gameState == 0) {
+			gameState = 3;
+			gameStart = true;
+		}
+		else if (GDV5.KeysPressed[KeyEvent.VK_ESCAPE] && gameStart) {
+			gameState = 4; //pause
+			gameStart = false;
+		}
+		else if (GDV5.KeysPressed[KeyEvent.VK_SPACE] && !gameStart) {
+			gameState = 1; //resume game
+			gameStart = true;
+		}
+		else if (GDV5.KeysPressed[KeyEvent.VK_ENTER] && Pages.getScore() == Brick.getNumBricks()) {
+			gameState = 0; //splash page
+			gameStart = false;
+		}
+		else if (GDV5.KeysPressed[KeyEvent.VK_Q] && gameState == 4) {
+			gameState = 0; //splash page
+			gameStart = false;
+		}
+		
+		if (GDV5.KeysPressed[KeyEvent.VK_T] && gameState == 5) {
+			ballColor = "T";
+		}
+		if (GDV5.KeysPressed[KeyEvent.VK_Y] && gameState == 5) {
+			ballColor = "Y";
+		}
+		if (GDV5.KeysPressed[KeyEvent.VK_U] && gameState == 5) {
+			ballColor = "U";
+		}
+		if (GDV5.KeysPressed[KeyEvent.VK_G] && gameState == 5) {
+			paddleColor = "G";
+		}
+		if (GDV5.KeysPressed[KeyEvent.VK_H] && gameState == 5) {
+			paddleColor = "H";
+		}
+		if (GDV5.KeysPressed[KeyEvent.VK_J] && gameState == 5) {
+			paddleColor = "J";
+		}
+		if (GDV5.KeysPressed[KeyEvent.VK_O] && gameState == 5) {
+			ballColor = "O";
+		}
+		if (GDV5.KeysPressed[KeyEvent.VK_P] && gameState == 5) {
+			paddleColor = "P";
+		}
+	}
+	
+	//CHALLENGE #
 	public void ballHitBricks(BreakoutBall ball, Brick[] brick) {
 		for (Brick b:brickObjects) {
 			if (ball.intersects(b)) {

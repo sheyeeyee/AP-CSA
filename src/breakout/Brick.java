@@ -22,25 +22,46 @@ public class Brick extends Rectangle {
 			Colors.pastelTeal8, Colors.pastelTeal9};
 
 	//position of top row
-	public static int bX = 50;
-	public static int bY = 50;
+	private static int bX = 50;
+	private static int bY = 50;
 	
 	//# of columns and rows
 	private static int columns = 10;
 	private static int rows = 8;
+	private static int numBricks = 80;
 	
 	//space btwn bricks
 	private static int bPadding = 5;
 	
 	//brick width and height
-	public static int bWidth = (BreakoutRunner.winX - (2 * bX) - (columns - 1) * bPadding) / (columns);
-	public static int bHeight = 30;
+	private static int bWidth = (BreakoutRunner.getWinX() - (2 * bX) - (columns - 1) * bPadding) / (columns);
+	private static int bHeight = 30;
 	
 	
 	//brick constructor
 	public Brick(int x, int y, Color c) {
 		super(x, y, bWidth, bHeight);
 		col = c;
+	}
+	
+	//getters
+	public static int getBX() {
+		return bX;
+	}
+	public static int getBY() {
+		return bY;
+	}
+	public static int getBWidth() {
+		return bWidth;
+	}
+	public static int getBHeight() {
+		return bHeight;
+	}
+	public Color getColor() {
+		return col;
+	}
+	public static int getNumBricks() {
+		return numBricks;
 	}
 	
 	//method to create bricks
@@ -72,6 +93,7 @@ public class Brick extends Rectangle {
 		return brickArray;
 	}
 	
+	//draw bricks method
 	public void draw(Graphics2D pb) {
 		pb.setColor(col);
 		pb.fill(this);

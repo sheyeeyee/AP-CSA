@@ -12,15 +12,16 @@ import java.awt.event.MouseEvent;
 import utilities.GDV5;
 import breakout.BreakoutRunner;
 import pong.Ball;
+import pong.PongRunner;
 
 public class BreakoutBall extends Rectangle {	
 	//starting ball position
-	private static int startX = (int) (BreakoutRunner.winX / 2 - 20 / 2);
-	private static int startY = BreakoutRunner.winY / 2;
+	private static int startX = (int) (BreakoutRunner.getWinX() / 2 - 20 / 2);
+	private static int startY = BreakoutRunner.getWinY() / 2;
 	
 	//creating velocity variables (public)
-	public int vX = 5;
-	public int vY = 5;
+	public int vX;
+	public int vY;
 	
 	private int nVX = 1;
 	private int countA;
@@ -41,9 +42,25 @@ public class BreakoutBall extends Rectangle {
 //		vX = 3;
 //		vY = 3;
 		
+		//game mode
+		if (GDV5.KeysPressed[KeyEvent.VK_1]) {
+			vX = 3;
+			vY = 3;
+		}
+		if (GDV5.KeysPressed[KeyEvent.VK_2]) {
+			vX = 6;
+			vY = 6;
+		}
+		if (GDV5.KeysPressed[KeyEvent.VK_3]) {
+			vX = 9;
+			vY = 9;
+		}
+		startX += vX;
+		startY += vY;
+		
 		//if ball goes to bottom
-		if (this.getY() >= BreakoutRunner.winY) {
-			this.setLocation((int) (BreakoutRunner.winX / 2 - this.getWidth() / 2), BreakoutRunner.winY / 2);
+		if (this.getY() >= BreakoutRunner.getWinY()) {
+			this.setLocation((int) (BreakoutRunner.getWinX() / 2 - this.getWidth() / 2), BreakoutRunner.getWinY() / 2);
 			count = 0;
 			out = true;
 //			vY = -Math.abs(vY);
@@ -76,7 +93,7 @@ public class BreakoutBall extends Rectangle {
 			vX = Math.abs(vX);
 		}
 		//ball hits right
-		else if (this.getX() > BreakoutRunner.winX - this.width) {
+		else if (this.getX() > BreakoutRunner.getWinX() - this.width) {
 			vX = -Math.abs(vX);
 		}
 		
@@ -86,6 +103,20 @@ public class BreakoutBall extends Rectangle {
 //				vY *= -1;
 //			}
 //		}
+		
+		//for resetting ball
+				if (BreakoutRunner.getGameStart()) {
+					if (count == 120) {
+						this.translate(vX, vY);
+					}
+					else {
+						this.translate(0, 0);
+					}
+				}
+				if (BreakoutRunner.getGameState() == 0) {
+					this.translate(0, 0);
+					this.setLocation((int) (BreakoutRunner.getWinX() / 2 - this.getWidth() / 2), BreakoutRunner.getWinY() / 2);
+				}
 		
 		//reset
 		if (count == 120) {

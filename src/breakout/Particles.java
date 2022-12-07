@@ -14,6 +14,8 @@ import breakout.BreakoutRunner;
 import breakout.Brick;
 
 public class Particles extends Rectangle {
+	static Particles[] particlesArray;
+	
 	//colors
 	private Color col;
 	
@@ -23,11 +25,11 @@ public class Particles extends Rectangle {
 			Colors.pastelTeal8, Colors.pastelTeal9};
 	
 	//particle position
-	private static int partX = Brick.bX + (Brick.bWidth / 2);
-	private static int partY = Brick.bY + (Brick.bHeight / 2);
+	private static int partX = Brick.getBX();
+	private static int partY = Brick.getBX();
 	
 	//# of particles
-	private static int particlesNum = 25;
+	private static int particlesNum = 35;
 	
 	//brick width and height
 	private static int partSize = 5;
@@ -39,15 +41,38 @@ public class Particles extends Rectangle {
 		col = c;
 	}
 	
+	//setters
+	public void setColor(Color newColor) {
+		col = newColor;
+	}
+	
 	//method to create particles
-	public static Particles[] makeParticles() {
-		Particles[] particlesArray = new Particles[particlesNum];
+	public static void makeParticles(Brick brickArray) {
+		int count = 0;
+		
+		particlesArray = new Particles[particlesNum];
 		
 		for (int i = 0; i < particlesArray.length; i++) {
-			particlesArray[i] = new Particles(partX, partY, colors[0]);
+			particlesArray[i] = new Particles(partX, partY, brickArray.getColor());
 			partX += (2 * partSize);
+			count++;
+			
+			if (count % (particlesNum / 3) == 0) {
+				partX += (2 * partSize);
+				partY += partSize;
+			}
+		}
+	}
+	
+	public static void moveParticles() {
+		for (int i = 0; i < particlesArray.length; i++) {
 			
 		}
-		return particlesArray;
+	}
+	
+	//draw particles method
+	public void draw(Graphics2D pb) {
+		pb.setColor(col);
+		pb.fill(this);
 	}
 }

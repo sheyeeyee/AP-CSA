@@ -19,7 +19,7 @@ public class Colors {
 	public static Color pastelTan = new Color(229, 209, 180);
 	public static Color pastelTan2 = new Color(186, 170, 146);
 	
-	//teal shades
+	//teal shades (dark to light)
 	public static Color pastelTeal1 = new Color (4, 116, 92);
 	public static Color pastelTeal2 = new Color(6, 135, 108);
 	public static Color pastelTeal3 = new Color(11, 149, 120);
@@ -29,4 +29,12 @@ public class Colors {
 	public static Color pastelTeal7 = new Color(72, 218, 188);
 	public static Color pastelTeal8 = new Color(82, 234, 202);
 	public static Color pastelTeal9 = new Color(86, 246, 21);
+	
+	//blue shades
+	
+	
+	//light green shades
+	public static Color pastelLightGreen1 = new Color(167, 232, 187);
+	
+	//tan shades
 }
