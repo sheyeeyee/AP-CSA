@@ -44,12 +44,12 @@ public class BreakoutBall extends Rectangle {
 		
 		//game mode
 		if (GDV5.KeysPressed[KeyEvent.VK_1]) {
-			vX = 3;
-			vY = 3;
+			vX = 1; //3
+			vY = 1;
 		}
 		if (GDV5.KeysPressed[KeyEvent.VK_2]) {
-			vX = 6;
-			vY = 6;
+			vX = 5;
+			vY = 5;
 		}
 		if (GDV5.KeysPressed[KeyEvent.VK_3]) {
 			vX = 9;

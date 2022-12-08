@@ -11,13 +11,18 @@ import java.awt.event.MouseEvent;
 
 import utilities.GDV5;
 import breakout.BreakoutRunner;
+import pong.PongRunner;
+import pong.Score;
 
 public class Pages {
-	private static int score;
+	private static Integer score;
 	
 	//getter
 	public static int getScore() {
 		return score;
+	}
+	public static void setScore(int newScore) {
+		score = newScore;
 	}
 	
 	public static void home(Graphics2D font) {
@@ -136,8 +141,133 @@ public class Pages {
 		font.drawString("HOW TO PLAY: Break all of the bricks!", 420, 815);
 	}
 	
-	public static void game(Graphics2D font) {
+	public static void customize(Graphics2D font) {
+		font.setFont(new Font("Comic Sans MS", Font.BOLD, 50));
+		font.setColor(Color.darkGray);
+		font.drawString("Customize Ball", 155, 360);
+				
+		font.setColor(Color.darkGray);
+		font.drawString("Customize Paddles", 585, 510);
 		
+		font.setColor(new Color(229, 209, 180));
+		font.drawString("Customize Ball", 150, 355);
+		font.setFont(new Font("Comic Sans MS", Font.BOLD, 25));
+		font.drawString("PRESS THE CORRESPONDING LETTER FOR BALL COLOR", 155, 300);
+		
+		font.setFont(new Font("Comic Sans MS", Font.BOLD, 50));
+		font.setColor(new Color(140, 225, 176));
+		font.drawString("Customize Paddles", 580, 505);
+		font.setFont(new Font("Comic Sans MS", Font.BOLD, 25));
+		font.drawString("PRESS THE CORRESPONDING LETTER FOR PADDLE COLOR", 270, 543);
+		
+		if (BreakoutRunner.getBallColor() == "T") {
+			font.setFont(new Font("Comic Sans MS", Font.BOLD, 50));
+			font.setColor(Color.black);
+			font.drawString("T", 555, 360);
+		}
+		else if (BreakoutRunner.getBallColor() == "Y") {
+			font.setFont(new Font("Comic Sans MS", Font.BOLD, 50));
+			font.setColor(Color.black);
+			font.drawString("Y", 605, 360);
+		}
+		else if (BreakoutRunner.getBallColor() == "U") {
+			font.setFont(new Font("Comic Sans MS", Font.BOLD, 50));
+			font.setColor(Color.black);
+			font.drawString("U", 655, 360);
+		}
+		else if (BreakoutRunner.getBallColor() == "O" || BreakoutRunner.getBallColor() == "") {
+			font.setFont(new Font("Comic Sans MS", Font.BOLD, 25));
+			font.setColor(Color.black);
+			font.drawString("O for Default Ball Color", 463, 193);
+		}
+		
+		if (BreakoutRunner.getPaddleColor() == "G") {
+			font.setFont(new Font("Comic Sans MS", Font.BOLD, 50));
+			font.setColor(Color.black);
+			font.drawString("G", 405, 510);
+		}
+		else if (BreakoutRunner.getPaddleColor() == "H") {
+			font.setFont(new Font("Comic Sans MS", Font.BOLD, 50));
+			font.setColor(Color.black);
+			font.drawString("H", 455, 510);
+		}
+		else if (BreakoutRunner.getPaddleColor() == "J") {
+			font.setFont(new Font("Comic Sans MS", Font.BOLD, 50));
+			font.setColor(Color.black);
+			font.drawString("J", 505, 510);
+		}
+		else if (BreakoutRunner.getPaddleColor() == "P" || BreakoutRunner.getPaddleColor() == "") {
+			font.setFont(new Font("Comic Sans MS", Font.BOLD, 25));
+			font.setColor(Color.black);
+			font.drawString("P for Default Paddle Color", 463, 223);
+		}
+		
+		font.setFont(new Font("Comic Sans MS", Font.BOLD, 50));
+		
+		font.setColor(new Color(72, 218, 188));
+		font.drawString("T", 550, 355);
+		font.drawString("G", 400, 505);
+		
+		font.setColor(new Color(180, 224, 229));
+		font.drawString("Y", 600, 355);
+		font.drawString("H", 450, 505);
+		
+		font.setColor(new Color(171, 232, 219));
+		font.drawString("U", 650, 355);
+		font.drawString("J", 500, 505);
+		
+		font.setFont(new Font("Comic Sans MS", Font.BOLD, 25));
+		font.setColor(new Color(186, 170, 146));
+		font.drawString("O for Default Ball Color", 460, 190);
+		
+		font.setFont(new Font("Comic Sans MS", Font.BOLD, 25));
+		font.setColor(new Color(186, 170, 146));
+		font.drawString("P for Default Paddle Color", 460, 220);
+		
+		font.setFont(new Font("Comic Sans MS", Font.BOLD, 25));
+		font.setColor(new Color(205, 205, 205));
+		font.drawString("PRESS Q TO GO BACK", 450, 700);
+	}
+	
+	public static void pausedGame(Graphics2D font) {
+		font.setColor(Color.darkGray);
+		font.fillRect(115, 315, 750, 55);
+		font.setColor(Color.gray);
+		font.fillRect(110, 310, 750, 55);
+		
+		font.setColor(Color.darkGray);
+		font.fillRect(505, 465, 565, 55);
+		font.setColor(Color.gray);
+		font.fillRect(500, 460, 565, 55);
+		
+		font.setFont(new Font("Comic Sans MS", Font.BOLD, 50));
+		font.setColor(Color.darkGray);
+		font.drawString("Press SPACE to Resume Game", 125, 355);
+		font.drawString("Press Q to Quit Game", 515, 505);
+		
+		font.setColor(new Color(229, 209, 180));
+		font.drawString("Press SPACE to Resume Game", 120, 350);
+		font.setColor(new Color(72, 218, 188));
+		font.drawString("Press Q to Quit Game", 510, 500);
+	}
+	
+	public static void scoreboard(Graphics2D font) {
+		font.setColor(new Color(229, 209, 180));
+		font.setFont(new Font("Comic Sans MS", Font.BOLD, 100));
+		
+		if (BreakoutRunner.getGameStart() == true) {
+			font.drawString(score.toString(), 260, 300);
+		}
+		
+		font.setColor(Color.black);
+		font.setFont(new Font("Comic Sans MS", Font.BOLD, 75));
+		
+		if (score == Brick.getNumBricks()) {
+			font.drawString("YOU WIN! yay", 200, 500);
+			font.setColor(Color.darkGray);
+			font.setFont(new Font("Comic Sans MS", Font.ITALIC, 50));
+			font.drawString("Press ENTER to Leave the Game", 220, 600);
+		}
 	}
 	
 	public static void switchMode() {

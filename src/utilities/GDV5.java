@@ -28,6 +28,8 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
+import breakout.BreakoutRunner;
+
 public abstract class GDV5 extends Canvas implements Runnable, KeyListener {
 
 	private int FramesPerSecond;
@@ -60,8 +62,9 @@ public abstract class GDV5 extends Canvas implements Runnable, KeyListener {
 		this(60);
 
 		Color background = new Color(97, 108, 105);
-		this.setBackground(Color.black);
-//		this.setBackground(background);
+		this.setBackground(background);
+//		if (BreakoutRunner.getGameStart() == true) this.setBackground(Color.black);
+//		else if (BreakoutRunner.getGameStart() == false) this.setBackground(background);
 	}
 
 	public void start() {

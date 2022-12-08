@@ -25,7 +25,7 @@ public class BreakoutRunner extends GDV5 {
 	
 	//set ball random movement limit
 	private static int mvmtMax = 5;
-	private static int mvmtMin = 0;
+	private static int mvmtMin = 1;
 	private static int mvmt = mvmtMax - mvmtMin;
 	
 	//creating objects
@@ -68,10 +68,19 @@ public class BreakoutRunner extends GDV5 {
 	public void draw(Graphics2D win) { //at the processor speed (~3000 fps, called 3000 times per second)
 		if (gameState == 0) {
 			Pages.home(win);
-			//Pages.setScore(0);
+			Pages.setScore(0);
+		}
+		if (gameState == 4) {
+			Pages.pausedGame(win);
+		}
+		if (gameState == 5) {
+			Pages.customize(win);
 		}
 		
 		if (gameStart) {
+			win.setColor(Color.black);
+			win.fillRect(0, 0, winX, winY);
+			
 			//bricks (syntactic sugar)
 			for (Brick b:brickObjects) {
 				b.draw(win);
@@ -94,6 +103,15 @@ public class BreakoutRunner extends GDV5 {
 	}
 	public static int getWinY() {
 		return winY;
+	}
+	public static int getPWidth() {
+		return pWidth;
+	}
+	public static String getBallColor() {
+		return ballColor;
+	}
+	public static String getPaddleColor() {
+		return paddleColor;
 	}
 	public static int getGameState() {
 		return gameState;
