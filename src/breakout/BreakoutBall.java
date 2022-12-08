@@ -23,9 +23,13 @@ public class BreakoutBall extends Rectangle {
 	public int vX;
 	public int vY;
 	
-	private int nVX = 1;
-	private int countA;
-	private int countD;
+	//lives
+	private static int lives = 5;
+	
+	//changing ball speed based on paddle movement...
+//	private int nVX = 1;
+//	private int countA;
+//	private int countD;
 	
 	//for reset method
 	private int count = 120;
@@ -36,7 +40,14 @@ public class BreakoutBall extends Rectangle {
 		super(startX, startY, size, size);
 	}
 	
-	//method for ball to move (AI)
+	public static int getLives() {
+		return lives;
+	}
+	public static void setLives(int newLives) {
+		lives = newLives;
+	}
+	
+	//method for ball to move
 	public void move(BreakoutPaddle p, Brick[] brick) {
 		//CHALLENGE 1
 //		vX = 3;
@@ -52,8 +63,8 @@ public class BreakoutBall extends Rectangle {
 			vY = 5;
 		}
 		if (GDV5.KeysPressed[KeyEvent.VK_3]) {
-			vX = 9;
-			vY = 9;
+			vX = 7;
+			vY = 7;
 		}
 		startX += vX;
 		startY += vY;
@@ -63,6 +74,7 @@ public class BreakoutBall extends Rectangle {
 			this.setLocation((int) (BreakoutRunner.getWinX() / 2 - this.getWidth() / 2), BreakoutRunner.getWinY() / 2);
 			count = 0;
 			out = true;
+			lives --;
 //			vY = -Math.abs(vY);
 		}
 		
@@ -105,18 +117,18 @@ public class BreakoutBall extends Rectangle {
 //		}
 		
 		//for resetting ball
-				if (BreakoutRunner.getGameStart()) {
-					if (count == 120) {
-						this.translate(vX, vY);
-					}
-					else {
-						this.translate(0, 0);
-					}
-				}
-				if (BreakoutRunner.getGameState() == 0) {
-					this.translate(0, 0);
-					this.setLocation((int) (BreakoutRunner.getWinX() / 2 - this.getWidth() / 2), BreakoutRunner.getWinY() / 2);
-				}
+		if (BreakoutRunner.getGameStart()) {
+			if (count == 120) {
+				this.translate(vX, vY);
+			}
+			else {
+				this.translate(0, 0);
+			}
+		}
+		if (BreakoutRunner.getGameState() == 0 || lives == 0) {
+			this.translate(0, 0);
+			this.setLocation((int) (BreakoutRunner.getWinX() / 2 - this.getWidth() / 2), BreakoutRunner.getWinY() / 2);
+		}
 		
 		//reset
 		if (count == 120) {

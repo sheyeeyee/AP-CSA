@@ -17,9 +17,9 @@ public class Brick extends Rectangle {
 	private Color col;
 	
 	//array of colors for bricks
-	private static Color[] colors = {Colors.pastelTeal1, Colors.pastelTeal2, Colors.pastelTeal3, 
+	private static Color[] colors = {Colors.pastelTeal0, Colors.pastelTeal, Colors.pastelTeal1, Colors.pastelTeal2, Colors.pastelTeal3, 
 			Colors.pastelTeal4, Colors.pastelTeal5, Colors.pastelTeal6, Colors.pastelTeal7, 
-			Colors.pastelTeal8, Colors.pastelTeal9};
+			Colors.pastelTeal8, Colors.pastelTeal9, Colors.pastelTeal10};
 
 	//position of top row
 	private static int bX = 50;
@@ -27,8 +27,8 @@ public class Brick extends Rectangle {
 	
 	//# of columns and rows
 	private static int columns = 10;
-	private static int rows = 8;
-	private static int numBricks = 80;
+	private static int rows;
+	private static int numBricks;
 	
 	//space btwn bricks
 	private static int bPadding = 5;
@@ -69,15 +69,17 @@ public class Brick extends Rectangle {
 		int count = 0;
 		int count2 = 0;
 		
-		//create brick array
-		Brick[] brickArray = new Brick[columns * rows];
-//		Brick[] brickColumn = new Brick[columns];
-//		Brick[] brickRow = new Brick[rows];
+		if (GDV5.KeysPressed[KeyEvent.VK_1]) {
+			rows = 6;
+		}
+		if (GDV5.KeysPressed[KeyEvent.VK_2]) {
+			rows = 9;
+		}
+		numBricks = columns * rows;
+		System.out.println(numBricks);
 		
-//		for (int i = 0; i < columns; i++) {
-//			brick[i] = new Brick(x, y, Color.blue);
-//			x += brick[0].width + padding;
-//		}
+		//create brick array
+		Brick[] brickArray = new Brick[numBricks];
 		
 		for (int i = 0; i < brickArray.length; i++) {
 			brickArray[i] = new Brick(bX, bY, colors[count2]);

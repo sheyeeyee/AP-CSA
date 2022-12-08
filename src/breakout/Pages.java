@@ -11,10 +11,9 @@ import java.awt.event.MouseEvent;
 
 import utilities.GDV5;
 import breakout.BreakoutRunner;
-import pong.PongRunner;
-import pong.Score;
+import breakout.BreakoutPaddle;
 
-public class Pages {
+public class Pages extends Rectangle {
 	private static Integer score;
 	
 	//getter
@@ -23,6 +22,9 @@ public class Pages {
 	}
 	public static void setScore(int newScore) {
 		score = newScore;
+	}
+	public static void addScore(int addScore) {
+		score = score + addScore;
 	}
 	
 	public static void home(Graphics2D font) {
@@ -252,18 +254,31 @@ public class Pages {
 	}
 	
 	public static void scoreboard(Graphics2D font) {
-		font.setColor(new Color(229, 209, 180));
-		font.setFont(new Font("Comic Sans MS", Font.BOLD, 100));
+		Integer liveScore = BreakoutBall.getLives();
+		
+		font.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		
 		if (BreakoutRunner.getGameStart() == true) {
-			font.drawString(score.toString(), 260, 300);
+			font.setColor(Colors.pastelTan);
+			font.drawString("Score: " + score.toString(), 50, 32);
+			font.setColor(Colors.pastelTan2);
+			font.drawString("Lives: " + liveScore.toString(), 162, 32);
 		}
-		
-		font.setColor(Color.black);
+	}
+	
+	public static void youWin(Graphics2D font) {
+		font.setColor(Color.white);
 		font.setFont(new Font("Comic Sans MS", Font.BOLD, 75));
 		
 		if (score == Brick.getNumBricks()) {
-			font.drawString("YOU WIN! yay", 200, 500);
+			font.drawString("YOU WIN!", 200, 500);
+			font.setColor(Color.darkGray);
+			font.setFont(new Font("Comic Sans MS", Font.ITALIC, 50));
+			font.drawString("Press ENTER to Leave the Game", 220, 600);
+		}
+		
+		if (BreakoutBall.getLives() == 0) {
+			font.drawString("YOU LOSE!", 200, 500);
 			font.setColor(Color.darkGray);
 			font.setFont(new Font("Comic Sans MS", Font.ITALIC, 50));
 			font.drawString("Press ENTER to Leave the Game", 220, 600);

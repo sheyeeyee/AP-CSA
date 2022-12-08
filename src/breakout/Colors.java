@@ -20,6 +20,8 @@ public class Colors {
 	public static Color pastelTan2 = new Color(186, 170, 146);
 	
 	//teal shades (dark to light)
+	public static Color pastelTeal0 = new Color (1, 81, 63);
+	public static Color pastelTeal = new Color (4, 105, 82);
 	public static Color pastelTeal1 = new Color (4, 116, 92);
 	public static Color pastelTeal2 = new Color(6, 135, 108);
 	public static Color pastelTeal3 = new Color(11, 149, 120);
@@ -28,7 +30,8 @@ public class Colors {
 	public static Color pastelTeal6 = new Color(32, 205, 169);
 	public static Color pastelTeal7 = new Color(72, 218, 188);
 	public static Color pastelTeal8 = new Color(82, 234, 202);
-	public static Color pastelTeal9 = new Color(86, 246, 21);
+	public static Color pastelTeal9 = new Color(86, 246, 213);
+	public static Color pastelTeal10 = new Color (92, 255, 219);
 	
 	//blue shades
 	
