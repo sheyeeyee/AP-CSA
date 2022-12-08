@@ -27,8 +27,8 @@ public class Brick extends Rectangle {
 	
 	//# of columns and rows
 	private static int columns = 10;
-	private static int rows;
-	private static int numBricks;
+	private static int rows = 12;
+	private static int numBricks = columns * rows;
 	
 	//space btwn bricks
 	private static int bPadding = 5;
@@ -64,19 +64,23 @@ public class Brick extends Rectangle {
 		return numBricks;
 	}
 	
+	public static void setBricks() {
+//		if (GDV5.KeysPressed[KeyEvent.VK_1]) {
+//			rows = 6;
+//			System.out.println("easdf");
+//		}
+//		if (GDV5.KeysPressed[KeyEvent.VK_2]) {
+//			rows = 9;
+//		}
+//		if (GDV5.KeysPressed[KeyEvent.VK_3]) {
+//			rows = 12;
+//		}
+	}
+	
 	//method to create bricks
 	public static Brick[] makeBricks() { //makeBricks(int columns, int rows)
 		int count = 0;
 		int count2 = 0;
-		
-		if (GDV5.KeysPressed[KeyEvent.VK_1]) {
-			rows = 6;
-		}
-		if (GDV5.KeysPressed[KeyEvent.VK_2]) {
-			rows = 9;
-		}
-		numBricks = columns * rows;
-		System.out.println(numBricks);
 		
 		//create brick array
 		Brick[] brickArray = new Brick[numBricks];

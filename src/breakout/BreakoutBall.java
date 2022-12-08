@@ -17,7 +17,7 @@ import pong.PongRunner;
 public class BreakoutBall extends Rectangle {	
 	//starting ball position
 	private static int startX = (int) (BreakoutRunner.getWinX() / 2 - 20 / 2);
-	private static int startY = BreakoutRunner.getWinY() / 2;
+	private static int startY = 600;
 	
 	//creating velocity variables (public)
 	public int vX;
@@ -71,7 +71,7 @@ public class BreakoutBall extends Rectangle {
 		
 		//if ball goes to bottom
 		if (this.getY() >= BreakoutRunner.getWinY()) {
-			this.setLocation((int) (BreakoutRunner.getWinX() / 2 - this.getWidth() / 2), BreakoutRunner.getWinY() / 2);
+			this.setLocation((int) (BreakoutRunner.getWinX() / 2 - this.getWidth() / 2), 600);
 			count = 0;
 			out = true;
 			lives --;
@@ -125,9 +125,9 @@ public class BreakoutBall extends Rectangle {
 				this.translate(0, 0);
 			}
 		}
-		if (BreakoutRunner.getGameState() == 0 || lives == 0) {
+		if (BreakoutRunner.getGameState() == 0 || lives == 0 || Pages.getScore() == Brick.getNumBricks()) {
 			this.translate(0, 0);
-			this.setLocation((int) (BreakoutRunner.getWinX() / 2 - this.getWidth() / 2), BreakoutRunner.getWinY() / 2);
+			this.setLocation((int) (BreakoutRunner.getWinX() / 2 - this.getWidth() / 2), 600);
 		}
 		
 		//reset

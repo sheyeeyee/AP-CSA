@@ -125,17 +125,17 @@ public class Pages extends Rectangle {
 		
 		//ESC
 		font.setColor(Color.gray);
-		font.fillRect(590, 700, 35, 35);
+		font.fillRect(580, 700, 35, 35);
 		font.setColor(new Color(167, 232, 187));
-		font.fillRect(590, 700, 30, 30);
+		font.fillRect(580, 700, 30, 30);
 		
 		font.setColor(Color.black);
 		font.setFont(new Font("Arial", Font.BOLD, 12));
-		font.drawString("ESC", 593, 713);
+		font.drawString("ESC", 583, 713);
 		
 		font.setColor(new Color(167, 232, 187));
 		font.setFont(new Font("Arial", Font.BOLD, 15));
-		font.drawString("PAUSE", 580, 690);
+		font.drawString("PAUSE", 570, 690);
 		
 		//how to play
 		font.setColor(Colors.pastelTeal5);

@@ -28,14 +28,18 @@ public class Particles extends Rectangle {
 	private static int partX = Brick.getBX();
 	private static int partY = Brick.getBX();
 	
+	//particle speed
+	private static int partVX;
+	private static int partVY;
+	
 	//# of particles
 	private static int particlesNum = 35;
 	
-	//brick width and height
+	//particle size
 	private static int partSize = 5;
 		
 		
-	//brick constructor
+	//particle constructor
 	public Particles(int x, int y, Color c) {
 		super(x, y, partSize, partSize);
 		col = c;
@@ -64,9 +68,18 @@ public class Particles extends Rectangle {
 		}
 	}
 	
+	public void move() {
+		if (Math.random() < 0.5) partVX = 1;
+		if (Math.random() > 0.5) partVX = -1;
+		if (Math.random() < 0.5) partVY = 1;
+		if (Math.random() > 0.5) partVY = -1;
+		this.x += partVX;
+		this.y += partVY;
+	}
+	
 	public static void moveParticles() {
-		for (int i = 0; i < particlesArray.length; i++) {
-			
+		for (Particles p:particlesArray) {
+			p.move();
 		}
 	}
 	

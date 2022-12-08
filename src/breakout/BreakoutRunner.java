@@ -70,6 +70,7 @@ public class BreakoutRunner extends GDV5 {
 	public void update() { //60 fps, driver called 60 times per second
 		ball.move(p, brickObjects);
 		ballHitBricks(ball, brickObjects);
+		Brick.setBricks();
 		ball.resetBall();
 		p.paddleMove();
 		gameState();
@@ -99,11 +100,33 @@ public class BreakoutRunner extends GDV5 {
 			}
 			
 			//ball
-			win.setColor(Colors.pastelTan);
+			if (ballColor == "O" || ballColor == "") {
+				win.setColor(Colors.pastelTan);
+			}
+			if (ballColor == "T") {
+				win.setColor(Colors.pastelTeal);
+			}
+			if (ballColor == "Y") {
+				win.setColor(Colors.pastelBlue);
+			}
+			if (ballColor == "U") {
+				win.setColor(Colors.pastelLightGreen);
+			}
 			win.fillOval((int) ball.getX(), (int) ball.getY(), (int) ball.getWidth(), (int) ball.getHeight());
 			
 			//paddle
-			win.setColor(Colors.pastelTan2);
+			if (paddleColor == "P" || paddleColor == "") {
+				win.setColor(Colors.pastelTan2);
+			}
+			if (paddleColor == "G") {
+				win.setColor(Colors.pastelTeal);
+			}
+			if (paddleColor == "H") {
+				win.setColor(Colors.pastelBlue);
+			}
+			if (paddleColor == "J") {
+				win.setColor(Colors.pastelLightGreen);
+			}
 			win.fillRect((int) p.getX(), (int) p.getY(), (int) p.getWidth(), (int) p.getHeight());
 			
 			Pages.scoreboard(win);
