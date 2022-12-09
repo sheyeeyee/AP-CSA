@@ -16,6 +16,9 @@ public class Brick extends Rectangle {
 	//colors
 	private Color col;
 	
+	//brick visibility
+	private boolean brickVis = true;
+	
 	//array of colors for bricks
 	private static Color[] colors = {Colors.pastelTeal0, Colors.pastelTeal, Colors.pastelTeal1, Colors.pastelTeal2, Colors.pastelTeal3, 
 			Colors.pastelTeal4, Colors.pastelTeal5, Colors.pastelTeal6, Colors.pastelTeal7, 
@@ -63,7 +66,14 @@ public class Brick extends Rectangle {
 	public static int getNumBricks() {
 		return numBricks;
 	}
+	public boolean getBrickVis() {
+		return brickVis;
+	}
+	public void setBrickVis(boolean newBrickVis) {
+		brickVis = newBrickVis;
+	}
 	
+	//for different levels
 	public static void setBricks() {
 //		if (GDV5.KeysPressed[KeyEvent.VK_1]) {
 //			rows = 6;
@@ -101,7 +111,9 @@ public class Brick extends Rectangle {
 	
 	//draw bricks method
 	public void draw(Graphics2D pb) {
-		pb.setColor(col);
-		pb.fill(this);
+		if (brickVis) {
+			pb.setColor(col);
+			pb.fill(this);
+		}
 	}
 }

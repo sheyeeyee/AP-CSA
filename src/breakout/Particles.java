@@ -14,10 +14,13 @@ import breakout.BreakoutRunner;
 import breakout.Brick;
 
 public class Particles extends Rectangle {
-	static Particles[] particlesArray;
+	private static Particles[] particlesArray;
 	
 	//colors
 	private Color col;
+	
+	//particle visibility
+	private boolean partVis = true;
 	
 	//array of colors for particles
 	private static Color[] colors = {Colors.pastelTeal1, Colors.pastelTeal2, Colors.pastelTeal3, 
@@ -45,23 +48,29 @@ public class Particles extends Rectangle {
 		col = c;
 	}
 	
-	//setters
+	//getters and setters
 	public void setColor(Color newColor) {
 		col = newColor;
 	}
+	public boolean getPartVis() {
+		return partVis;
+	}
+	public void setPartVis(boolean newPartVis) {
+		partVis = newPartVis;
+	}
 	
 	//method to create particles
-	public static void makeParticles(Brick brickArray) {
+	public static void makeParticles(Brick brickObject) {
 		int count = 0;
 		
 		particlesArray = new Particles[particlesNum];
 		
 		for (int i = 0; i < particlesArray.length; i++) {
-			particlesArray[i] = new Particles(partX, partY, brickArray.getColor());
+			particlesArray[i] = new Particles(partX, partY, brickObject.getColor());
 			partX += (2 * partSize);
 			count++;
 			
-			if (count % (particlesNum / 3) == 0) {
+			if (count % (particlesNum / 5) == 0) {
 				partX += (2 * partSize);
 				partY += partSize;
 			}
@@ -85,7 +94,9 @@ public class Particles extends Rectangle {
 	
 	//draw particles method
 	public void draw(Graphics2D pb) {
-		pb.setColor(col);
-		pb.fill(this);
+		if (partVis) {
+			pb.setColor(col);
+			pb.fill(this);
+		}
 	}
 }

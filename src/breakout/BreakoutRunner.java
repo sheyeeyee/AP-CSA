@@ -32,15 +32,15 @@ public class BreakoutRunner extends GDV5 {
 	private static int pY = winY - pHeight - pOffset;
 	
 	//ball collision with bricks
-	private static int mvmtMax = 4;
-	private static int mvmtMin = 1;
+	private static int mvmtMax = 2;
+	private static int mvmtMin = 0;
 	private static int mvmt = mvmtMax - mvmtMin;
 	private static int minV = 2;
-	private static int maxV = 7;
+	private static int maxV = 5;
 	
 	//creating objects
-	Brick[] brickObjects;
-	Particles[] particleObjects;
+	Brick[] brickArray;
+//	Particles[] particleArray = Particles.makeParticles(brickArray);
 	BreakoutBall ball = new BreakoutBall(20);
 	BreakoutPaddle p = new BreakoutPaddle(pX, pY, pWidth, pHeight);
 	Pages scoreboard = new Pages();
@@ -56,8 +56,7 @@ public class BreakoutRunner extends GDV5 {
 	
 	public BreakoutRunner() {
 		super();
-		brickObjects = Brick.makeBricks(); //bricks array equals the makeBricks() method
-//		particleObjects = Particles.makeParticles();
+		brickArray = Brick.makeBricks(); //bricks array equals the makeBricks() method
 	}
 	
 	public static void main(String[] args) {
@@ -68,8 +67,8 @@ public class BreakoutRunner extends GDV5 {
 	//bc of this, no loops needed since these are being called continuously
 	@Override
 	public void update() { //60 fps, driver called 60 times per second
-		ball.move(p, brickObjects);
-		ballHitBricks(ball, brickObjects);
+		ball.move(p, brickArray);
+		ballHitBricks(ball, brickArray);
 		Brick.setBricks();
 		ball.resetBall();
 		p.paddleMove();
@@ -81,7 +80,7 @@ public class BreakoutRunner extends GDV5 {
 		if (gameState == 0) {
 			Pages.home(win);
 			Pages.setScore(0);
-			BreakoutBall.setLives(3);
+			BreakoutBall.setLives(5);
 		}
 		if (gameState == 4) {
 			Pages.pausedGame(win);
@@ -95,7 +94,7 @@ public class BreakoutRunner extends GDV5 {
 			win.fillRect(0, 0, winX, winY);
 			
 			//bricks (syntactic sugar)
-			for (Brick b:brickObjects) {
+			for (Brick b:brickArray) {
 				b.draw(win);
 			}
 			
@@ -239,10 +238,10 @@ public class BreakoutRunner extends GDV5 {
 	}
 	
 	//CHALLENGE #
-	public void ballHitBricks(BreakoutBall ball, Brick[] brick) {
+	public void ballHitBricks(BreakoutBall ball, Brick[] brick, Particles[] part) {
 		if (gameStart) {
-			for (Brick b:brickObjects) {
-				if (ball.intersects(b)) {
+			for (Brick b:brickArray) {
+				if (ball.intersects(b) && b.getBrickVis() == true) {
 					//ball intersects top
 					if (collisionDirection(b, ball, ball.vX, ball.vY) == 1) {
 						if (minV < ball.vX && ball.vX < maxV) ball.vX = ball.vX + (int) (Math.random() * mvmt + mvmtMin);
@@ -254,7 +253,7 @@ public class BreakoutRunner extends GDV5 {
 					}
 					
 					//ball intersects bottom
-					if (collisionDirection(b, ball, ball.vX, ball.vY) == 3) {
+					else if (collisionDirection(b, ball, ball.vX, ball.vY) == 3) {
 						if (minV < ball.vX && ball.vX < maxV) ball.vX = ball.vX + (int) (Math.random() * mvmt + mvmtMin);
 						else if (-maxV < ball.vX && ball.vX < -minV) ball.vX = ball.vX - (int) (Math.random() * mvmt + mvmtMin);
 						else if (ball.vX < -maxV) ball.vX = ball.vX + (int) (Math.random() * mvmt + mvmtMin);
@@ -264,7 +263,7 @@ public class BreakoutRunner extends GDV5 {
 					}
 					
 					//ball intersects left
-					if (collisionDirection(b, ball, ball.vX, ball.vY) == 2) {
+					else if (collisionDirection(b, ball, ball.vX, ball.vY) == 2) {
 						ball.vX = -Math.abs(ball.vX);
 						if (minV < ball.vY && ball.vY < maxV) ball.vY = ball.vY + (int) (Math.random() * mvmt + mvmtMin);
 						else if (-maxV < ball.vY && ball.vY < -minV) ball.vY = ball.vY - (int) (Math.random() * mvmt + mvmtMin);
@@ -274,7 +273,7 @@ public class BreakoutRunner extends GDV5 {
 					}
 					
 					//ball intersects right
-					if (collisionDirection(b, ball, ball.vX, ball.vY) == 0) {
+					else if (collisionDirection(b, ball, ball.vX, ball.vY) == 0) {
 						ball.vX = Math.abs(ball.vX);
 						if (minV < ball.vY && ball.vY < maxV) ball.vY = ball.vY + (int) (Math.random() * mvmt + mvmtMin);
 						else if (-maxV < ball.vY && ball.vY < -minV) ball.vY = ball.vY - (int) (Math.random() * mvmt + mvmtMin);
@@ -284,7 +283,9 @@ public class BreakoutRunner extends GDV5 {
 					}
 					
 					//"remove" brick (move the brick to a part of the window that isn't visible)
-					b.setLocation(-100, -100);
+//					b.setLocation(-100, -100);
+					b.setBrickVis(false);
+//					part.setPartVis(true);
 					
 					//score
 					Pages.addScore(1);
