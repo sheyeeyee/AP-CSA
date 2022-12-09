@@ -15,12 +15,12 @@ import breakout.BreakoutRunner;
 public class BreakoutPaddle extends Rectangle {	
 	private static int pVx = 30;
 	
-	public static int getPVX() {
-		return pVx;
-	}
-	
 	public BreakoutPaddle(int pStartX, int pStartY, int pWidth, int pHeight) {
 		super(pStartX, pStartY, pWidth, pHeight);
+	}
+	
+	public static int getPVX() {
+		return pVx;
 	}
 	
 	public void paddleMove() {

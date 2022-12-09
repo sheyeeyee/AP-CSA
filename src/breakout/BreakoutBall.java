@@ -48,23 +48,23 @@ public class BreakoutBall extends Rectangle {
 	}
 	
 	//method for ball to move
-	public void move(BreakoutPaddle p, Brick[] brick) {
+	public void move(int level) {
 		//CHALLENGE 1
 //		vX = 3;
 //		vY = 3;
-		
+
 		//game mode
-		if (GDV5.KeysPressed[KeyEvent.VK_1]) {
-			vX = 1; //3
-			vY = 1;
+		if (level == 1) {
+			vX = 3;
+			vY = 3;
 		}
-		if (GDV5.KeysPressed[KeyEvent.VK_2]) {
+		if (level == 2) {
+			vX = 4;
+			vY = 4;
+		}
+		if (level == 3) {
 			vX = 5;
 			vY = 5;
-		}
-		if (GDV5.KeysPressed[KeyEvent.VK_3]) {
-			vX = 7;
-			vY = 7;
 		}
 		startX += vX;
 		startY += vY;
@@ -75,26 +75,8 @@ public class BreakoutBall extends Rectangle {
 			count = 0;
 			out = true;
 			lives --;
-//			vY = -Math.abs(vY);
 		}
 		
-		//ball hits paddle
-		if (this.intersects(p)) {
-			vY = -Math.abs(vY);
-			System.out.println("P vX: " + vX + " vY: " + vY);
-			
-//			if (GDV5.KeysPressed[KeyEvent.VK_A] || GDV5.KeysPressed[KeyEvent.VK_LEFT]) {
-//				vX = vX - nVX;
-//				vY = -Math.abs(vY);
-//				countA++;
-//			}
-//			else if (GDV5.KeysPressed[KeyEvent.VK_D] || GDV5.KeysPressed[KeyEvent.VK_RIGHT]) {
-//				vX = vX + nVX;
-//				vY = -Math.abs(vY);
-//				countD++;
-//			}
-//			else vY = -Math.abs(vY);
-		}
 		//ball hits top
 		if (this.getY() < 0) {
 			vY = Math.abs(vY);

@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.Graphics;
-import javax.swing.JFrame;
 import java.awt.Graphics;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -52,11 +51,12 @@ public class BreakoutRunner extends GDV5 {
 	
 	//gamestates
 	private static int gameState = 0;
+	private static int level = 0;
 	private static boolean gameStart = false;
 	
 	public BreakoutRunner() {
-		super();
-		brickObjects = Brick.makeBricks(); //bricks array equals the makeBricks() method
+		super(); //bricks array equals the makeBricks() method
+		
 //		particleObjects = Particles.makeParticles();
 	}
 	
@@ -68,12 +68,19 @@ public class BreakoutRunner extends GDV5 {
 	//bc of this, no loops needed since these are being called continuously
 	@Override
 	public void update() { //60 fps, driver called 60 times per second
-		ball.move(p, brickObjects);
-		ballHitBricks(ball, brickObjects);
-		Brick.setBricks();
-		ball.resetBall();
-		p.paddleMove();
-		gameState();
+		System.out.println(gameState + ":" + level);
+		if (gameState == 0) {
+			gameState();
+			if (level != 0) brickObjects = Brick.makeBricks(level);
+		}
+		else {
+			ball.move(level);
+			paddleBounce();
+			ballHitBricks(ball, brickObjects);
+			ball.resetBall();
+			p.paddleMove();
+			gameState();
+		}
 	}
 
 	@Override
@@ -81,7 +88,7 @@ public class BreakoutRunner extends GDV5 {
 		if (gameState == 0) {
 			Pages.home(win);
 			Pages.setScore(0);
-			BreakoutBall.setLives(3);
+			BreakoutBall.setLives(BreakoutBall.getLives());
 		}
 		if (gameState == 4) {
 			Pages.pausedGame(win);
@@ -138,6 +145,7 @@ public class BreakoutRunner extends GDV5 {
 	public static int getWinX() {
 		return winX;
 	}
+	
 	public static int getWinY() {
 		return winY;
 	}
@@ -182,14 +190,17 @@ public class BreakoutRunner extends GDV5 {
 		}
 		else if (GDV5.KeysPressed[KeyEvent.VK_1] && gameState == 0) {
 			gameState = 1;
+			level = 1;
 			gameStart = true;
 		}
 		else if (GDV5.KeysPressed[KeyEvent.VK_2] && gameState == 0) {
 			gameState = 2;
+			level = 2;
 			gameStart = true;
 		}
 		else if (GDV5.KeysPressed[KeyEvent.VK_3] && gameState == 0) {
 			gameState = 3;
+			level = 3;
 			gameStart = true;
 		}
 		else if (GDV5.KeysPressed[KeyEvent.VK_ESCAPE] && gameStart) {
@@ -202,13 +213,16 @@ public class BreakoutRunner extends GDV5 {
 		}
 		else if (GDV5.KeysPressed[KeyEvent.VK_ENTER] && Pages.getScore() == Brick.getNumBricks()) {
 			gameState = 0; //splash page
+			level = 0;
 			gameStart = false;
 		}else if (GDV5.KeysPressed[KeyEvent.VK_ENTER] && BreakoutBall.getLives() == 0) {
 			gameState = 0; //splash page
+			level = 0;
 			gameStart = false;
 		}
 		else if (GDV5.KeysPressed[KeyEvent.VK_Q] && gameState == 4) {
 			gameState = 0; //splash page
+			level = 0;
 			gameStart = false;
 		}
 		
@@ -235,6 +249,25 @@ public class BreakoutRunner extends GDV5 {
 		}
 		if (GDV5.KeysPressed[KeyEvent.VK_P] && gameState == 5) {
 			paddleColor = "P";
+		}
+	}
+	
+	public void paddleBounce() {
+		if (ball.intersects(p)) {
+			ball.vY = -Math.abs(ball.vY);
+			System.out.println("P vX: " + ball.vX + " vY: " + ball.vY);
+			
+//			if (GDV5.KeysPressed[KeyEvent.VK_A] || GDV5.KeysPressed[KeyEvent.VK_LEFT]) {
+//				vX = vX - nVX;
+//				vY = -Math.abs(vY);
+//				countA++;
+//			}
+//			else if (GDV5.KeysPressed[KeyEvent.VK_D] || GDV5.KeysPressed[KeyEvent.VK_RIGHT]) {
+//				vX = vX + nVX;
+//				vY = -Math.abs(vY);
+//				countD++;
+//			}
+//			else vY = -Math.abs(vY);
 		}
 	}
 	
