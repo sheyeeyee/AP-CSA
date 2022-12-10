@@ -66,8 +66,6 @@ public class BreakoutBall extends Rectangle {
 			vX = 5;
 			vY = 5;
 		}
-		startX += vX;
-		startY += vY;
 		
 		//if ball goes to bottom
 		if (this.getY() >= BreakoutRunner.getWinY()) {
@@ -75,13 +73,12 @@ public class BreakoutBall extends Rectangle {
 			count = 0;
 			out = true;
 			lives --;
-//			vY = -Math.abs(vY);
 		}
 		
 		//ball hits paddle
 		if (this.intersects(p)) {
 			vY = -Math.abs(vY);
-			System.out.println("P vX: " + vX + " vY: " + vY);
+//			System.out.println("P vX: " + vX + " vY: " + vY);
 			
 //			if (GDV5.KeysPressed[KeyEvent.VK_A] || GDV5.KeysPressed[KeyEvent.VK_LEFT]) {
 //				vX = vX - nVX;
@@ -104,17 +101,11 @@ public class BreakoutBall extends Rectangle {
 		if (this.getX() < 0) {
 			vX = Math.abs(vX);
 		}
+		
 		//ball hits right
 		else if (this.getX() > BreakoutRunner.getWinX() - this.width) {
 			vX = -Math.abs(vX);
 		}
-		
-		//ball hits bricks
-//		for (int i = 0; i < brick.length; i++) {			
-//			if (this.intersects(brick[i])) {
-//				vY *= -1;
-//			}
-//		}
 		
 		//for resetting ball
 		if (BreakoutRunner.getGameStart()) {
@@ -128,22 +119,6 @@ public class BreakoutBall extends Rectangle {
 		if (BreakoutRunner.getGameState() == 0 || lives == 0 || Pages.getScore() == Brick.getNumBricks()) {
 			this.translate(0, 0);
 			this.setLocation((int) (BreakoutRunner.getWinX() / 2 - this.getWidth() / 2), 600);
-		}
-		
-		//reset
-		if (count == 120) {
-			this.translate(vX, vY);
-			
-//			if (countA > 0) {
-//				this.translate(vX + (countA * nVX), vY);
-//			}
-//			else if (countD > 0) {
-//				this.translate(vX - (countD * nVX), vY);
-//			}
-//			else this.translate(vX, vY);
-		}
-		else {
-			this.translate(0, 0);
 		}
 	}
 		

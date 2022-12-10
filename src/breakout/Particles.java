@@ -18,6 +18,7 @@ public class Particles extends Rectangle {
 	
 	//colors
 	private Color col;
+	private int counter;
 	
 	//particle visibility
 	private boolean partVis = true;
@@ -31,12 +32,16 @@ public class Particles extends Rectangle {
 	private static int partX = Brick.getBX();
 	private static int partY = Brick.getBX();
 	
+	//# of columns
+	private static int columns = Brick.getBWidth() / 5;
+	private static int rows = Brick.getBHeight() / 5;
+	
 	//particle speed
 	private static int partVX;
 	private static int partVY;
 	
 	//# of particles
-	private static int particlesNum = 35;
+	private static int particlesNum = columns * rows;
 	
 	//particle size
 	private static int partSize = 5;
@@ -46,44 +51,49 @@ public class Particles extends Rectangle {
 	public Particles(int x, int y, Color c) {
 		super(x, y, partSize, partSize);
 		col = c;
+		this.counter = 0;
 	}
 	
 	//getters and setters
 	public void setColor(Color newColor) {
 		col = newColor;
 	}
-	public boolean getPartVis() {
-		return partVis;
-	}
-	public void setPartVis(boolean newPartVis) {
-		partVis = newPartVis;
+	public static int getPartNum() {
+		return particlesNum;
 	}
 	
 	//method to create particles
-	public static void makeParticles(Brick brickObject) {
+	public static Particles[] makeParticles(Brick brickObject) {
 		int count = 0;
 		
+		partX = (int) brickObject.getX();
+		partY = (int) brickObject.getY();
+		
+		//create particle array
 		particlesArray = new Particles[particlesNum];
 		
 		for (int i = 0; i < particlesArray.length; i++) {
 			particlesArray[i] = new Particles(partX, partY, brickObject.getColor());
-			partX += (2 * partSize);
+			partX += partSize;
 			count++;
 			
-			if (count % (particlesNum / 5) == 0) {
-				partX += (2 * partSize);
+			if (count % columns == 0) {
+				partX -= brickObject.getBWidth();
 				partY += partSize;
 			}
 		}
+		return particlesArray;
 	}
 	
 	public void move() {
-		if (Math.random() < 0.5) partVX = 1;
-		if (Math.random() > 0.5) partVX = -1;
-		if (Math.random() < 0.5) partVY = 1;
-		if (Math.random() > 0.5) partVY = -1;
-		this.x += partVX;
-		this.y += partVY;
+		if (this.counter % 120 == 0) {
+			if (Math.random() < 0.5) partVX = 1;
+			if (Math.random() > 0.5) partVX = -1;
+			if (Math.random() < 0.5) partVY = 1;
+			if (Math.random() > 0.5) partVY = -1;
+			this.translate(partVX, partVY);
+		}
+		this.counter++;
 	}
 	
 	public static void moveParticles() {

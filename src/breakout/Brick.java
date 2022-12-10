@@ -92,6 +92,9 @@ public class Brick extends Rectangle {
 		int count = 0;
 		int count2 = 0;
 		
+		bX = 50;
+		bY = 50;
+		
 		//create brick array
 		Brick[] brickArray = new Brick[numBricks];
 		
