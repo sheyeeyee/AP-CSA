@@ -17,7 +17,7 @@ public class Brick extends Rectangle {
 	private Color col;
 	
 	//brick visibility
-	private boolean brickVis = true;
+	private boolean brickVis;
 	
 	//array of colors for bricks
 	private static Color[] colors = {Colors.pastelTeal0, Colors.pastelTeal, Colors.pastelTeal1, Colors.pastelTeal2, Colors.pastelTeal3, 
@@ -40,11 +40,16 @@ public class Brick extends Rectangle {
 	private static int bWidth = (BreakoutRunner.getWinX() - (2 * bX) - (columns - 1) * bPadding) / (columns);
 	private static int bHeight = 30;
 	
+	//particle object array
+	private Particles[] particles;
+	
 	
 	//brick constructor
 	public Brick(int x, int y, Color c) {
 		super(x, y, bWidth, bHeight);
 		col = c;
+		particles = Particles.makeParticles(this);
+		brickVis = true;
 	}
 	
 	//getters
@@ -112,11 +117,26 @@ public class Brick extends Rectangle {
 		return brickArray;
 	}
 	
+	public void update() {
+		if (brickVis == false) {
+			for (Particles p:particles) {
+				p.update();
+			}
+		}
+	}
+	
 	//draw bricks method
 	public void draw(Graphics2D pb) {
 		if (brickVis) {
 			pb.setColor(col);
 			pb.fill(this);
+		}
+		else {
+			for (Particles p:particles) {
+				if (p.isActive() == true) {
+					p.draw(pb);
+				}
+			}
 		}
 	}
 }

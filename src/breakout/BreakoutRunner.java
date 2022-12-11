@@ -66,6 +66,10 @@ public class BreakoutRunner extends GDV5 {
 		ball.resetBall();
 		p.paddleMove();
 		gameState();
+		for (Brick b:brickArray) {
+			b.update();
+		}
+		Particles.moveParticles();
 	}
 
 	@Override
@@ -256,7 +260,6 @@ public class BreakoutRunner extends GDV5 {
 				if (ball.intersects(b) && b.getBrickVis() == true) {
 					b.setBrickVis(false);
 					particleArray = Particles.makeParticles(b);
-					Particles.moveParticles();
 					
 					int colDir = collisionDirection(b, ball, ball.vX, ball.vY);
 //					System.out.println(colDir);

@@ -18,7 +18,7 @@ public class Particles extends Rectangle {
 	
 	//colors
 	private Color col;
-	private int counter;
+	private int alphaIncrement = 3;
 	
 	//particle visibility
 	private static boolean partVis = true;
@@ -45,13 +45,15 @@ public class Particles extends Rectangle {
 	
 	//particle size
 	private static int partSize = 5;
-		
-		
+	
+	private boolean active;
+	
+	
 	//particle constructor
 	public Particles(int x, int y, Color c) {
 		super(x, y, partSize, partSize);
 		col = c;
-		this.counter = 0;
+		active = false;
 	}
 	
 	//getters and setters
@@ -63,6 +65,9 @@ public class Particles extends Rectangle {
 	}
 	public static int getPartNum() {
 		return particlesNum;
+	}
+	public boolean isActive() {
+		return active;
 	}
 	
 	//method to create particles
@@ -102,12 +107,18 @@ public class Particles extends Rectangle {
 		}
 	}
 	
+	public void update() {
+		//particle fading: getAlpha() is a method that increments RGB values (blend w/ background)
+		if (col.getAlpha() >= 2) {
+			col = new Color(col.getRed(), col.getGreen(), col.getBlue(), col.getAlpha() - alphaIncrement); //get RGB value and the color opacity, subtracting it by alphaInc increases transparency
+		}
+	}
+	
 	//draw particles method
 	public void draw(Graphics2D pb) {
 		if (partVis) {
 			pb.setColor(col);
 			pb.fill(this);
-			moveParticles();
 		}
 	}
 }
