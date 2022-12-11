@@ -24,6 +24,9 @@ public class BreakoutRunner extends GDV5 {
 	private static int winX = getMaxWindowX();
 	private static int winY = getMaxWindowY();
 	
+	//set ball parameter
+	private static int ballSize = 20;
+	
 	//set paddle parameters
 	private static int pWidth = 200;
 	private static int pHeight = 10;
@@ -34,7 +37,7 @@ public class BreakoutRunner extends GDV5 {
 	//creating objects
 	static Brick[] brickArray;
 	static Particles[] particleArray = new Particles[Particles.getPartNum()];
-	BreakoutBall ball = new BreakoutBall(20);
+	BreakoutBall ball = new BreakoutBall(ballSize);
 	BreakoutPaddle p = new BreakoutPaddle(pX, pY, pWidth, pHeight);
 	Pages scoreboard = new Pages();
 	
@@ -67,6 +70,7 @@ public class BreakoutRunner extends GDV5 {
 		p.paddleMove();
 		gameState();
 		Particles.moveParticles();
+		PowerUp.randomPowerUp(ball);
 	}
 
 	@Override
@@ -142,6 +146,9 @@ public class BreakoutRunner extends GDV5 {
 	public static int getPWidth() {
 		return pWidth;
 	}
+	public static void setPWidth(int newWidth) {
+		pWidth = newWidth;
+	}
 	public static int getPHeight() {
 		return pHeight;
 	}
@@ -150,6 +157,9 @@ public class BreakoutRunner extends GDV5 {
 	}
 	public static int getPY() {
 		return pY;
+	}
+	public static void setBallSize(int newBallSize) {
+		ballSize = newBallSize;
 	}
 	public static String getBallColor() {
 		return ballColor;

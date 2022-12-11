@@ -46,6 +46,9 @@ public class BreakoutBall extends Rectangle {
 	public static void setLives(int newLives) {
 		lives = newLives;
 	}
+	public static void addLives(int addLives) {
+		lives += addLives;
+	}
 	
 	//method for ball to move
 	public void move(BreakoutPaddle p, Brick[] brick) {
