@@ -26,8 +26,8 @@ public class BreakoutBall extends Rectangle {
 	//lives
 	private static int lives = 5;
 	
-	//changing ball speed based on paddle movement...
-//	private int nVX = 1;
+	//changing ball speed based on paddle movement
+	private int nVX = 1;
 //	private int countA;
 //	private int countD;
 	
@@ -79,21 +79,28 @@ public class BreakoutBall extends Rectangle {
 		}
 		
 		//ball hits paddle
-		if (this.intersects(p)) {
-			vY = -Math.abs(vY);
-//			System.out.println("P vX: " + vX + " vY: " + vY);
-			
-//			if (GDV5.KeysPressed[KeyEvent.VK_A] || GDV5.KeysPressed[KeyEvent.VK_LEFT]) {
-//				vX = vX - nVX;
-//				vY = -Math.abs(vY);
-//				countA++;
-//			}
-//			else if (GDV5.KeysPressed[KeyEvent.VK_D] || GDV5.KeysPressed[KeyEvent.VK_RIGHT]) {
-//				vX = vX + nVX;
-//				vY = -Math.abs(vY);
-//				countD++;
-//			}
-//			else vY = -Math.abs(vY);
+		if (this.intersects(p)) {		
+			//ball hits paddle top
+			if (GDV5.collisionDirection(p, this, vX, vY) == 1) {
+				if (vX > 0) vX = Math.abs(vX);
+				else if (vX < 0) vX = -Math.abs(vX);
+				vY = -Math.abs(vY);
+//				System.out.println("P vX: " + vX + " vY: " + vY);
+				if (GDV5.KeysPressed[KeyEvent.VK_A] || GDV5.KeysPressed[KeyEvent.VK_LEFT]) {
+					vX = vX - nVX;
+				}
+				else if (GDV5.KeysPressed[KeyEvent.VK_D] || GDV5.KeysPressed[KeyEvent.VK_RIGHT]) {
+					vX = vX + nVX;
+				}
+			}
+			//ball hits paddle left
+			else if (GDV5.collisionDirection(p, this, vX, vY) == 2) {
+				vX = -Math.abs(vX);
+			}
+			//ball hits paddle right
+			else if (GDV5.collisionDirection(p, this, vX, vY) == 0) {
+				vX = Math.abs(vX);
+			}
 		}
 		//ball hits top
 		if (this.getY() < 0) {
@@ -110,6 +117,7 @@ public class BreakoutBall extends Rectangle {
 			vX = -Math.abs(vX);
 		}
 		
+		//CHALLENGE #
 		//for resetting ball
 		if (BreakoutRunner.getGameStart()) {
 			if (count == 120) {

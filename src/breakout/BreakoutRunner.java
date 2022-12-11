@@ -70,7 +70,7 @@ public class BreakoutRunner extends GDV5 {
 		p.paddleMove();
 		gameState();
 		Particles.moveParticles();
-		PowerUp.randomPowerUp(ball);
+//		PowerUp.randomPowerUp(ball);
 	}
 
 	@Override
@@ -175,7 +175,7 @@ public class BreakoutRunner extends GDV5 {
 	}
 	
 	public static void restart() {
-		brickArray = Brick.makeBricks(); 
+		brickArray = Brick.makeBricks();
 	}
 	
 	public static void gameState() {
@@ -275,6 +275,9 @@ public class BreakoutRunner extends GDV5 {
 		if (GDV5.KeysPressed[KeyEvent.VK_P] && gameState == 5) {
 			paddleColor = "P";
 		}
+		
+		//CHALLENGE #
+//		brickArray = Brick.makeBricks(); //bricks array equals the makeBricks() method
 	}
 	
 	//CHALLENGE #

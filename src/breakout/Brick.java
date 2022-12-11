@@ -15,7 +15,7 @@ import breakout.BreakoutRunner;
 public class Brick extends Rectangle {	
 	//colors
 	private Color col;
-	private static int colArray;
+	private static int colArray = 0;
 	
 	//brick visibility
 	private boolean brickVis;
@@ -106,7 +106,7 @@ public class Brick extends Rectangle {
 		Brick[] brickArray = new Brick[numBricks];
 		
 		for (int i = 0; i < brickArray.length; i++) {
-			brickArray[i] = new Brick(bX, bY, Colors.colors[getColorArray()][colShade]);
+			brickArray[i] = new Brick(bX, bY, Colors.colors[getColorArray()][colShade]); //CHALLENGE #
 			bX += bWidth + bPadding;
 			count++;
 			

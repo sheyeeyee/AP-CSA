@@ -146,36 +146,56 @@ public class Pages extends Rectangle {
 	public static void customize(Graphics2D font) {
 		font.setFont(new Font("Comic Sans MS", Font.BOLD, 50));
 		font.setColor(Color.darkGray);
-		font.drawString("Customize Ball", 155, 300);
-				
-		font.setColor(Color.darkGray);
-		font.drawString("Customize Paddles", 585, 460);
+		font.drawString("Customize Bricks", 545, 285);
+		font.drawString("Customize Ball", 155, 490);
+		font.drawString("Customize Paddles", 585, 610);
 		
-		font.setColor(Colors.pastelTan8);
-		font.drawString("Customize Ball", 150, 295);
+		font.setColor(Colors.pastelBlue8);
+		font.drawString("Customize Bricks", 540, 280);
 		font.setFont(new Font("Comic Sans MS", Font.BOLD, 25));
-		font.drawString("PRESS THE CORRESPONDING LETTER FOR BALL COLOR", 155, 240);
+		font.drawString("PRESS THE CORRESPONDING LETTER FOR BRICK COLOR", 220, 318);
+		
+		font.setFont(new Font("Comic Sans MS", Font.BOLD, 50));
+		font.setColor(Colors.pastelTan8);
+		font.drawString("Customize Ball", 150, 485);
+		font.setFont(new Font("Comic Sans MS", Font.BOLD, 25));
+		font.drawString("PRESS THE CORRESPONDING LETTER FOR BALL COLOR", 155, 430);
 		
 		font.setFont(new Font("Comic Sans MS", Font.BOLD, 50));
 		font.setColor(Colors.pastelGreen8);
-		font.drawString("Customize Paddles", 580, 455);
+		font.drawString("Customize Paddles", 580, 605);
 		font.setFont(new Font("Comic Sans MS", Font.BOLD, 25));
-		font.drawString("PRESS THE CORRESPONDING LETTER FOR PADDLE COLOR", 270, 493);
+		font.drawString("PRESS THE CORRESPONDING LETTER FOR PADDLE COLOR", 270, 643);
 		
-		if (BreakoutRunner.getBallColor() == "T") {
-			font.setFont(new Font("Comic Sans MS", Font.BOLD, 50));
+		//brick colors
+		font.setFont(new Font("Comic Sans MS", Font.BOLD, 50));
+		font.setColor(Color.black);
+		if (Brick.getColorArray() == 1) {
+			font.drawString("W", 351, 285);
+		}
+		else if (Brick.getColorArray() == 2) {
+			font.drawString("E", 415, 285);
+		}
+		else if (Brick.getColorArray() == 3) {
+			font.drawString("R", 465, 285);
+		}
+		else if (Brick.getColorArray() == 0) {
+			font.setFont(new Font("Comic Sans MS", Font.BOLD, 25));
 			font.setColor(Color.black);
-			font.drawString("T", 555, 300);
+			font.drawString("I for Default Brick Color", 458, 123);
+		}
+		
+		//ball colors
+		font.setFont(new Font("Comic Sans MS", Font.BOLD, 50));
+		font.setColor(Color.black);
+		if (BreakoutRunner.getBallColor() == "T") {
+			font.drawString("T", 555, 490);
 		}
 		else if (BreakoutRunner.getBallColor() == "Y") {
-			font.setFont(new Font("Comic Sans MS", Font.BOLD, 50));
-			font.setColor(Color.black);
-			font.drawString("Y", 605, 300);
+			font.drawString("Y", 605, 490);
 		}
 		else if (BreakoutRunner.getBallColor() == "U") {
-			font.setFont(new Font("Comic Sans MS", Font.BOLD, 50));
-			font.setColor(Color.black);
-			font.drawString("U", 655, 300);
+			font.drawString("U", 655, 490);
 		}
 		else if (BreakoutRunner.getBallColor() == "O" || BreakoutRunner.getBallColor() == "") {
 			font.setFont(new Font("Comic Sans MS", Font.BOLD, 25));
@@ -183,50 +203,54 @@ public class Pages extends Rectangle {
 			font.drawString("O for Default Ball Color", 463, 153);
 		}
 		
+		//paddle colors
+		font.setFont(new Font("Comic Sans MS", Font.BOLD, 50));
+		font.setColor(Color.black);
 		if (BreakoutRunner.getPaddleColor() == "G") {
-			font.setFont(new Font("Comic Sans MS", Font.BOLD, 50));
-			font.setColor(Color.black);
-			font.drawString("G", 405, 460);
+			font.drawString("G", 405, 610);
 		}
 		else if (BreakoutRunner.getPaddleColor() == "H") {
-			font.setFont(new Font("Comic Sans MS", Font.BOLD, 50));
-			font.setColor(Color.black);
-			font.drawString("H", 455, 460);
+			font.drawString("H", 455, 610);
 		}
 		else if (BreakoutRunner.getPaddleColor() == "J") {
-			font.setFont(new Font("Comic Sans MS", Font.BOLD, 50));
-			font.setColor(Color.black);
-			font.drawString("J", 505, 460);
+			font.drawString("J", 505, 610);
 		}
 		else if (BreakoutRunner.getPaddleColor() == "P" || BreakoutRunner.getPaddleColor() == "") {
 			font.setFont(new Font("Comic Sans MS", Font.BOLD, 25));
 			font.setColor(Color.black);
-			font.drawString("P for Default Paddle Color", 463, 183);
+			font.drawString("P for Default Paddle Color", 453, 183);
 		}
 		
 		font.setFont(new Font("Comic Sans MS", Font.BOLD, 50));
 		
 		font.setColor(Colors.pastelTeal7);
-		font.drawString("T", 550, 295);
-		font.drawString("G", 400, 455);
+		font.drawString("T", 550, 485);
+		font.drawString("G", 400, 605);
 		
 		font.setColor(Colors.pastelBlue7);
-		font.drawString("Y", 600, 295);
-		font.drawString("H", 450, 455);
+		font.drawString("W", 346, 280);
+		font.drawString("Y", 600, 485);
+		font.drawString("H", 450, 605);
 		
 		font.setColor(Colors.pastelGreen7);
-		font.drawString("U", 650, 295);
-		font.drawString("J", 500, 455);
+		font.drawString("E", 410, 280);
+		font.drawString("U", 650, 485);
+		font.drawString("J", 500, 605);
+		
+		font.setColor(Colors.pastelTan7);
+		font.drawString("R", 460, 280);
 		
 		font.setFont(new Font("Comic Sans MS", Font.BOLD, 25));
+		
+		font.setColor(Colors.pastelTeal7);
+		font.drawString("I for Default Brick Color", 455, 120);
+		
 		font.setColor(Colors.pastelTan7);
 		font.drawString("O for Default Ball Color", 460, 150);
 		
-		font.setFont(new Font("Comic Sans MS", Font.BOLD, 25));
 		font.setColor(Colors.pastelTan7);
-		font.drawString("P for Default Paddle Color", 460, 180);
+		font.drawString("P for Default Paddle Color", 450, 180);
 		
-		font.setFont(new Font("Comic Sans MS", Font.BOLD, 25));
 		font.setColor(new Color(205, 205, 205));
 		font.drawString("PRESS Q TO GO BACK", 450, 750);
 	}
@@ -262,10 +286,18 @@ public class Pages extends Rectangle {
 			font.setColor(Colors.pastelTan);
 			font.drawString("Score: " + score.toString(), 50, 32);
 			font.setColor(Colors.pastelTan2);
-			font.drawString("Lives: " + liveScore.toString(), 162, 32);
+			font.drawString("Lives: " + liveScore.toString(), 160, 32);
 		}
+		
+		font.setColor(Colors.pastelTan4);
 		if (BreakoutRunner.getGameState() == 1) {
-			font.drawString("Level: Easy", 262, 32);
+			font.drawString("Level: Easy", 270, 32);
+		}
+		if (BreakoutRunner.getGameState() == 2) {
+			font.drawString("Level: Normal", 270, 32);
+		}
+		if (BreakoutRunner.getGameState() == 3) {
+			font.drawString("Level: Hard", 270, 32);
 		}
 	}
 	
