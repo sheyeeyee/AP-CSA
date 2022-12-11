@@ -66,9 +66,6 @@ public class BreakoutRunner extends GDV5 {
 		ball.resetBall();
 		p.paddleMove();
 		gameState();
-		for (Brick b:brickArray) {
-			b.update();
-		}
 		Particles.moveParticles();
 	}
 
@@ -102,36 +99,36 @@ public class BreakoutRunner extends GDV5 {
 			
 			//ball
 			if (ballColor == "O" || ballColor == "") {
-				win.setColor(Colors.pastelTan);
+				win.setColor(Colors.pastelTan5);
 			}
 			if (ballColor == "T") {
-				win.setColor(Colors.pastelTeal);
+				win.setColor(Colors.pastelTeal5);
 			}
 			if (ballColor == "Y") {
-				win.setColor(Colors.pastelBlue);
+				win.setColor(Colors.pastelBlue5);
 			}
 			if (ballColor == "U") {
-				win.setColor(Colors.pastelLightGreen);
+				win.setColor(Colors.pastelGreen5);
 			}
 			win.fillOval((int) ball.getX(), (int) ball.getY(), (int) ball.getWidth(), (int) ball.getHeight());
 			
 			//paddle
 			if (paddleColor == "P" || paddleColor == "") {
-				win.setColor(Colors.pastelTan2);
+				win.setColor(Colors.pastelTan6);
 			}
 			if (paddleColor == "G") {
-				win.setColor(Colors.pastelTeal);
+				win.setColor(Colors.pastelTeal6);
 			}
 			if (paddleColor == "H") {
-				win.setColor(Colors.pastelBlue);
+				win.setColor(Colors.pastelBlue6);
 			}
 			if (paddleColor == "J") {
-				win.setColor(Colors.pastelLightGreen);
+				win.setColor(Colors.pastelGreen6);
 			}
 			win.fillRect((int) p.getX(), (int) p.getY(), (int) p.getWidth(), (int) p.getHeight());
 			
 			Pages.scoreboard(win);
-			Pages.youWin(win);
+			Pages.youWinLose(win);
 		}
 	}
 	
@@ -221,6 +218,18 @@ public class BreakoutRunner extends GDV5 {
 			restart();
 		}
 		
+		//brick colors
+		if (GDV5.KeysPressed[KeyEvent.VK_W] && gameState == 5) {
+			Brick.setColorArray(1);
+		}
+		if (GDV5.KeysPressed[KeyEvent.VK_E] && gameState == 5) {
+			Brick.setColorArray(2);
+		}
+		if (GDV5.KeysPressed[KeyEvent.VK_R] && gameState == 5) {
+			Brick.setColorArray(3);
+		}
+		
+		//ball colors
 		if (GDV5.KeysPressed[KeyEvent.VK_T] && gameState == 5) {
 			ballColor = "T";
 		}
@@ -230,6 +239,8 @@ public class BreakoutRunner extends GDV5 {
 		if (GDV5.KeysPressed[KeyEvent.VK_U] && gameState == 5) {
 			ballColor = "U";
 		}
+		
+		//paddle colors
 		if (GDV5.KeysPressed[KeyEvent.VK_G] && gameState == 5) {
 			paddleColor = "G";
 		}
@@ -238,6 +249,11 @@ public class BreakoutRunner extends GDV5 {
 		}
 		if (GDV5.KeysPressed[KeyEvent.VK_J] && gameState == 5) {
 			paddleColor = "J";
+		}
+		
+		//defaults
+		if (GDV5.KeysPressed[KeyEvent.VK_I] && gameState == 5) {
+			Brick.setColorArray(0);
 		}
 		if (GDV5.KeysPressed[KeyEvent.VK_O] && gameState == 5) {
 			ballColor = "O";

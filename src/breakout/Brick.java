@@ -15,14 +15,10 @@ import breakout.BreakoutRunner;
 public class Brick extends Rectangle {	
 	//colors
 	private Color col;
+	private static int colArray;
 	
 	//brick visibility
 	private boolean brickVis;
-	
-	//array of colors for bricks
-	private static Color[] colors = {Colors.pastelTeal0, Colors.pastelTeal, Colors.pastelTeal1, Colors.pastelTeal2, Colors.pastelTeal3, 
-			Colors.pastelTeal4, Colors.pastelTeal5, Colors.pastelTeal6, Colors.pastelTeal7, 
-			Colors.pastelTeal8, Colors.pastelTeal9, Colors.pastelTeal10};
 
 	//position of top row
 	private static int bX = 50;
@@ -68,11 +64,17 @@ public class Brick extends Rectangle {
 	public Color getColor() {
 		return col;
 	}
+	public static void setColorArray(int newColArray) {
+		colArray = newColArray;
+	}
+	public static int getColorArray() {
+		return colArray;
+	}
 	public static int getNumBricks() {
 		return numBricks;
 	}
 	public boolean getBrickVis() {
-		return brickVis;
+		return this.brickVis;
 	}
 	public void setBrickVis(boolean newBrickVis) {
 		brickVis = newBrickVis;
@@ -95,7 +97,7 @@ public class Brick extends Rectangle {
 	//method to create bricks
 	public static Brick[] makeBricks() { //makeBricks(int columns, int rows)
 		int count = 0;
-		int count2 = 0;
+		int colShade = 0;
 		
 		bX = 50;
 		bY = 50;
@@ -104,30 +106,23 @@ public class Brick extends Rectangle {
 		Brick[] brickArray = new Brick[numBricks];
 		
 		for (int i = 0; i < brickArray.length; i++) {
-			brickArray[i] = new Brick(bX, bY, colors[count2]);
+			brickArray[i] = new Brick(bX, bY, Colors.colors[colArray][colShade]);
+			System.out.println(colArray);
 			bX += bWidth + bPadding;
 			count++;
 			
 			if (count % columns == 0) {
 				bX = 50;
 				bY += bHeight + bPadding;
-				count2++;
+				colShade++;
 			}
 		}
 		return brickArray;
 	}
 	
-	public void update() {
-		if (brickVis == false) {
-			for (Particles p:particles) {
-				p.update();
-			}
-		}
-	}
-	
 	//draw bricks method
 	public void draw(Graphics2D pb) {
-		if (brickVis) {
+		if (this.brickVis) {
 			pb.setColor(col);
 			pb.fill(this);
 		}

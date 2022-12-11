@@ -18,7 +18,7 @@ public class Particles extends Rectangle {
 	
 	//colors
 	private Color col;
-	private int alphaIncrement = 3;
+	private int alphaIncrement = 4;
 	
 	//particle visibility
 	private static boolean partVis = true;
@@ -95,9 +95,9 @@ public class Particles extends Rectangle {
 	
 	public void move() {
 		if (Math.random() < 0.5) partVX = 1;
-		if (Math.random() > 0.5) partVX = -1;
+		else partVX = -1;
 		if (Math.random() < 0.5) partVY = 1;
-		if (Math.random() > 0.5) partVY = -1;
+		else partVY = -1;
 		this.translate(partVX, partVY);
 	}
 	
@@ -109,7 +109,7 @@ public class Particles extends Rectangle {
 	
 	public void update() {
 		//particle fading: getAlpha() is a method that increments RGB values (blend w/ background)
-		if (col.getAlpha() >= 2) {
+		if (col.getAlpha() >= alphaIncrement) {
 			col = new Color(col.getRed(), col.getGreen(), col.getBlue(), col.getAlpha() - alphaIncrement); //get RGB value and the color opacity, subtracting it by alphaInc increases transparency
 		}
 	}
@@ -119,6 +119,8 @@ public class Particles extends Rectangle {
 		if (partVis) {
 			pb.setColor(col);
 			pb.fill(this);
+			
+			update();
 		}
 	}
 }
