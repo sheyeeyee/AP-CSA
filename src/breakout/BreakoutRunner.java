@@ -271,7 +271,7 @@ public class BreakoutRunner extends GDV5 {
 						else if (ball.vX < -maxV) ball.vX = ball.vX + (int) (Math.random() * mvmt + mvmtMin);
 						else ball.vX = ball.vX - (int) (Math.random() + mvmtMin);
 						ball.vY = -Math.abs(ball.vY);
-//						System.out.println("T vX: " + ball.vX + " vY: " + ball.vY);
+						System.out.println("T vX: " + ball.vX + " vY: " + ball.vY);
 					}
 					
 					//ball intersects bottom
@@ -281,7 +281,7 @@ public class BreakoutRunner extends GDV5 {
 						else if (ball.vX < -maxV) ball.vX = ball.vX + (int) (Math.random() * mvmt + mvmtMin);
 						else ball.vX = ball.vX - (int) (Math.random() + mvmtMin);
 						ball.vY = Math.abs(ball.vY);
-//						System.out.println("B vX: " + ball.vX + " vY: " + ball.vY);
+						System.out.println("B vX: " + ball.vX + " vY: " + ball.vY);
 					}
 					
 					//ball intersects left
@@ -291,7 +291,7 @@ public class BreakoutRunner extends GDV5 {
 						else if (-maxV < ball.vY && ball.vY < -minV) ball.vY = ball.vY - (int) (Math.random() * mvmt + mvmtMin);
 						else if (ball.vY < -maxV) ball.vY = ball.vY + (int) (Math.random() * mvmt + mvmtMin);
 						else ball.vY = ball.vY - (int) (Math.random() + mvmtMin);
-//						System.out.println("L vX: " + ball.vX + " vY: " + ball.vY);
+						System.out.println("L vX: " + ball.vX + " vY: " + ball.vY);
 					}
 					
 					//ball intersects right
@@ -301,7 +301,7 @@ public class BreakoutRunner extends GDV5 {
 						else if (-maxV < ball.vY && ball.vY < -minV) ball.vY = ball.vY - (int) (Math.random() * mvmt + mvmtMin);
 						else if (ball.vY < -maxV) ball.vY = ball.vY + (int) (Math.random() * mvmt + mvmtMin);
 						else ball.vY = ball.vY - (int) (Math.random() + mvmtMin);
-//						System.out.println("R vX: " + ball.vX + " vY: " + ball.vY);
+						System.out.println("R vX: " + ball.vX + " vY: " + ball.vY);
 					}
 				}
 			}

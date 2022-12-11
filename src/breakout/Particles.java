@@ -21,7 +21,7 @@ public class Particles extends Rectangle {
 	private int counter;
 	
 	//particle visibility
-	private boolean partVis = true;
+	private static boolean partVis = true;
 	
 	//array of colors for particles
 	private static Color[] colors = {Colors.pastelTeal1, Colors.pastelTeal2, Colors.pastelTeal3, 
@@ -58,6 +58,9 @@ public class Particles extends Rectangle {
 	public void setColor(Color newColor) {
 		col = newColor;
 	}
+	public static void setPartVis(boolean newPartVis) {
+		partVis = newPartVis;
+	}
 	public static int getPartNum() {
 		return particlesNum;
 	}
@@ -86,14 +89,11 @@ public class Particles extends Rectangle {
 	}
 	
 	public void move() {
-		if (this.counter % 120 == 0) {
-			if (Math.random() < 0.5) partVX = 1;
-			if (Math.random() > 0.5) partVX = -1;
-			if (Math.random() < 0.5) partVY = 1;
-			if (Math.random() > 0.5) partVY = -1;
-			this.translate(partVX, partVY);
-		}
-		this.counter++;
+		if (Math.random() < 0.5) partVX = 1;
+		if (Math.random() > 0.5) partVX = -1;
+		if (Math.random() < 0.5) partVY = 1;
+		if (Math.random() > 0.5) partVY = -1;
+		this.translate(partVX, partVY);
 	}
 	
 	public static void moveParticles() {
@@ -107,6 +107,7 @@ public class Particles extends Rectangle {
 		if (partVis) {
 			pb.setColor(col);
 			pb.fill(this);
+			moveParticles();
 		}
 	}
 }
