@@ -14,5 +14,5 @@ import breakout.BreakoutRunner;
 import breakout.Brick;
 
 public class PowerUp extends Rectangle {
-
+	
 }

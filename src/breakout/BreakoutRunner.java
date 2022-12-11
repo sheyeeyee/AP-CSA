@@ -221,12 +221,15 @@ public class BreakoutRunner extends GDV5 {
 		//brick colors
 		if (GDV5.KeysPressed[KeyEvent.VK_W] && gameState == 5) {
 			Brick.setColorArray(1);
+			System.out.println(Brick.getColorArray());
 		}
 		if (GDV5.KeysPressed[KeyEvent.VK_E] && gameState == 5) {
 			Brick.setColorArray(2);
+			System.out.println(Brick.getColorArray());
 		}
 		if (GDV5.KeysPressed[KeyEvent.VK_R] && gameState == 5) {
 			Brick.setColorArray(3);
+			System.out.println(Brick.getColorArray());
 		}
 		
 		//ball colors
@@ -254,6 +257,7 @@ public class BreakoutRunner extends GDV5 {
 		//defaults
 		if (GDV5.KeysPressed[KeyEvent.VK_I] && gameState == 5) {
 			Brick.setColorArray(0);
+			System.out.println(Brick.getColorArray());
 		}
 		if (GDV5.KeysPressed[KeyEvent.VK_O] && gameState == 5) {
 			ballColor = "O";
