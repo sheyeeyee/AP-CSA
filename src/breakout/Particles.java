@@ -104,8 +104,10 @@ public class Particles extends Rectangle {
 	}
 	
 	public static void moveParticles() {
-		for (Particles p:particlesArray) {
-			p.move();
+		if (BreakoutRunner.getGameStart()) {
+			for (Particles p:particlesArray) {
+				p.move();
+			}
 		}
 	}
 	

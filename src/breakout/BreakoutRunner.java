@@ -52,7 +52,7 @@ public class BreakoutRunner extends GDV5 {
 	
 	public BreakoutRunner() {
 		super();
-		brickArray = Brick.makeBricks(); //bricks array equals the makeBricks() method
+		brickArray = Brick.makeBricks(Brick.getRows(), Brick.getColorArray()); //bricks array equals the makeBricks() method
 	}
 	
 	public static void main(String[] args) {
@@ -154,7 +154,7 @@ public class BreakoutRunner extends GDV5 {
 		}
 	}
 	
-	//getters
+	//getters and setters
 	public static int getWinX() {
 		return winX;
 	}
@@ -196,7 +196,7 @@ public class BreakoutRunner extends GDV5 {
 	}
 	
 	public static void restart() {
-		brickArray = Brick.makeBricks();
+		brickArray = Brick.makeBricks(Brick.getRows(), Brick.getColorArray());
 	}
 	
 	public static void gameState() {
@@ -216,14 +216,17 @@ public class BreakoutRunner extends GDV5 {
 		else if (GDV5.KeysPressed[KeyEvent.VK_1] && gameState == 0) {
 			gameState = 1;
 			gameStart = true;
+			Brick.setRows(6);
 		}
 		else if (GDV5.KeysPressed[KeyEvent.VK_2] && gameState == 0) {
 			gameState = 2;
 			gameStart = true;
+			Brick.setRows(9);
 		}
 		else if (GDV5.KeysPressed[KeyEvent.VK_3] && gameState == 0) {
 			gameState = 3;
 			gameStart = true;
+			Brick.setRows(12);
 		}
 		else if (GDV5.KeysPressed[KeyEvent.VK_ESCAPE] && gameStart) {
 			gameState = 4; //pause

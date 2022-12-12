@@ -26,7 +26,7 @@ public class Brick extends Rectangle {
 	
 	//# of columns and rows
 	private static int columns = 10;
-	private static int rows = 12;
+	private static int rows;
 	private static int numBricks = columns * rows;
 	
 	//space btwn bricks
@@ -73,6 +73,12 @@ public class Brick extends Rectangle {
 	public static int getNumBricks() {
 		return numBricks;
 	}
+	public static int getRows() {
+		return rows;
+	}
+	public static void setRows(int setRows) {
+		rows = setRows;
+	}
 	public boolean getBrickVis() {
 		return this.brickVis;
 	}
@@ -95,7 +101,10 @@ public class Brick extends Rectangle {
 	}
 	
 	//method to create bricks
-	public static Brick[] makeBricks() { //makeBricks(int columns, int rows)
+	public static Brick[] makeBricks(int numRows, int colArrayIndex) {
+		rows = numRows;
+		colArray = colArrayIndex;
+		
 		int count = 0;
 		int colShade = 0;
 		
