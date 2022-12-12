@@ -170,16 +170,16 @@ public class Pages extends Rectangle {
 		//brick colors
 		font.setFont(new Font("Comic Sans MS", Font.BOLD, 50));
 		font.setColor(Color.black);
-		if (Brick.getColorArray() == 1) {
+		if (BreakoutRunner.getBrickColor() == "W") {
 			font.drawString("W", 351, 285);
 		}
-		else if (Brick.getColorArray() == 2) {
+		else if (BreakoutRunner.getBrickColor() == "E") {
 			font.drawString("E", 415, 285);
 		}
-		else if (Brick.getColorArray() == 3) {
+		else if (BreakoutRunner.getBrickColor() == "R") {
 			font.drawString("R", 465, 285);
 		}
-		else if (Brick.getColorArray() == 0) {
+		else if (BreakoutRunner.getBrickColor() == "I") {
 			font.setFont(new Font("Comic Sans MS", Font.BOLD, 25));
 			font.setColor(Color.black);
 			font.drawString("I for Default Brick Color", 458, 123);

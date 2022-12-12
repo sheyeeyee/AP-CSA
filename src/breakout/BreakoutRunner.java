@@ -101,6 +101,24 @@ public class BreakoutRunner extends GDV5 {
 				}
 			}
 			
+			//brick
+			if (brickColor == "I" || brickColor == "") {
+				Brick.setColorArray(0);
+				System.out.println(Brick.getColorArray());
+			}
+			if (brickColor == "W") {
+				Brick.setColorArray(1);
+				System.out.println(Brick.getColorArray());
+			}
+			if (brickColor == "E") {
+				Brick.setColorArray(2);
+				System.out.println(Brick.getColorArray());
+			}
+			if (brickColor == "R") {
+				Brick.setColorArray(3);
+				System.out.println(Brick.getColorArray());
+			}
+			
 			//ball
 			if (ballColor == "O" || ballColor == "") {
 				win.setColor(Colors.pastelTan5);
@@ -160,6 +178,9 @@ public class BreakoutRunner extends GDV5 {
 	}
 	public static void setBallSize(int newBallSize) {
 		ballSize = newBallSize;
+	}
+	public static String getBrickColor() {
+		return brickColor;
 	}
 	public static String getBallColor() {
 		return ballColor;
@@ -230,16 +251,19 @@ public class BreakoutRunner extends GDV5 {
 		
 		//brick colors
 		if (GDV5.KeysPressed[KeyEvent.VK_W] && gameState == 5) {
-			Brick.setColorArray(1);
-			System.out.println(Brick.getColorArray());
+			brickColor = "W";
+//			Brick.setColorArray(1);
+//			System.out.println(Brick.getColorArray());
 		}
 		if (GDV5.KeysPressed[KeyEvent.VK_E] && gameState == 5) {
-			Brick.setColorArray(2);
-			System.out.println(Brick.getColorArray());
+			brickColor = "E";
+//			Brick.setColorArray(2);
+//			System.out.println(Brick.getColorArray());
 		}
 		if (GDV5.KeysPressed[KeyEvent.VK_R] && gameState == 5) {
-			Brick.setColorArray(3);
-			System.out.println(Brick.getColorArray());
+			brickColor = "R";
+//			Brick.setColorArray(3);
+//			System.out.println(Brick.getColorArray());
 		}
 		
 		//ball colors
@@ -266,7 +290,8 @@ public class BreakoutRunner extends GDV5 {
 		
 		//defaults
 		if (GDV5.KeysPressed[KeyEvent.VK_I] && gameState == 5) {
-			Brick.setColorArray(0);
+			brickColor = "I";
+//			Brick.setColorArray(0);
 			System.out.println(Brick.getColorArray());
 		}
 		if (GDV5.KeysPressed[KeyEvent.VK_O] && gameState == 5) {

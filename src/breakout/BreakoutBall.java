@@ -85,7 +85,8 @@ public class BreakoutBall extends Rectangle {
 				if (vX > 0) vX = Math.abs(vX);
 				else if (vX < 0) vX = -Math.abs(vX);
 				vY = -Math.abs(vY);
-//				System.out.println("P vX: " + vX + " vY: " + vY);
+				System.out.println("P vX: " + vX + " vY: " + vY);
+				
 				if (GDV5.KeysPressed[KeyEvent.VK_A] || GDV5.KeysPressed[KeyEvent.VK_LEFT]) {
 					vX = vX - nVX;
 				}
