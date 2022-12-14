@@ -81,6 +81,11 @@ public class Brick extends Rectangle {
 	public static int getNumBricks() {
 		return numBricks;
 	}
+	public static void setRows(int setRows) {
+		rows = setRows;
+		numBricks = rows * columns;
+		System.out.println("Rows: " + rows);
+	}
 	public boolean getBrickVis() {
 		return this.brickVis;
 	}

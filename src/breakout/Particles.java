@@ -88,7 +88,7 @@ public class Particles extends Rectangle {
 			count++;
 			
 			if (count % columns == 0) {
-				partX -= brickObject.getBWidth();
+				partX -= brickObject.getWidth();
 				partY += partSize;
 			}
 		}

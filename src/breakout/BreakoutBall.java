@@ -24,7 +24,7 @@ public class BreakoutBall extends Rectangle {
 	public int vY;
 	
 	//lives
-	private static int lives = 5;
+	private static int lives;
 	
 	//changing ball speed based on paddle movement
 	private int nVX = 1;
@@ -128,10 +128,10 @@ public class BreakoutBall extends Rectangle {
 				this.translate(0, 0);
 			}
 		}
-		if (BreakoutRunner.getGameState() == 0 || lives == 0 || Pages.getScore() == Brick.getNumBricks()) {
-			this.translate(0, 0);
-			this.setLocation((int) (BreakoutRunner.getWinX() / 2 - this.getWidth() / 2), 600);
-		}
+//		if (BreakoutRunner.getGameState() == 0 || lives == 0 || Pages.getScore() == Brick.getNumBricks()) {
+//			this.translate(0, 0);
+//			this.setLocation((int) (BreakoutRunner.getWinX() / 2 - this.getWidth() / 2), 600);
+//		}
 	}
 		
 	public void resetBall() {
@@ -141,5 +141,10 @@ public class BreakoutBall extends Rectangle {
 		if (out) {
 			count++;
 		}
+	}
+	
+	public void resetBallPosition() {
+		this.translate(0, 0);
+		this.setLocation((int) (BreakoutRunner.getWinX() / 2 - this.getWidth() / 2), 600);
 	}
 }

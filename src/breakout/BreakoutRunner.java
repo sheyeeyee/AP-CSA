@@ -46,13 +46,16 @@ public class BreakoutRunner extends GDV5 {
 	private static String ballColor = "";
 	private static String paddleColor = "";
 	
+	private static boolean madeBricks = false;
+	
 	//gamestates
 	private static int gameState = 0;
 	private static boolean gameStart = false;
+	private static boolean startPage = true;
 	
 	public BreakoutRunner() {
 		super();
-		brickArray = Brick.makeBricks(); //bricks array equals the makeBricks() method
+//		brickArray = Brick.makeBricks(); //bricks array equals the makeBricks() method
 	}
 	
 	public static void main(String[] args) {
@@ -63,14 +66,15 @@ public class BreakoutRunner extends GDV5 {
 	//bc of this, no loops needed since these are being called continuously
 	@Override
 	public void update() { //60 fps, driver called 60 times per second
-		ball.move(p, brickArray);
-		ballHitBricks(ball, brickArray, particleArray);
-//		Brick.setBricks();
-		ball.resetBall();
-		p.paddleMove();
 		gameState();
-		Particles.moveParticles();
-		PowerUp.powerUpUpdate(ball, p);
+		if (gameStart) {
+			ball.move(p, brickArray);
+			ballHitBricks(ball, brickArray, particleArray);
+//			ball.resetBall();
+			p.paddleMove();
+			Particles.moveParticles();
+			PowerUp.powerUpUpdate(ball, p);
+		}
 	}
 
 	@Override
@@ -78,7 +82,7 @@ public class BreakoutRunner extends GDV5 {
 		if (gameState == 0) {
 			Pages.home(win);
 			Pages.setScore(0);
-			BreakoutBall.setLives(5);
+			BreakoutBall.setLives(1);
 		}
 		if (gameState == 4) {
 			Pages.pausedGame(win);
@@ -146,9 +150,13 @@ public class BreakoutRunner extends GDV5 {
 	public static void setPWidth(int newPWidth, BreakoutPaddle paddle) {
 		paddle.setSize(newPWidth, pHeight);
 	}
+	public static int getPWidth() {
+		return pWidth;
+	}
 	public static int getPHeight() {
 		return pHeight;
 	}
+	
 	public static int getPX() {
 		return pX;
 	}
@@ -178,9 +186,29 @@ public class BreakoutRunner extends GDV5 {
 		brickArray = Brick.makeBricks();
 	}
 	
+	public void resetBallPaddle() {
+		ball.resetBallPosition();
+		p.resetPaddlePosition();
+	}
+	
 	public static void changeBrickColor(int colArray) {
 		for (Brick b:brickArray) {
 			b.setColors(Colors.getColorPaletteShade(colArray, b.getColorShade()));
+		}
+	}
+	
+	public static void updateBrickColor() {
+		if (brickColor == "I" || brickColor == "") {
+			changeBrickColor(0);
+		}
+		if (brickColor == "W") {
+			changeBrickColor(1);
+		}
+		if (brickColor == "E") {
+			changeBrickColor(2);
+		}
+		if (brickColor == "R") {
+			changeBrickColor(3);
 		}
 	}
 	
@@ -199,15 +227,36 @@ public class BreakoutRunner extends GDV5 {
 			gameState = 0;
 		}
 		else if (GDV5.KeysPressed[KeyEvent.VK_1] && gameState == 0) {
+			Brick.setRows(6);
+			brickArray = Brick.makeBricks();
+			System.out.println("made bricks");
+			updateBrickColor();
+			System.out.println("updated bricks");
+			
 			gameState = 1;
+			System.out.println("game started");
 			gameStart = true;
 		}
 		else if (GDV5.KeysPressed[KeyEvent.VK_2] && gameState == 0) {
+			Brick.setRows(9);
+			brickArray = Brick.makeBricks();
+			System.out.println("made bricks");
+			updateBrickColor();
+			System.out.println("updated bricks");
+
 			gameState = 2;
+			System.out.println("game started");
 			gameStart = true;
 		}
 		else if (GDV5.KeysPressed[KeyEvent.VK_3] && gameState == 0) {
+			Brick.setRows(12);
+			brickArray = Brick.makeBricks();
+			System.out.println("made bricks");
+			updateBrickColor();
+			System.out.println("updated bricks");
+			
 			gameState = 3;
+			System.out.println("game started");
 			gameStart = true;
 		}
 		else if (GDV5.KeysPressed[KeyEvent.VK_ESCAPE] && gameStart) {
@@ -221,17 +270,29 @@ public class BreakoutRunner extends GDV5 {
 		else if (GDV5.KeysPressed[KeyEvent.VK_ENTER] && Pages.getScore() == Brick.getNumBricks()) {
 			gameState = 0; //splash page
 			gameStart = false;
-			restart();
+//			restart();
+			PowerUp.resetTimers();
 		}
 		else if (GDV5.KeysPressed[KeyEvent.VK_ENTER] && BreakoutBall.getLives() == 0) {
 			gameState = 0; //splash page
 			gameStart = false;
-			restart();
+//			restart();
+			PowerUp.resetTimers();
 		}
 		else if (GDV5.KeysPressed[KeyEvent.VK_Q] && gameState == 4) {
 			gameState = 0; //splash page
 			gameStart = false;
-			restart();
+//			restart();
+			PowerUp.resetTimers();
+		}
+		
+		if (gameState == 0) {
+			if (startPage == true) {
+				brickArray = Brick.makeBricks();
+				startPage = false;
+				
+				System.out.println("bricks made");
+			}
 		}
 		
 		if (gameState == 5) {
@@ -247,21 +308,6 @@ public class BreakoutRunner extends GDV5 {
 			}
 			if (GDV5.KeysPressed[KeyEvent.VK_R]) {
 				brickColor = "R";
-			}
-		}
-		if (gameState == 0) {
-			//brick
-			if (brickColor == "I" || brickColor == "") {
-				changeBrickColor(0);
-			}
-			if (brickColor == "W") {
-				changeBrickColor(1);
-			}
-			if (brickColor == "E") {
-				changeBrickColor(2);
-			}
-			if (brickColor == "R") {
-				changeBrickColor(3);
 			}
 		}
 		

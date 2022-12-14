@@ -38,9 +38,14 @@ public class BreakoutPaddle extends Rectangle {
 				this.translate(pVx, 0);
 			}
 		}
-		if (BreakoutRunner.getGameState() == 0) {
+		if (BreakoutRunner.getGameStart() == false) {
 			this.translate(0, 0);
-			this.setLocation(BreakoutRunner.getPX(), BreakoutRunner.getPY());
+			this.setLocation(BreakoutRunner.getWinX() / 2 - BreakoutRunner.getPWidth() / 2, BreakoutRunner.getPY());
 		}
+	}
+	
+	public void resetPaddlePosition() {
+		this.translate(0, 0);
+		this.setLocation(BreakoutRunner.getWinX() / 2 - BreakoutRunner.getPWidth() / 2, BreakoutRunner.getPY());
 	}
 }

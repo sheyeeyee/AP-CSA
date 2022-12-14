@@ -41,54 +41,6 @@ public class PowerUp extends Rectangle {
 		BreakoutBall.setLives(5);
 	}
 	
-//	public static void randomPowerUp(BreakoutBall ball) {
-//		int count0 = 0, count1 = 0;
-//		
-//		Brick[] bricks = new Brick[Brick.getNumBricks()];
-//		
-//		for (int i = 0; i < bricks.length; i++) {
-//			brickIndex = (int) (Math.random() * (bricks.length - 1));
-//			
-//			if (ball.intersects(bricks[brickIndex])) {
-//				powerUpType = (int) (Math.random() * powerUpNum);
-//				
-//				if (powerUpType == 0) {
-//					if (count0 == 120) {
-//						resetPWidth();
-//						powerUp0 = false;
-//					}
-//					else {
-//						BreakoutRunner.setPWidth(400);
-//						powerUp0 = true;
-//					}
-//					if (powerUp0) count0++;
-//				}
-//				if (powerUpType == 1) {
-//					if (count1 == 120) {
-//						resetBallSize();
-//						powerUp1 = false;
-//					}
-//					else {
-//						BreakoutRunner.setBallSize(100);
-//						powerUp1 = true;
-//					}
-//					if (powerUp1) count1++;
-//				}
-//				if (powerUpType == 2) {
-//					if (count2 == 120) {
-//						resetLives();
-//						powerUp2 = false;
-//					}
-//					else {
-//						BreakoutBall.addLives(2);
-//						powerUp2 = true;
-//					}
-//					if (powerUp2) count2++;
-//				}
-//			}
-//		}
-//	}
-	
 	public static void powerUpPaddle(BreakoutPaddle paddle) {
 		BreakoutRunner.setPWidth(400, paddle);
 		count0 = 0;
@@ -117,5 +69,10 @@ public class PowerUp extends Rectangle {
 		if (count1 < 300) {
 			count1++;
 		}
+	}
+	
+	public static void resetTimers() {
+		count0 = 300;
+		count1 = 300;
 	}
 }
