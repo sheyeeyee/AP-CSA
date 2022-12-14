@@ -83,4 +83,8 @@ public class Colors {
 	
 
 	public static Color colors[][] = {pastelTeals, pastelBlues, pastelGreens, pastelTans};
+	
+	public static Color getColorPaletteShade(int palette, int shade) {
+		return colors[palette][shade];
+	}
 }

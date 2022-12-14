@@ -101,24 +101,6 @@ public class BreakoutRunner extends GDV5 {
 				}
 			}
 			
-			//brick
-			if (brickColor == "I" || brickColor == "") {
-				Brick.setColorArray(0);
-//				System.out.println(Brick.getColorArray());
-			}
-			if (brickColor == "W") {
-				Brick.setColorArray(1);
-//				System.out.println(Brick.getColorArray());
-			}
-			if (brickColor == "E") {
-				Brick.setColorArray(2);
-//				System.out.println(Brick.getColorArray());
-			}
-			if (brickColor == "R") {
-				Brick.setColorArray(3);
-//				System.out.println(Brick.getColorArray());
-			}
-			
 			//ball
 			if (ballColor == "O" || ballColor == "") {
 				win.setColor(Colors.pastelTan5);
@@ -196,6 +178,12 @@ public class BreakoutRunner extends GDV5 {
 		brickArray = Brick.makeBricks();
 	}
 	
+	public static void changeBrickColor(int colArray) {
+		for (Brick b:brickArray) {
+			b.setColors(Colors.getColorPaletteShade(colArray, b.getColorShade()));
+		}
+	}
+	
 	public static void gameState() {
 		//0: splash page
 		//1: easy mode
@@ -246,21 +234,35 @@ public class BreakoutRunner extends GDV5 {
 			restart();
 		}
 		
-		//brick colors
-		if (GDV5.KeysPressed[KeyEvent.VK_W] && gameState == 5) {
-			brickColor = "W";
-//			Brick.setColorArray(1);
-//			System.out.println(Brick.getColorArray());
+		if (gameState == 5) {
+			//brick colors
+			if (GDV5.KeysPressed[KeyEvent.VK_I] && gameState == 5) {
+				brickColor = "I";
+			}
+			if (GDV5.KeysPressed[KeyEvent.VK_W]) {
+				brickColor = "W";
+			}
+			if (GDV5.KeysPressed[KeyEvent.VK_E]) {
+				brickColor = "E";
+			}
+			if (GDV5.KeysPressed[KeyEvent.VK_R]) {
+				brickColor = "R";
+			}
 		}
-		if (GDV5.KeysPressed[KeyEvent.VK_E] && gameState == 5) {
-			brickColor = "E";
-//			Brick.setColorArray(2);
-//			System.out.println(Brick.getColorArray());
-		}
-		if (GDV5.KeysPressed[KeyEvent.VK_R] && gameState == 5) {
-			brickColor = "R";
-//			Brick.setColorArray(3);
-//			System.out.println(Brick.getColorArray());
+		if (gameState == 0) {
+			//brick
+			if (brickColor == "I" || brickColor == "") {
+				changeBrickColor(0);
+			}
+			if (brickColor == "W") {
+				changeBrickColor(1);
+			}
+			if (brickColor == "E") {
+				changeBrickColor(2);
+			}
+			if (brickColor == "R") {
+				changeBrickColor(3);
+			}
 		}
 		
 		//ball colors
@@ -286,11 +288,6 @@ public class BreakoutRunner extends GDV5 {
 		}
 		
 		//defaults
-		if (GDV5.KeysPressed[KeyEvent.VK_I] && gameState == 5) {
-			brickColor = "I";
-//			Brick.setColorArray(0);
-//			System.out.println(Brick.getColorArray());
-		}
 		if (GDV5.KeysPressed[KeyEvent.VK_O] && gameState == 5) {
 			ballColor = "O";
 		}
