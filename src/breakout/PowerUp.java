@@ -40,6 +40,8 @@ public class PowerUp extends Rectangle {
 	public static void randomPowerUp(BreakoutBall ball) {
 		int count0 = 0, count1 = 0, count2 = 0;
 		
+		Brick[] bricks = new Brick[powerUpNum];
+		
 		if (BreakoutRunner.getGameStart()) {
 			for (int i = 0; i < bricks.length; i++) {
 				brickIndex = (int) (Math.random() * bricks.length);

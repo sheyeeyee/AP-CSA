@@ -314,12 +314,14 @@ public class BreakoutRunner extends GDV5 {
 		int maxV = 6;
 		
 		if (gameStart) {
-			for (Brick b:brickArray) {
-				if (ball.intersects(b) && b.getBrickVis() == true) {
-					b.setBrickVis(false);
-					particleArray = Particles.makeParticles(b);
+			for (int i = 0; i < brickArray.length; i++) {
+				int randomI = (int) Math.random() * (brickArray.length - 1 - i);
+				
+				if (ball.intersects(brickArray[i]) && brickArray[i].getBrickVis() == true) {
+					brickArray[i].setBrickVis(false);
+					particleArray = Particles.makeParticles(brickArray[i]);
 					
-					int colDir = collisionDirection(b, ball, ball.vX, ball.vY);
+					int colDir = collisionDirection(brickArray[i], ball, ball.vX, ball.vY);
 //					System.out.println(colDir);
 					
 					//score
@@ -363,6 +365,10 @@ public class BreakoutRunner extends GDV5 {
 						else if (ball.vY < -maxV) ball.vY = ball.vY + (int) (Math.random() * mvmt + mvmtMin);
 						else ball.vY = ball.vY - (int) (Math.random() + mvmtMin);
 						System.out.println("R vX: " + ball.vX + " vY: " + ball.vY);
+					}
+					
+					if (randomI == i) {
+						
 					}
 				}
 			}
