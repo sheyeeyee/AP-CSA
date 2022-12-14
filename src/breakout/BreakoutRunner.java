@@ -70,7 +70,7 @@ public class BreakoutRunner extends GDV5 {
 		p.paddleMove();
 		gameState();
 		Particles.moveParticles();
-//		PowerUp.randomPowerUp(ball);
+		PowerUp.powerUpUpdate(ball, p);
 	}
 
 	@Override
@@ -104,19 +104,19 @@ public class BreakoutRunner extends GDV5 {
 			//brick
 			if (brickColor == "I" || brickColor == "") {
 				Brick.setColorArray(0);
-				System.out.println(Brick.getColorArray());
+//				System.out.println(Brick.getColorArray());
 			}
 			if (brickColor == "W") {
 				Brick.setColorArray(1);
-				System.out.println(Brick.getColorArray());
+//				System.out.println(Brick.getColorArray());
 			}
 			if (brickColor == "E") {
 				Brick.setColorArray(2);
-				System.out.println(Brick.getColorArray());
+//				System.out.println(Brick.getColorArray());
 			}
 			if (brickColor == "R") {
 				Brick.setColorArray(3);
-				System.out.println(Brick.getColorArray());
+//				System.out.println(Brick.getColorArray());
 			}
 			
 			//ball
@@ -161,11 +161,8 @@ public class BreakoutRunner extends GDV5 {
 	public static int getWinY() {
 		return winY;
 	}
-	public static int getPWidth() {
-		return pWidth;
-	}
-	public static void setPWidth(int newWidth) {
-		pWidth = newWidth;
+	public static void setPWidth(int newPWidth, BreakoutPaddle paddle) {
+		paddle.setSize(newPWidth, pHeight);
 	}
 	public static int getPHeight() {
 		return pHeight;
@@ -176,8 +173,8 @@ public class BreakoutRunner extends GDV5 {
 	public static int getPY() {
 		return pY;
 	}
-	public static void setBallSize(int newBallSize) {
-		ballSize = newBallSize;
+	public static void setBallSize(int newBallSize, BreakoutBall ball) {
+		ball.setSize(newBallSize, newBallSize);
 	}
 	public static String getBrickColor() {
 		return brickColor;
@@ -292,7 +289,7 @@ public class BreakoutRunner extends GDV5 {
 		if (GDV5.KeysPressed[KeyEvent.VK_I] && gameState == 5) {
 			brickColor = "I";
 //			Brick.setColorArray(0);
-			System.out.println(Brick.getColorArray());
+//			System.out.println(Brick.getColorArray());
 		}
 		if (GDV5.KeysPressed[KeyEvent.VK_O] && gameState == 5) {
 			ballColor = "O";
@@ -315,9 +312,20 @@ public class BreakoutRunner extends GDV5 {
 		
 		if (gameStart) {
 			for (int i = 0; i < brickArray.length; i++) {
-				int randomI = (int) Math.random() * (brickArray.length - 1 - i);
-				
 				if (ball.intersects(brickArray[i]) && brickArray[i].getBrickVis() == true) {
+					int powerUpType = (int) (Math.random() * 5);
+					System.out.println(powerUpType);
+					
+					if (powerUpType == 1) {
+						PowerUp.powerUpPaddle(p);
+					}
+					if (powerUpType == 2) {
+						PowerUp.powerUpBall(ball);
+					}
+					if (powerUpType == 3) {
+						PowerUp.powerUpLives();
+					}
+					
 					brickArray[i].setBrickVis(false);
 					particleArray = Particles.makeParticles(brickArray[i]);
 					
@@ -365,10 +373,6 @@ public class BreakoutRunner extends GDV5 {
 						else if (ball.vY < -maxV) ball.vY = ball.vY + (int) (Math.random() * mvmt + mvmtMin);
 						else ball.vY = ball.vY - (int) (Math.random() + mvmtMin);
 						System.out.println("R vX: " + ball.vX + " vY: " + ball.vY);
-					}
-					
-					if (randomI == i) {
-						
 					}
 				}
 			}
