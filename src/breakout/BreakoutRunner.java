@@ -73,7 +73,7 @@ public class BreakoutRunner extends GDV5 {
 			Particles.moveParticles();
 			PowerUp.powerUpUpdate(ball, p);
 		}
-		else resetBallPaddle();
+		else if (gameState == 0 || BreakoutBall.getLives() == 0) resetBallPaddle();
 	}
 
 	@Override
@@ -184,6 +184,7 @@ public class BreakoutRunner extends GDV5 {
 		return gameStart;
 	}
 	
+	//CHALLENGE
 	public void resetBallPaddle() {
 		ball.resetBallPosition();
 		p.resetPaddlePosition();
@@ -225,6 +226,7 @@ public class BreakoutRunner extends GDV5 {
 			gameState = 0;
 		}
 		else if (GDV5.KeysPressed[KeyEvent.VK_1] && gameState == 0) {
+			//CHALLENGE
 			Brick.setRows(6);
 			brickArray = Brick.makeBricks();
 //			System.out.println("made bricks");
@@ -336,11 +338,11 @@ public class BreakoutRunner extends GDV5 {
 			paddleColor = "P";
 		}
 		
-		//CHALLENGE #
+		//CHALLENGE
 //		brickArray = Brick.makeBricks(); //bricks array equals the makeBricks() method
 	}
 	
-	//CHALLENGE #
+	//CHALLENGE
 	public void ballHitBricks(BreakoutBall ball, Brick[] brick, Particles[] part) {
 		int mvmtMax = 2;
 		int mvmtMin = 0;

@@ -24,7 +24,7 @@ public class BreakoutPaddle extends Rectangle {
 	}
 	
 	public void paddleMove() {
-		if (BreakoutRunner.getGameStart() == true) {
+		if (BreakoutRunner.getGameStart() && BreakoutBall.getLives() > 0) {
 			if (GDV5.KeysPressed[KeyEvent.VK_A] && this.getX() > 0) { //as long as the paddle is within the upper limit of the window, it goes up
 				this.translate(-pVx, 0);
 			}

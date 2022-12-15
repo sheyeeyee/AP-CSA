@@ -179,7 +179,7 @@ public class Pages extends Rectangle {
 		else if (BreakoutRunner.getBrickColor() == "R") {
 			font.drawString("R", 465, 285);
 		}
-		else if (BreakoutRunner.getBrickColor() == "I") {
+		else if (BreakoutRunner.getBrickColor() == "I" || BreakoutRunner.getBrickColor() == "") {
 			font.setFont(new Font("Comic Sans MS", Font.BOLD, 25));
 			font.setColor(Color.black);
 			font.drawString("I for Default Brick Color", 458, 123);

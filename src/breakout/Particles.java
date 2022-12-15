@@ -13,7 +13,7 @@ import utilities.GDV5;
 import breakout.BreakoutRunner;
 import breakout.Brick;
 
-//CHALLENGE #
+//CHALLENGE
 
 public class Particles extends Rectangle {	
 	private static Particles[] particlesArray;

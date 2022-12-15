@@ -119,7 +119,7 @@ public class Brick extends Rectangle {
 		Brick[] brickArray = new Brick[numBricks];
 		
 		for (int i = 0; i < brickArray.length; i++) {
-			brickArray[i] = new Brick(bX, bY, Colors.colors[getColorArray()][colShade], colShade); //CHALLENGE #
+			brickArray[i] = new Brick(bX, bY, Colors.colors[getColorArray()][colShade], colShade); //CHALLENGE
 			bX += bWidth + bPadding;
 			count++;
 			

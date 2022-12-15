@@ -13,7 +13,7 @@ import utilities.GDV5;
 import breakout.BreakoutRunner;
 import breakout.Brick;
 
-//CHALLENGE #
+//CHALLENGE
 
 public class PowerUp extends Rectangle {
 	private static int count0 = 0, count0_1, count1 = 0, count1_1 = 0;

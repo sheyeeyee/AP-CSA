@@ -76,7 +76,7 @@ public class BreakoutBall extends Rectangle {
 			this.setLocation((int) (BreakoutRunner.getWinX() / 2 - this.getWidth() / 2), 600);
 			count = 0;
 			out = true;
-			lives --;
+			if (lives > 0) lives--;
 		}
 		
 		//ball hits paddle
@@ -119,9 +119,9 @@ public class BreakoutBall extends Rectangle {
 			vX = -Math.abs(vX);
 		}
 		
-		//CHALLENGE #
+		//CHALLENGE
 		//for resetting ball
-		if (BreakoutRunner.getGameStart()) {
+		if (BreakoutRunner.getGameStart() && lives > 0) {
 			if (count == 120) {
 				this.translate(vX, vY);
 			}
