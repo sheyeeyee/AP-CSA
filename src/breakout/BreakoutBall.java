@@ -52,6 +52,7 @@ public class BreakoutBall extends Rectangle {
 	
 	//method for ball to move
 	public void move(BreakoutPaddle p, Brick[] brick) {
+//		System.out.println("vX: " + vX + " : " + "vY: " + vY);
 		//CHALLENGE 1
 //		vX = 3;
 //		vY = 3;
@@ -85,7 +86,7 @@ public class BreakoutBall extends Rectangle {
 				if (vX > 0) vX = Math.abs(vX);
 				else if (vX < 0) vX = -Math.abs(vX);
 				vY = -Math.abs(vY);
-				System.out.println("P vX: " + vX + " vY: " + vY);
+//				System.out.println("P vX: " + vX + " vY: " + vY);
 				
 				if (GDV5.KeysPressed[KeyEvent.VK_A] || GDV5.KeysPressed[KeyEvent.VK_LEFT]) {
 					vX = vX - nVX;
@@ -128,10 +129,6 @@ public class BreakoutBall extends Rectangle {
 				this.translate(0, 0);
 			}
 		}
-//		if (BreakoutRunner.getGameState() == 0 || lives == 0 || Pages.getScore() == Brick.getNumBricks()) {
-//			this.translate(0, 0);
-//			this.setLocation((int) (BreakoutRunner.getWinX() / 2 - this.getWidth() / 2), 600);
-//		}
 	}
 		
 	public void resetBall() {

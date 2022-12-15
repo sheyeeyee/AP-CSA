@@ -46,8 +46,6 @@ public class BreakoutRunner extends GDV5 {
 	private static String ballColor = "";
 	private static String paddleColor = "";
 	
-	private static boolean madeBricks = false;
-	
 	//gamestates
 	private static int gameState = 0;
 	private static boolean gameStart = false;
@@ -70,11 +68,12 @@ public class BreakoutRunner extends GDV5 {
 		if (gameStart) {
 			ball.move(p, brickArray);
 			ballHitBricks(ball, brickArray, particleArray);
-//			ball.resetBall();
+			ball.resetBall();
 			p.paddleMove();
 			Particles.moveParticles();
 			PowerUp.powerUpUpdate(ball, p);
 		}
+		else resetBallPaddle();
 	}
 
 	@Override
@@ -82,7 +81,7 @@ public class BreakoutRunner extends GDV5 {
 		if (gameState == 0) {
 			Pages.home(win);
 			Pages.setScore(0);
-			BreakoutBall.setLives(1);
+			BreakoutBall.setLives(5);
 		}
 		if (gameState == 4) {
 			Pages.pausedGame(win);
@@ -166,6 +165,9 @@ public class BreakoutRunner extends GDV5 {
 	public static void setBallSize(int newBallSize, BreakoutBall ball) {
 		ball.setSize(newBallSize, newBallSize);
 	}
+	public static int getBallSize() {
+		return ballSize;
+	}
 	public static String getBrickColor() {
 		return brickColor;
 	}
@@ -180,10 +182,6 @@ public class BreakoutRunner extends GDV5 {
 	}
 	public static boolean getGameStart() {
 		return gameStart;
-	}
-	
-	public static void restart() {
-		brickArray = Brick.makeBricks();
 	}
 	
 	public void resetBallPaddle() {
@@ -229,34 +227,34 @@ public class BreakoutRunner extends GDV5 {
 		else if (GDV5.KeysPressed[KeyEvent.VK_1] && gameState == 0) {
 			Brick.setRows(6);
 			brickArray = Brick.makeBricks();
-			System.out.println("made bricks");
+//			System.out.println("made bricks");
 			updateBrickColor();
-			System.out.println("updated bricks");
+//			System.out.println("updated bricks");
 			
 			gameState = 1;
-			System.out.println("game started");
+//			System.out.println("game started");
 			gameStart = true;
 		}
 		else if (GDV5.KeysPressed[KeyEvent.VK_2] && gameState == 0) {
 			Brick.setRows(9);
 			brickArray = Brick.makeBricks();
-			System.out.println("made bricks");
+//			System.out.println("made bricks");
 			updateBrickColor();
-			System.out.println("updated bricks");
+//			System.out.println("updated bricks");
 
 			gameState = 2;
-			System.out.println("game started");
+//			System.out.println("game started");
 			gameStart = true;
 		}
 		else if (GDV5.KeysPressed[KeyEvent.VK_3] && gameState == 0) {
 			Brick.setRows(12);
 			brickArray = Brick.makeBricks();
-			System.out.println("made bricks");
+//			System.out.println("made bricks");
 			updateBrickColor();
-			System.out.println("updated bricks");
+//			System.out.println("updated bricks");
 			
 			gameState = 3;
-			System.out.println("game started");
+//			System.out.println("game started");
 			gameStart = true;
 		}
 		else if (GDV5.KeysPressed[KeyEvent.VK_ESCAPE] && gameStart) {
@@ -270,19 +268,16 @@ public class BreakoutRunner extends GDV5 {
 		else if (GDV5.KeysPressed[KeyEvent.VK_ENTER] && Pages.getScore() == Brick.getNumBricks()) {
 			gameState = 0; //splash page
 			gameStart = false;
-//			restart();
 			PowerUp.resetTimers();
 		}
 		else if (GDV5.KeysPressed[KeyEvent.VK_ENTER] && BreakoutBall.getLives() == 0) {
 			gameState = 0; //splash page
 			gameStart = false;
-//			restart();
 			PowerUp.resetTimers();
 		}
 		else if (GDV5.KeysPressed[KeyEvent.VK_Q] && gameState == 4) {
 			gameState = 0; //splash page
 			gameStart = false;
-//			restart();
 			PowerUp.resetTimers();
 		}
 		
@@ -291,7 +286,7 @@ public class BreakoutRunner extends GDV5 {
 				brickArray = Brick.makeBricks();
 				startPage = false;
 				
-				System.out.println("bricks made");
+//				System.out.println("bricks made");
 			}
 		}
 		
@@ -356,17 +351,26 @@ public class BreakoutRunner extends GDV5 {
 		if (gameStart) {
 			for (int i = 0; i < brickArray.length; i++) {
 				if (ball.intersects(brickArray[i]) && brickArray[i].getBrickVis() == true) {
-					int powerUpType = (int) (Math.random() * 5);
-					System.out.println(powerUpType);
+					int powerUpType = (int) (Math.random() * 12);
+					System.out.println("Power Up: " + powerUpType);
 					
 					if (powerUpType == 1) {
 						PowerUp.powerUpPaddle(p);
 					}
 					if (powerUpType == 2) {
-						PowerUp.powerUpBall(ball);
+						PowerUp.powerDownPaddle(p);
 					}
 					if (powerUpType == 3) {
+						PowerUp.powerUpBall(ball);
+					}
+					if (powerUpType == 4) {
+						PowerUp.powerDownBall(ball);
+					}
+					if (powerUpType == 5) {
 						PowerUp.powerUpLives();
+					}
+					if (powerUpType == 6) {
+						PowerUp.powerDownLives();
 					}
 					
 					brickArray[i].setBrickVis(false);
@@ -385,7 +389,7 @@ public class BreakoutRunner extends GDV5 {
 						else if (ball.vX < -maxV) ball.vX = ball.vX + (int) (Math.random() * mvmt + mvmtMin);
 						else ball.vX = ball.vX - (int) (Math.random() + mvmtMin);
 						ball.vY = -Math.abs(ball.vY);
-						System.out.println("T vX: " + ball.vX + " vY: " + ball.vY);
+//						System.out.println("T vX: " + ball.vX + " vY: " + ball.vY);
 					}
 					
 					//ball intersects bottom
@@ -395,7 +399,7 @@ public class BreakoutRunner extends GDV5 {
 						else if (ball.vX < -maxV) ball.vX = ball.vX + (int) (Math.random() * mvmt + mvmtMin);
 						else ball.vX = ball.vX - (int) (Math.random() + mvmtMin);
 						ball.vY = Math.abs(ball.vY);
-						System.out.println("B vX: " + ball.vX + " vY: " + ball.vY);
+//						System.out.println("B vX: " + ball.vX + " vY: " + ball.vY);
 					}
 					
 					//ball intersects left
@@ -405,7 +409,7 @@ public class BreakoutRunner extends GDV5 {
 						else if (-maxV < ball.vY && ball.vY < -minV) ball.vY = ball.vY - (int) (Math.random() * mvmt + mvmtMin);
 						else if (ball.vY < -maxV) ball.vY = ball.vY + (int) (Math.random() * mvmt + mvmtMin);
 						else ball.vY = ball.vY - (int) (Math.random() + mvmtMin);
-						System.out.println("L vX: " + ball.vX + " vY: " + ball.vY);
+//						System.out.println("L vX: " + ball.vX + " vY: " + ball.vY);
 					}
 					
 					//ball intersects right
@@ -415,7 +419,7 @@ public class BreakoutRunner extends GDV5 {
 						else if (-maxV < ball.vY && ball.vY < -minV) ball.vY = ball.vY - (int) (Math.random() * mvmt + mvmtMin);
 						else if (ball.vY < -maxV) ball.vY = ball.vY + (int) (Math.random() * mvmt + mvmtMin);
 						else ball.vY = ball.vY - (int) (Math.random() + mvmtMin);
-						System.out.println("R vX: " + ball.vX + " vY: " + ball.vY);
+//						System.out.println("R vX: " + ball.vX + " vY: " + ball.vY);
 					}
 				}
 			}

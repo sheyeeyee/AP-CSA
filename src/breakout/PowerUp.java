@@ -16,16 +16,8 @@ import breakout.Brick;
 //CHALLENGE #
 
 public class PowerUp extends Rectangle {
-	private static int powerUpType;
-	private static int powerUpNum = 3; //paddle size, ball size, lives, bricks disappear??
-	private static boolean powerUp0 = false, powerUp1 = false, powerUp2 = false;
-	
-	private static int count0 = 0, count1 = 0;
-	
-	private boolean powerUpBall = false;
-	private boolean powerUpPaddle = false;
-	
-	private static int brickIndex;
+	private static int count0 = 0, count0_1, count1 = 0, count1_1 = 0;
+	private static int duration = 420;
 	
 	public PowerUp() {
 		super();
@@ -45,34 +37,61 @@ public class PowerUp extends Rectangle {
 		BreakoutRunner.setPWidth(400, paddle);
 		count0 = 0;
 	}
+	public static void powerDownPaddle(BreakoutPaddle paddle) {
+		BreakoutRunner.setPWidth(50, paddle);
+		count0_1 = 0;
+	}
 	public static void powerUpBall(BreakoutBall ball) {
 		BreakoutRunner.setBallSize(50, ball);
 		count1 = 0;
 	}
+	public static void powerDownBall(BreakoutBall ball) {
+		BreakoutRunner.setBallSize(5, ball);
+		count1_1 = 0;
+	}
 	public static void powerUpLives() {
 		BreakoutBall.addLives(2);
 	}
+	public static void powerDownLives() {
+		BreakoutBall.addLives(-1);
+	}
 	
 	public static void powerUpUpdate(BreakoutBall ball, BreakoutPaddle paddle) {
-		if (count0 == 300) {
+		if (count0 == duration) {
 			resetPWidth(paddle);
 			count0 = 0;
 		}
-		if (count1 == 300) {
+		if (count0_1 == duration) {
+			resetPWidth(paddle);
+			count0_1 = 0;
+		}
+		if (count1 == duration) {
 			resetBallSize(ball);
 			count1 = 0;
 		}
+		if (count1_1 == duration) {
+			resetBallSize(ball);
+			count1_1 = 0;
+		}
 		
-		if (count0 < 300) {
+		if (count0 < duration) {
 			count0++;
 		}
-		if (count1 < 300) {
+		if (count0_1 < duration) {
+			count0++;
+		}
+		if (count1 < duration) {
 			count1++;
+		}
+		if (count1_1 < duration) {
+			count1_1++;
 		}
 	}
 	
 	public static void resetTimers() {
-		count0 = 300;
-		count1 = 300;
+		count0 = duration;
+		count0_1 = duration;
+		count1 = duration;
+		count1_1 = duration;
 	}
 }
