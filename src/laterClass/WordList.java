@@ -11,30 +11,26 @@ public class WordList {
 	}
 
 	public int addWord(String w) {		
-		//case 1
-		if (findWord(w) != -1) {
-			return count;
-		}
-		for (int i = 0; i < words.length; i++) {
-			//case 2
-			if (words[i] == " ") {
-				words[i] = w;
+		//case 2
+		if (findWord(w) == -1) { //if w isn't in the array
+			if (count < words.length) {
+				words[count] = w;
 				count++;
-				return count;
 			}
-			
-			//case 3
 			else {
 				String[] temp = new String[2 * words.length];
-				for (int n = 0; n < words.length; n++) {
-					temp[n] = words[n];
-					count++;
-					
-					if (count == words.length) {
-						temp[n + 1] = w;
-					}
+				
+				for (int i = 0; i < words.length; i++) {
+					temp[i] = words[i];
 				}
-				return count;
+				
+				//to fill empty spaces
+				for (int j = count; j < temp.length; j++) {
+					temp[j] = "";
+				}
+				words = temp;
+				words[count] = w;
+				count++;
 			}
 		}
 		return count;
@@ -50,24 +46,31 @@ public class WordList {
 	 public void removeWord(String w) {
 	    /*** TODO: Find w in words. If found, move all elements to right of w one space to
 	               the left and decrement count. Otherwise, do nothing ***/
-		 for (int i = 0; i < words.length; i++) {
-			 if (findWord(w) != -1) {
-				 if (i > 0) {
-					 words[i] = words[i - 1];
-				 }
+		 int index = findWord(w) + 1;
+		 String current = words[index];
+		 
+		 if (findWord(w) != -1) {
+			 for (int i = findWord(w); i < words.length - 1; i++) {
+				 words[i] = current;
+				 current = words[i + 1];
+				 index++;
 			 }
+			 count--;
 		 }
 	 }
 
 	 public int findWord(String w) {
+		 int foundWord = -1;
+		 
 		 for (int i = 0; i < words.length; i++) {
-			 if (words[i] != null) {
-				 if (words[i].equals(w)) {
-					 return i;
-				 } 
+			 if (words[i] == w) {
+				 foundWord = i;
 			 }
 		 }
-		 return -1;
+		 return foundWord;
+		 
+		 /*** TODO: Loop over all words until w is found. Return index of w, or -1 if not
+         found ***/
 	 }
 
 	 public boolean equals(WordList other) {
