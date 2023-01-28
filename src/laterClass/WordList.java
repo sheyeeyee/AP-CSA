@@ -14,22 +14,23 @@ public class WordList {
 		//case 2
 		if (findWord(w) == -1) { //if w isn't in the array
 			if (count < words.length) {
-				words[count] = w;
+				words[count] = w; //set the string at the count index of the word array (the next blank space)
 				count++;
 			}
 			else {
 				String[] temp = new String[2 * words.length];
 				
+				//set temporary array equal to words array
 				for (int i = 0; i < words.length; i++) {
 					temp[i] = words[i];
 				}
 				
-				//to fill empty spaces
+				//fill empty spaces at the end
 				for (int j = count; j < temp.length; j++) {
 					temp[j] = "";
 				}
-				words = temp;
-				words[count] = w;
+				words = temp; //set words array equal to the new temp word array that's double the size
+				words[count] = w; //set the string at the count index of the word array (the next blank space)
 				count++;
 			}
 		}
