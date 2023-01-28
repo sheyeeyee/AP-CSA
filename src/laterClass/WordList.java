@@ -5,7 +5,7 @@ public class WordList {
 	int count;
 
 	public WordList() {
-		String[] newWords = new String[2];
+		String[] newWords = {"", ""};
 		words = newWords;
 		count = 0;
 	}
