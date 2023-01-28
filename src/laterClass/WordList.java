@@ -10,7 +10,7 @@ public class WordList {
 		count = 0;
 	}
 
-	public int addWord(String w) {		
+	public int addWord(String w) {
 		//case 2
 		if (findWord(w) == -1) { //if w isn't in the array
 			if (count < words.length) {
