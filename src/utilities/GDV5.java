@@ -41,7 +41,8 @@ public abstract class GDV5 extends Canvas implements Runnable, KeyListener {
 	// it is your responsibility to handle the release on keysTyped
 	public static boolean[] KeysTyped;
 	private JFrame frame;
-	private String title = "Breakout: MMORPG";
+	private String title = "Snake: MMORPG";
+//	private String title = "Breakout: MMORPG";
 //	private String title = "Pong: MMORPG";
 	private boolean cleanCanvas = true;
 
