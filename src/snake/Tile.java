@@ -33,12 +33,12 @@ public class Tile extends Rectangle {
 	private static int tileSize = 30;
 	private static int columns = winX / tileSize;
 	private static int rows = winY / tileSize;
-	private static int numTiles;
+	private static int numTiles = columns * rows;;
 	
-	public Tile(int x, int y) {
+	public Tile(int x, int y, Color c) {
 		super(x, y, 0, 0); //setting size to 0 then setting size to size right after
 		this.setSize(tileSize, tileSize); //using object to call setSize() method to use the size variables that aren't static
-		col = Colors.pastelTeal;
+		col = c;
 	}
 	
 	public static Tile[] makeBoard() {
@@ -47,7 +47,7 @@ public class Tile extends Rectangle {
 		Tile[] tileArray = new Tile[numTiles];
 		
 		for (int i = 0; i < tileArray.length; i++) {
-			tileArray[i] = new Tile(tileX, tileY);
+			tileArray[i] = new Tile(tileX, tileY, Colors.pastelTeal9);
 			tileX += tileSize;
 			count++;
 			
@@ -61,6 +61,7 @@ public class Tile extends Rectangle {
 	
 	public void draw(Graphics2D pb) {
 		pb.setColor(col);
+		pb.fill(this);
 	}
 
 	//getters and setters

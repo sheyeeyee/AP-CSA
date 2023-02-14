@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.text.StyledEditorKit;
 
+import breakout.Colors;
 import pong.Score;
 import utilities.GDV5;
 
@@ -26,8 +27,14 @@ public class SnakeRunner extends GDV5 {
 	
 	public static Tile[] board;
 	
+	public SnakeRunner() {
+		super();
+		board = Tile.makeBoard();
+	}
+	
 	public static void main(String[] args) {
 		SnakeRunner runner = new SnakeRunner();
+//		runner.Tile.makeBoard();
 		runner.start();
 	}
 
@@ -38,9 +45,14 @@ public class SnakeRunner extends GDV5 {
 
 	@Override
 	public void draw(Graphics2D win) {
-		board = Tile.makeBoard();
-		for (Tile t:board) {
-			t.draw(win);
+		drawBoard(win);
+	}
+	
+	public void drawBoard(Graphics2D pb) {
+		
+		for (Tile t : board) {
+			t.draw(pb);
 		}
+		
 	}
 }
