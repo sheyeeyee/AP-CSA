@@ -81,11 +81,11 @@ public class Tile extends Rectangle {
 		this.col = col;
 	}
 
-	public int getTileSize() {
+	public static int getTileSize() {
 		return tileSize;
 	}
 
-	public void setTileSize(int tileSize) {
-		this.tileSize = tileSize;
+	public void setTileSize(int tSize) {
+		tileSize = tSize;
 	}
 }
