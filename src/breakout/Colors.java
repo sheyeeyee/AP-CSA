@@ -14,21 +14,36 @@ import utilities.GDV5;
 
 public class Colors {	
 	//teal shades (dark to light)
-	public static Color pastelTeal0 = new Color (0, 80, 60);
-	public static Color pastelTeal = new Color (15, 95, 75);
-	public static Color pastelTeal1 = new Color (30, 110, 90);
-	public static Color pastelTeal2 = new Color(45, 125, 105);
-	public static Color pastelTeal3 = new Color(60, 140, 120);
-	public static Color pastelTeal4 = new Color(75, 165, 135);
-	public static Color pastelTeal5 = new Color(90, 180, 150);
-	public static Color pastelTeal6 = new Color(105, 195, 165);
-	public static Color pastelTeal7 = new Color(120, 210, 180);
-	public static Color pastelTeal8 = new Color(135, 225, 195);
-	public static Color pastelTeal9 = new Color(150, 240, 210);
-	public static Color pastelTeal10 = new Color(165, 255, 225);
+	public static Color pastelTeal1 = new Color(0, 40, 30);
+	public static Color pastelTeal2 = new Color(5, 50, 40);
+	public static Color pastelTeal3 = new Color (10, 60, 50);
+	public static Color pastelTeal4 = new Color (15, 70, 60);
+	public static Color pastelTeal5 = new Color (20, 80, 70);
+	public static Color pastelTeal6 = new Color(25, 90, 80);
+	public static Color pastelTeal7 = new Color(30, 100, 90);
+	public static Color pastelTeal8 = new Color(35, 110, 100);
+	public static Color pastelTeal9 = new Color(40, 120, 110);
+	public static Color pastelTeal10 = new Color(45, 130, 120);
+	public static Color pastelTeal11 = new Color(50, 140, 130);
+	public static Color pastelTeal12 = new Color(55, 150, 140);
+	public static Color pastelTeal13 = new Color(60, 160, 150);
+	public static Color pastelTeal14 = new Color(65, 170, 160);
+	public static Color pastelTeal15 = new Color(70, 180, 170);
+	public static Color pastelTeal16 = new Color(75, 190, 180);
+	public static Color pastelTeal17 = new Color(80, 200, 190);
+	public static Color pastelTeal18 = new Color(85, 210, 200);
+	public static Color pastelTeal19 = new Color(90, 220, 210);
+	public static Color pastelTeal20 = new Color(95, 230, 220);
+	public static Color pastelTeal21 = new Color(100, 240, 230);
 	
-	public static Color pastelTeals[] = {pastelTeal0, pastelTeal, pastelTeal1, pastelTeal2, pastelTeal3, pastelTeal4, pastelTeal5, 
-			pastelTeal6, pastelTeal7, pastelTeal8, pastelTeal9, pastelTeal10};
+	public static Color pastelTeals[] = {pastelTeal1, pastelTeal2, pastelTeal3, pastelTeal4, pastelTeal5, 
+			pastelTeal6, pastelTeal7, pastelTeal8, pastelTeal9, pastelTeal10, pastelTeal11, pastelTeal12, pastelTeal13, pastelTeal14, pastelTeal15, pastelTeal16,
+			pastelTeal17, pastelTeal18, pastelTeal19, pastelTeal20};
+	public static Color pastelTeals2D[][] = {{pastelTeal1, pastelTeal2, pastelTeal3, pastelTeal4, pastelTeal5, 
+		pastelTeal6, pastelTeal7, pastelTeal8, pastelTeal9, pastelTeal10, pastelTeal11, pastelTeal12, pastelTeal13, pastelTeal14, pastelTeal15, pastelTeal16,
+		pastelTeal17, pastelTeal18, pastelTeal19, pastelTeal20}, {pastelTeal2, pastelTeal3, pastelTeal4, pastelTeal5, 
+			pastelTeal6, pastelTeal7, pastelTeal8, pastelTeal9, pastelTeal10, pastelTeal11, pastelTeal12, pastelTeal13, pastelTeal14, pastelTeal15, pastelTeal16,
+			pastelTeal17, pastelTeal18, pastelTeal19, pastelTeal20, pastelTeal21}};
 	
 	//blue shades
 	public static Color pastelBlue0 = new Color(30, 70, 80);

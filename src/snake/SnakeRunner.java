@@ -67,8 +67,10 @@ public class SnakeRunner extends GDV5 {
 		
 		for (int i = 0; i < board.length; i++) {
 			board[i] = new Tile(tileX, tileY, Colors.pastelTeals[colShade]);
+//			board[i] = new Tile(tileX, tileY, Colors.pastelTeal9);
 			tileX += Tile.getTileSize();
 			count++;
+//			colShade++;
 			
 			if (count % columns == 0) {
 				tileX = 0;
