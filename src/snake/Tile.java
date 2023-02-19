@@ -43,7 +43,7 @@ public class Tile extends Rectangle {
 	
 	public void draw(Graphics2D pb) {
 		pb.setColor(col);
-		pb.fill(this);
+		pb.draw(this);
 	}
 
 	//getters and setters
