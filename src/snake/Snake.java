@@ -31,6 +31,8 @@ public class Snake extends Rectangle {
 	
 	private static int sVx, sVy;
 	
+	private int colShade = 5;
+	
 	ArrayList<Tile> body;
 	
 //	private static int sWidth = Tile.getTileSize();
@@ -38,32 +40,45 @@ public class Snake extends Rectangle {
 	
 	public Snake(int size) {
 		body = new ArrayList<Tile>();
-		body.add(new Tile(winX / 2 - (2 * Tile.getTileSize()), winY / 2, Colors.pastelTan1));
-		body.get(0).setDirection(1);
+		body.add(new Tile(winX / 2 - (2 * Tile.getTileSize()), winY / 2, Colors.pastelTans[colShade]));
+//		body.get(0).setDirection(1);
 		addBody(size - 1, body.get(0).getDirection()); //subtract 1 because we already have the head on it so we just need the rest
 	}
 	
 	public void addBody(int size) {
-		int colShade = 3;
 		int x = (int) body.get(0).getX(); //getting x position of head
 		int y = (int) body.get(0).getY(); //getting y position of head
 		
 		for (int i = 0; i < size; i++) {
-			body.add(new Tile(x + body.get(0).getDimension(), y, Colors.pastelTans[colShade]));
+			body.add(new Tile(x + body.get(0).getDimension(), y, Colors.pastelTans[colShade + 1]));
 			x += body.get(0).getDimension();
 			colShade++;
 		}
 	}
 	
+	//addBody method with direction
 	public void addBody(int size, int direction) {
-		int colShade = 3;
+		int colShade = 5;
 		int x = (int) body.get(0).getX(); //getting x position of head
 		int y = (int) body.get(0).getY(); //getting y position of head
 		
 		for (int i = 0; i < size; i++) {
-			body.add(new Tile(x + body.get(0).getDimension(), y, direction, Colors.pastelTans[colShade]));
+			body.add(new Tile(x + body.get(0).getDimension(), y, direction, Colors.pastelTans[colShade + 1]));
 			x += body.get(0).getDimension();
 			colShade++;
+		}
+	}
+	
+	public void updateBodyDirection(Tile[] board) {
+		//"this" refers to the snake's head
+		for (int i = 0; i < board.length; i++) { //iterate thru board
+			for (int j = 1; j < body.size(); j++) { //iterate thru body
+				//the head is on that specific tile
+				if (body.get(j).getX() == board[i].getX() && body.get(j).getY() == board[i].getY()) {
+					body.get(j).setDirection(board[i].getDirection()); //get that part of the body to pick up the direction of the tile that was set by the head
+					System.out.println(board[i].getDirection() + " : " + body.get(j).getDirection());
+				}
+			}
 		}
 	}
 	
@@ -79,35 +94,7 @@ public class Snake extends Rectangle {
 		}
 	}
 	
-//	public Snake(int sStartX, int sStartY, int sWidth, int sHeight) {
-//		super(sStartX, sStartY, sWidth, sHeight);
-//	}
-//	
-//	public void snakeMove() {
-//		if (GDV5.KeysPressed[KeyEvent.VK_W]) {
-//			sVx = 0;
-//			sVy = -20;
-//			this.translate(sVx, sVy);
-//		}
-//		if (GDV5.KeysPressed[KeyEvent.VK_A]) {
-//			sVx = -20;
-//			sVy = 0;
-//			this.translate(sVx, sVy);
-//		}
-//		if (GDV5.KeysPressed[KeyEvent.VK_S]) {
-//			sVx = 0;
-//			sVy = 20;
-//			this.translate(sVx, sVy);
-//		}
-//		if (GDV5.KeysPressed[KeyEvent.VK_D]) {
-//			sVx = 20;
-//			sVy = 0;
-//			this.translate(sVx, sVy);
-//		}
-//	}
-	
 	public void resetSnakePosition() {
 		this.translate(0, 0);
-//		this.setLocation(winX / 2 - BreakoutRunner.getPWidth() / 2, BreakoutRunner.getPY());
 	}
 }

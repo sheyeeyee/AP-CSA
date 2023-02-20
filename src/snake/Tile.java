@@ -49,6 +49,17 @@ public class Tile extends Rectangle {
 		this.direction = direction;
 	}
 	
+	public void updateDirection(Tile[] board) {
+		//"this" refers to the snake's head, which calls this method and sets the direction for the tiles it's on
+		for (int i = 0; i < board.length; i++) { //iterate thru board
+			//the head is on that specific tile
+			if (this.getX() == board[i].getX() && this.getY() == board[i].getY()) {
+				board[i].setDirection(this.getDirection());
+				System.out.println("H: " + board[i].getDirection());
+			}
+		}
+	}
+	
 	public void move() {
 		if (direction == 1) this.translate(-tileSize, 0); //left
 		if (direction == 2) this.translate(0, -tileSize); //up
@@ -57,17 +68,17 @@ public class Tile extends Rectangle {
 	}
 
 	public void setHeadDirection() {
-		
-	}
-	
-	public void updateDirection(Tile[] board) {
-		//"this" refers to the snake's head
-		for (int i = 0; i < board.length; i++) {
-			//the head is on that specific tile
-			if (this.getX() == board[i].getX() && this.getY() == board[i].getY()) {
-				board[i].setDirection(this.getDirection());
-				System.out.println(board[i].getDirection());
-			}
+		if (GDV5.KeysPressed[KeyEvent.VK_A] || GDV5.KeysPressed[KeyEvent.VK_LEFT]) {
+			direction = 1;
+		}
+		if (GDV5.KeysPressed[KeyEvent.VK_W] || GDV5.KeysPressed[KeyEvent.VK_UP]) {
+			direction = 2;
+		}
+		if (GDV5.KeysPressed[KeyEvent.VK_D] || GDV5.KeysPressed[KeyEvent.VK_RIGHT]) {
+			direction = 3;
+		}
+		if (GDV5.KeysPressed[KeyEvent.VK_S] || GDV5.KeysPressed[KeyEvent.VK_DOWN]) {
+			direction = 4;
 		}
 	}
 	

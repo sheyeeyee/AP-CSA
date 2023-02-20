@@ -31,7 +31,7 @@ public class SnakeRunner extends GDV5 {
 	private int columns = winX / Tile.getTileSize();
 	private int rows = winY / Tile.getTileSize();
 	private int numTiles = columns * rows;
-	private int colArray = 0, colShade;
+	private int colArray = 0;
 	
 	private static Tile[] board;
 	private Tile head;
@@ -50,7 +50,6 @@ public class SnakeRunner extends GDV5 {
 	
 	public static void main(String[] args) {
 		SnakeRunner runner = new SnakeRunner();
-		runner.makeBoard();
 		runner.start();
 	}
 
@@ -59,8 +58,9 @@ public class SnakeRunner extends GDV5 {
 		count++;
 		head.setHeadDirection();
 		if (count % 20 == 0) {
-			s.moveSnake();
 			head.updateDirection(board);
+			s.updateBodyDirection(board);
+			s.moveSnake();
 		}
 	}
 
@@ -84,7 +84,6 @@ public class SnakeRunner extends GDV5 {
 		
 		for (int i = 0; i < board.length; i++) {
 			board[i] = new Tile(tileX, tileY, Colors.pastelTeals[colShade]);
-//			board[i] = new Tile(tileX, tileY, Colors.pastelTeal9);
 			tileX += Tile.getTileSize();
 			count++;
 //			colShade++;
