@@ -38,12 +38,46 @@ public class Tile extends Rectangle {
 		super(x, y, 0, 0); //setting size to 0 then setting size to size right after
 		this.setSize(tileSize, tileSize); //using object to call setSize() method to use the size variables that aren't static
 		col = c;
+//		this.setDirection(0);
 //		setShade(initShade);
+	}
+	
+	public Tile(int x, int y, int direction, Color c) {
+		super(x, y, 0, 0); //setting size to 0 then setting size to size right after
+		this.setSize(tileSize, tileSize); //using object to call setSize() method to use the size variables that aren't static
+		col = c;
+		this.direction = direction;
+	}
+	
+	public void move() {
+		if (direction == 1) this.translate(-tileSize, 0); //left
+		if (direction == 2) this.translate(0, -tileSize); //up
+		if (direction == 3) this.translate(tileSize, 0); //right
+		if (direction == 4) this.translate(0, tileSize); //down
+	}
+
+	public void setHeadDirection() {
+		
+	}
+	
+	public void updateDirection(Tile[] board) {
+		//"this" refers to the snake's head
+		for (int i = 0; i < board.length; i++) {
+			//the head is on that specific tile
+			if (this.getX() == board[i].getX() && this.getY() == board[i].getY()) {
+				board[i].setDirection(this.getDirection());
+				System.out.println(board[i].getDirection());
+			}
+		}
 	}
 	
 	public void draw(Graphics2D pb) {
 		pb.setColor(col);
 		pb.draw(this);
+	}
+	public void fill(Graphics2D pb) {
+		pb.setColor(col);
+		pb.fill(this);
 	}
 
 	//getters and setters
@@ -85,5 +119,10 @@ public class Tile extends Rectangle {
 
 	public void setShade(int shade) {
 		this.shade = shade;
+	}
+
+	public int getDimension() {
+		// TODO Auto-generated method stub
+		return Tile.getTileSize();
 	}
 }

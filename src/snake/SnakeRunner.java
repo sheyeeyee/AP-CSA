@@ -26,15 +26,26 @@ public class SnakeRunner extends GDV5 {
 	private static int winX = GDV5.getMaxWindowX();
 	private static int winY = GDV5.getMaxWindowY();
 	
+	private int count = 0;
+	
 	private int columns = winX / Tile.getTileSize();
 	private int rows = winY / Tile.getTileSize();
 	private int numTiles = columns * rows;
 	private int colArray = 0, colShade;
 	
-	public static Tile[] board;
+	private static Tile[] board;
+	private Tile head;
+	private Snake s = new Snake(4);
+	
+	//gamestates
+	private int gameState = 0;
+	private boolean gameStart = false;
+	private boolean startPage = true;
 	
 	public SnakeRunner() {
 		super();
+		head = s.body.get(0);
+		makeBoard();
 	}
 	
 	public static void main(String[] args) {
@@ -45,12 +56,18 @@ public class SnakeRunner extends GDV5 {
 
 	@Override
 	public void update() {
-		
+		count++;
+		head.setHeadDirection();
+		if (count % 20 == 0) {
+			s.moveSnake();
+			head.updateDirection(board);
+		}
 	}
 
 	@Override
 	public void draw(Graphics2D win) {
 		drawBoard(win);
+		s.draw(win);
 	}
 	
 	public void drawBoard(Graphics2D pb) {
@@ -112,5 +129,29 @@ public class SnakeRunner extends GDV5 {
 
 	public void setColArray(int colArray) {
 		this.colArray = colArray;
-	}	
+	}
+
+	public int getGameState() {
+		return gameState;
+	}
+
+	public void setGameState(int gameState) {
+		this.gameState = gameState;
+	}
+
+	public boolean isGameStart() {
+		return gameStart;
+	}
+
+	public void setGameStart(boolean gameStart) {
+		this.gameStart = gameStart;
+	}
+
+	public boolean isStartPage() {
+		return startPage;
+	}
+
+	public void setStartPage(boolean startPage) {
+		this.startPage = startPage;
+	}
 }
