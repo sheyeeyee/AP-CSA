@@ -28,6 +28,7 @@ public class Tile extends Rectangle {
 	private static int winY = GDV5.getMaxWindowY();
 	
 	private int direction;
+	
 	private Color col;
 	private int colorArray = 0;
 	private int shade;
@@ -38,7 +39,7 @@ public class Tile extends Rectangle {
 		super(x, y, 0, 0); //setting size to 0 then setting size to size right after
 		this.setSize(tileSize, tileSize); //using object to call setSize() method to use the size variables that aren't static
 		col = c;
-//		this.setDirection(0);
+		this.setDirection(1);
 //		setShade(initShade);
 	}
 	
@@ -55,7 +56,7 @@ public class Tile extends Rectangle {
 			//the head is on that specific tile
 			if (this.getX() == board[i].getX() && this.getY() == board[i].getY()) {
 				board[i].setDirection(this.getDirection());
-				System.out.println("H: " + board[i].getDirection());
+				System.out.println("HEAD: " + board[i].getDirection());
 			}
 		}
 	}
@@ -68,16 +69,16 @@ public class Tile extends Rectangle {
 	}
 
 	public void setHeadDirection() {
-		if (GDV5.KeysPressed[KeyEvent.VK_A] || GDV5.KeysPressed[KeyEvent.VK_LEFT]) {
+		if ((GDV5.KeysPressed[KeyEvent.VK_A] || GDV5.KeysPressed[KeyEvent.VK_LEFT]) && direction != 3) {
 			direction = 1;
 		}
-		if (GDV5.KeysPressed[KeyEvent.VK_W] || GDV5.KeysPressed[KeyEvent.VK_UP]) {
+		if ((GDV5.KeysPressed[KeyEvent.VK_W] || GDV5.KeysPressed[KeyEvent.VK_UP]) && direction != 4) {
 			direction = 2;
 		}
-		if (GDV5.KeysPressed[KeyEvent.VK_D] || GDV5.KeysPressed[KeyEvent.VK_RIGHT]) {
+		if ((GDV5.KeysPressed[KeyEvent.VK_D] || GDV5.KeysPressed[KeyEvent.VK_RIGHT]) && direction != 1) {
 			direction = 3;
 		}
-		if (GDV5.KeysPressed[KeyEvent.VK_S] || GDV5.KeysPressed[KeyEvent.VK_DOWN]) {
+		if ((GDV5.KeysPressed[KeyEvent.VK_S] || GDV5.KeysPressed[KeyEvent.VK_DOWN]) && direction != 2) {
 			direction = 4;
 		}
 	}
@@ -133,7 +134,6 @@ public class Tile extends Rectangle {
 	}
 
 	public int getDimension() {
-		// TODO Auto-generated method stub
 		return Tile.getTileSize();
 	}
 }

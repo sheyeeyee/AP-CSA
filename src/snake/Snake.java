@@ -31,7 +31,7 @@ public class Snake extends Rectangle {
 	
 	private static int sVx, sVy;
 	
-	private int colShade = 5;
+	private int colShade = 0;
 	
 	ArrayList<Tile> body;
 	
@@ -40,8 +40,8 @@ public class Snake extends Rectangle {
 	
 	public Snake(int size) {
 		body = new ArrayList<Tile>();
-		body.add(new Tile(winX / 2 - (2 * Tile.getTileSize()), winY / 2, Colors.pastelTans[colShade]));
-//		body.get(0).setDirection(1);
+		body.add(new Tile(winX / 2 - (2 * Tile.getTileSize()), winY / 2, Colors.pastelBlues[colShade]));
+		body.get(0).setDirection(1);
 		addBody(size - 1, body.get(0).getDirection()); //subtract 1 because we already have the head on it so we just need the rest
 	}
 	
@@ -50,7 +50,7 @@ public class Snake extends Rectangle {
 		int y = (int) body.get(0).getY(); //getting y position of head
 		
 		for (int i = 0; i < size; i++) {
-			body.add(new Tile(x + body.get(0).getDimension(), y, Colors.pastelTans[colShade + 1]));
+			body.add(new Tile(x + body.get(0).getDimension(), y, Colors.pastelBlues[colShade + 1]));
 			x += body.get(0).getDimension();
 			colShade++;
 		}
@@ -58,12 +58,11 @@ public class Snake extends Rectangle {
 	
 	//addBody method with direction
 	public void addBody(int size, int direction) {
-		int colShade = 5;
 		int x = (int) body.get(0).getX(); //getting x position of head
 		int y = (int) body.get(0).getY(); //getting y position of head
 		
 		for (int i = 0; i < size; i++) {
-			body.add(new Tile(x + body.get(0).getDimension(), y, direction, Colors.pastelTans[colShade + 1]));
+			body.add(new Tile(x + body.get(0).getDimension(), y, direction, Colors.pastelBlues[colShade + 1]));
 			x += body.get(0).getDimension();
 			colShade++;
 		}

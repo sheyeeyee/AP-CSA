@@ -16,8 +16,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.text.StyledEditorKit;
 
+import breakout.BreakoutBall;
 import breakout.Brick;
 import breakout.Colors;
+import breakout.Pages;
+import breakout.PowerUp;
 import pong.Score;
 import utilities.GDV5;
 
@@ -38,9 +41,10 @@ public class SnakeRunner extends GDV5 {
 	private Snake s = new Snake(4);
 	
 	//gamestates
-	private int gameState = 0;
-	private boolean gameStart = false;
-	private boolean startPage = true;
+	private static int gameState = 0;
+//	private static boolean gameStart = false;
+	private static boolean gameStart = true;
+	private static boolean startPage = true;
 	
 	public SnakeRunner() {
 		super();
@@ -55,12 +59,15 @@ public class SnakeRunner extends GDV5 {
 
 	@Override
 	public void update() {
-		count++;
-		head.setHeadDirection();
-		if (count % 20 == 0) {
-			head.updateDirection(board);
-			s.updateBodyDirection(board);
-			s.moveSnake();
+		gameState();
+		if (gameStart) {
+			count++;
+			head.setHeadDirection();
+			if (count % 20 == 0) {
+				head.updateDirection(board);
+				s.updateBodyDirection(board);
+				s.moveSnake();
+			}
 		}
 	}
 
@@ -77,7 +84,7 @@ public class SnakeRunner extends GDV5 {
 	}
 	
 	//CHALLENGE 1
-	void makeBoard() {
+	public void makeBoard() {
 		int tileX = 0, tileY = 0, count = 0, colShade = 0;
 		
 		board = new Tile[numTiles];
@@ -86,12 +93,72 @@ public class SnakeRunner extends GDV5 {
 			board[i] = new Tile(tileX, tileY, Colors.pastelTeals[colShade]);
 			tileX += Tile.getTileSize();
 			count++;
-//			colShade++;
 			
 			if (count % columns == 0) {
 				tileX = 0;
 				tileY += Tile.getTileSize();
 				colShade++;
+			}
+		}
+	}
+	
+	public static void gameState() {
+		//0: splash page
+		//1: easy mode
+		//2: medium mode
+		//3: hard mode
+		//4: pause page
+		//5: customization page
+				
+		if (GDV5.KeysPressed[KeyEvent.VK_ESCAPE] && gameState == 0) {
+			gameState = 5; //customization
+		}
+		else if (GDV5.KeysPressed[KeyEvent.VK_Q] && gameState == 5) {
+			gameState = 0;
+		}
+		else if (GDV5.KeysPressed[KeyEvent.VK_1] && gameState == 0) {
+			
+			gameState = 1;
+			gameStart = true;
+		}
+		else if (GDV5.KeysPressed[KeyEvent.VK_2] && gameState == 0) {
+
+			gameState = 2;
+			gameStart = true;
+		}
+		else if (GDV5.KeysPressed[KeyEvent.VK_3] && gameState == 0) {
+			
+			gameState = 3;
+			gameStart = true;
+		}
+		else if (GDV5.KeysPressed[KeyEvent.VK_ESCAPE] && gameStart) {
+			gameState = 4; //pause
+			gameStart = false;
+		}
+		else if (GDV5.KeysPressed[KeyEvent.VK_SPACE] && !gameStart) {
+			gameState = 1; //resume game
+			gameStart = true;
+		}
+		else if (GDV5.KeysPressed[KeyEvent.VK_ENTER] && Pages.getScore() == Brick.getNumBricks()) {
+			gameState = 0; //splash page
+			gameStart = false;
+			PowerUp.resetTimers();
+		}
+		else if (GDV5.KeysPressed[KeyEvent.VK_ENTER] && BreakoutBall.getLives() == 0) {
+			gameState = 0; //splash page
+			gameStart = false;
+			PowerUp.resetTimers();
+		}
+		else if (GDV5.KeysPressed[KeyEvent.VK_Q] && gameState == 4) {
+			gameState = 0; //splash page
+			gameStart = false;
+			PowerUp.resetTimers();
+		}
+		
+		if (gameState == 0) {
+			if (startPage == true) {
+//				makeBoard();
+				startPage = false;
 			}
 		}
 	}
