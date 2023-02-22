@@ -31,7 +31,7 @@ public class SnakeRunner extends GDV5 {
 	
 	private int count = 0;
 	
-	private int columns = winX / Tile.getTileSize();
+	private static int columns = winX / Tile.getTileSize();
 	private int rows = winY / Tile.getTileSize();
 	private int numTiles = columns * rows;
 	private int colArray = 0;
@@ -42,8 +42,8 @@ public class SnakeRunner extends GDV5 {
 	
 	//gamestates
 	private static int gameState = 0;
-//	private static boolean gameStart = false;
-	private static boolean gameStart = true;
+	private static boolean gameStart = false;
+//	private static boolean gameStart = true;
 	private static boolean startPage = true;
 	
 	public SnakeRunner() {
@@ -69,12 +69,30 @@ public class SnakeRunner extends GDV5 {
 				s.moveSnake();
 			}
 		}
+		else if (gameState == 0) s.resetSnakePosition();
 	}
 
 	@Override
 	public void draw(Graphics2D win) {
-		drawBoard(win);
-		s.draw(win);
+		if (gameState == 0) {
+			SnakePages.home(win);
+			SnakePages.setScore(0);
+			BreakoutBall.setLives(5);
+		}
+		if (gameState == 4) {
+			SnakePages.pausedGame(win);
+		}
+		if (gameState == 5) {
+			SnakePages.customize(win);
+		}
+		if (gameStart) {
+			GDV5.setMaxWindowX(600);
+			GDV5.setMaxWindowY(600);
+			drawBoard(win);
+			s.draw(win);
+			SnakePages.scoreboard(win);
+			SnakePages.youWinLose(win);
+		}
 	}
 	
 	public void drawBoard(Graphics2D pb) {
@@ -117,17 +135,14 @@ public class SnakeRunner extends GDV5 {
 			gameState = 0;
 		}
 		else if (GDV5.KeysPressed[KeyEvent.VK_1] && gameState == 0) {
-			
 			gameState = 1;
 			gameStart = true;
 		}
 		else if (GDV5.KeysPressed[KeyEvent.VK_2] && gameState == 0) {
-
 			gameState = 2;
 			gameStart = true;
 		}
 		else if (GDV5.KeysPressed[KeyEvent.VK_3] && gameState == 0) {
-			
 			gameState = 3;
 			gameStart = true;
 		}
@@ -139,33 +154,27 @@ public class SnakeRunner extends GDV5 {
 			gameState = 1; //resume game
 			gameStart = true;
 		}
-		else if (GDV5.KeysPressed[KeyEvent.VK_ENTER] && Pages.getScore() == Brick.getNumBricks()) {
+		else if (GDV5.KeysPressed[KeyEvent.VK_ENTER]) {
 			gameState = 0; //splash page
 			gameStart = false;
-			PowerUp.resetTimers();
 		}
-		else if (GDV5.KeysPressed[KeyEvent.VK_ENTER] && BreakoutBall.getLives() == 0) {
+		else if (GDV5.KeysPressed[KeyEvent.VK_ENTER]) {
 			gameState = 0; //splash page
 			gameStart = false;
-			PowerUp.resetTimers();
 		}
 		else if (GDV5.KeysPressed[KeyEvent.VK_Q] && gameState == 4) {
 			gameState = 0; //splash page
 			gameStart = false;
-			PowerUp.resetTimers();
 		}
 		
 		if (gameState == 0) {
-			if (startPage == true) {
-//				makeBoard();
-				startPage = false;
-			}
+			if (startPage == true) startPage = false;
 		}
 	}
 
 	
 	//getters and setters
-	public int getColumns() {
+	public static int getColumns() {
 		return columns;
 	}
 
@@ -209,8 +218,8 @@ public class SnakeRunner extends GDV5 {
 		return gameStart;
 	}
 
-	public void setGameStart(boolean gameStart) {
-		this.gameStart = gameStart;
+	public static void setGameStart(boolean newGameStart) {
+		gameStart = newGameStart;
 	}
 
 	public boolean isStartPage() {

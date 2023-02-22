@@ -35,13 +35,10 @@ public class Snake extends Rectangle {
 	
 	ArrayList<Tile> body;
 	
-//	private static int sWidth = Tile.getTileSize();
-//	private static int sHeight;
-	
 	public Snake(int size) {
 		body = new ArrayList<Tile>();
 		body.add(new Tile(winX / 2 - (2 * Tile.getTileSize()), winY / 2, Colors.pastelBlues[colShade]));
-		body.get(0).setDirection(1);
+		body.get(0).setDirection(1); //CHALLENGE 2
 		addBody(size - 1, body.get(0).getDirection()); //subtract 1 because we already have the head on it so we just need the rest
 	}
 	
@@ -86,14 +83,15 @@ public class Snake extends Rectangle {
 			t.move();
 		}
 	}
+
+	public void resetSnakePosition() {
+		this.translate(0, 0);
+		this.setLocation(0, 0);
+	}
 	
 	public void draw(Graphics2D pb) {
 		for (Tile t : body) {
 			t.fill(pb);
 		}
-	}
-	
-	public void resetSnakePosition() {
-		this.translate(0, 0);
 	}
 }
