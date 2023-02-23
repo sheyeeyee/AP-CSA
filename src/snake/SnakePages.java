@@ -71,89 +71,93 @@ public class SnakePages {
 		font.drawString("3: HARD", 320, 430);
 		
 		//W
-		font.setColor(Color.gray);
-		font.fillRect(100, 450, 23, 23);
+		font.setColor(Colors.pastelGreen);
+		font.fillRect(100-30+20, 450+20, 23, 23);
 		font.setColor(Colors.pastelGreen10);
-		font.fillRect(103, 453, 20, 20);
+		font.fillRect(103-30+20, 453+20, 20, 20);
 		
 		//A
-		font.setColor(Color.gray);
-		font.fillRect(75, 475, 23, 23);
+		font.setColor(Colors.pastelGreen);
+		font.fillRect(75-30+20, 475+20, 23, 23);
 		font.setColor(Colors.pastelGreen10);
-		font.fillRect(78, 478, 20, 20);
+		font.fillRect(78-30+20, 478+20, 20, 20);
 		
 		//S
-		font.setColor(Color.gray);
-		font.fillRect(100, 475, 23, 23);
+		font.setColor(Colors.pastelGreen);
+		font.fillRect(100-30+20, 475+20, 23, 23);
 		font.setColor(Colors.pastelGreen10);
-		font.fillRect(103, 478, 20, 20);
+		font.fillRect(103-30+20, 478+20, 20, 20);
 		
 		//D
-		font.setColor(Color.gray);
-		font.fillRect(125, 475, 23, 23);
+		font.setColor(Colors.pastelGreen);
+		font.fillRect(125-30+20, 475+20, 23, 23);
 		font.setColor(Colors.pastelGreen10);
-		font.fillRect(128, 478, 20, 20);
-		
-		font.setColor(Color.black);
-		font.setFont(new Font("Arial", Font.BOLD, 15));
-		font.drawString("A", 70, 480);
-		font.drawString("D", 342, 705);
-		
-		font.setColor(Colors.pastelGreen7);
-		font.drawString("PADDLE TO THE LEFT", 120, 670);
-		font.drawString("PADDLE TO THE RIGHT", 350, 670);
-		
-		//UP ARROW
-		font.setColor(Color.gray);
-		font.fillRect(850, 650, 35, 35);
-		font.setColor(Color.white);
-		font.fillRect(850, 650, 30, 30);
-		
-		//LEFT ARROW
-		font.setColor(Color.gray);
-		font.fillRect(810, 690, 35, 35);
-		font.setColor(Colors.pastelGreen9);
-		font.fillRect(810, 690, 30, 30);
-		
-		//DOWN ARROW
-		font.setColor(Color.gray);
-		font.fillRect(850, 690, 35, 35);
-		font.setColor(Color.white);
-		font.fillRect(850, 690, 30, 30);
-		
-		//RIGHT ARROW
-		font.setColor(Color.gray);
-		font.fillRect(890, 690, 35, 35);
-		font.setColor(Colors.pastelGreen9);
-		font.fillRect(890, 690, 30, 30);
-		
-		font.setColor(Color.black);
-		font.setFont(new Font("Arial", Font.BOLD, 15));
-		font.drawString("<", 812, 705);
-		font.drawString(">", 892, 705);
-		
-		font.setColor(Colors.pastelGreen7);
-		font.drawString("PADDLE TO THE LEFT", 670, 670);
-		font.drawString("PADDLE TO THE RIGHT", 900, 670);
-		
-		//ESC
-		font.setColor(Color.gray);
-		font.fillRect(580, 700, 35, 35);
-		font.setColor(Colors.pastelGreen9);
-		font.fillRect(580, 700, 30, 30);
+		font.fillRect(128-30+20, 478+20, 20, 20);
 		
 		font.setColor(Color.black);
 		font.setFont(new Font("Arial", Font.BOLD, 12));
-		font.drawString("ESC", 583, 713);
+		font.drawString("A", 80-30+20, 490+20);
+		font.drawString("D", 130-30+20, 490+20);
+		font.drawString("W", 105-30+20, 465+20);
+		font.drawString("S", 105-30+20, 490+20);
 		
 		font.setColor(Colors.pastelGreen7);
-		font.setFont(new Font("Arial", Font.BOLD, 15));
-		font.drawString("PAUSE", 570, 690);
+		font.drawString("MOVE SNAKE", 137-40+20, 525+10);
+		
+		//UP ARROW
+		font.setColor(Colors.pastelGreen);
+		font.fillRect(277-50-30, 450+20, 23, 23);
+		font.setColor(Colors.pastelGreen10);
+		font.fillRect(280-50-30, 453+20, 20, 20);
+		
+		//LEFT ARROW
+		font.setColor(Colors.pastelGreen);
+		font.fillRect(252-50-30, 475+20, 23, 23);
+		font.setColor(Colors.pastelGreen10);
+		font.fillRect(255-50-30, 478+20, 20, 20);
+		
+		//DOWN ARROW
+		font.setColor(Colors.pastelGreen);
+		font.fillRect(277-50-30, 475+20, 23, 23);
+		font.setColor(Colors.pastelGreen10);
+		font.fillRect(280-50-30, 478+20, 20, 20);
+		
+		//RIGHT ARROW
+		font.setColor(Colors.pastelGreen);
+		font.fillRect(302-50-30, 475+20, 23, 23);
+		font.setColor(Colors.pastelGreen10);
+		font.fillRect(305-50-30, 478+20, 20, 20);
+		
+		font.setColor(Color.black);
+		font.setFont(new Font("Arial", Font.PLAIN, 15));
+		font.drawString("<", 257-50-30, 490+20);
+		font.drawString(">", 307-50-30, 490+20);
+
+		font.setFont(new Font("Arial", Font.BOLD, 10));
+		font.drawString("/\\", 283-50-30, 463+20);
+		font.drawString("\\/", 283-50-30, 488+20);
+		
+		//ESC
+		font.setColor(Colors.pastelTeal5);
+		font.fillRect(145, 450+20, 23, 13);
+		font.setColor(Colors.pastelTeal10);
+		font.fillRect(148, 453+20, 20, 10);
+		
+		font.setColor(Color.black);
+		font.setFont(new Font("Arial", Font.BOLD, 8));
+		font.drawString("ESC", 129+20, 460+20);
+		
+		font.setColor(Colors.pastelTeal16);
+		font.setFont(new Font("Arial", Font.BOLD, 12));
+		font.drawString("PAUSE", 118+20, 460);
 		
 		//how to play
-		font.setColor(Colors.pastelTeal5);
-		font.setFont(new Font("Comic Sans MS", Font.ITALIC, 20));
-		font.drawString("HOW TO PLAY: Break all of the bricks!", 420, 815);
+		font.setColor(Colors.pastelGreen5);
+		font.setFont(new Font("Arial", Font.ITALIC, 20));
+		font.drawString("HOW TO PLAY", 340+20, 485);
+		font.setColor(Colors.pastelGreen8);
+		font.setFont(new Font("Arial", Font.BOLD, 20));
+		font.drawString("Eat!", 460+20, 505);
 	}
 	
 	public static void customize(Graphics2D font) {
