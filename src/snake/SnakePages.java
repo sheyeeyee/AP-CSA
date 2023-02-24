@@ -304,7 +304,7 @@ public class SnakePages {
 		
 		font.setColor(Colors.pastelTan4);
 		if (SnakeRunner.getGameState() == 1) {
-			font.drawString("Level: Easy", 270, 32);
+			font.drawString("Level: Easy", 10, 25);
 		}
 		if (SnakeRunner.getGameState() == 2) {
 			font.drawString("Level: Normal", 270, 32);
@@ -318,14 +318,14 @@ public class SnakePages {
 		font.setColor(Color.white);
 		font.setFont(new Font("Comic Sans MS", Font.BOLD, 75));
 		
-		if (score == Brick.getNumBricks()) {
+		if (score == SnakeRunner.getNumTiles()) {
 			font.drawString("YOU WIN!", 200, 650);
 			font.setColor(Color.darkGray);
 			font.setFont(new Font("Comic Sans MS", Font.ITALIC, 50));
 			font.drawString("Press ENTER to Leave the Game", 220, 750);
 		}
 		
-		if (BreakoutBall.getLives() == 0) {
+		if (Tile.getSnakeAlive()) {
 			font.drawString("YOU LOSE!", 200, 650);
 			font.setColor(Color.darkGray);
 			font.setFont(new Font("Comic Sans MS", Font.ITALIC, 50));

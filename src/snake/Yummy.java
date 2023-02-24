@@ -32,7 +32,7 @@ public class Yummy extends Rectangle {
 	
 	
 	public Yummy(int x, int y) {
-		super(x, y, 0, 0);
+		super(x, y, 0, 0); //when the object is made, it automatically has rectangle object attributes (rectangle object)
 		this.setSize(Tile.getTileSize(), Tile.getTileSize());
 	}
 	

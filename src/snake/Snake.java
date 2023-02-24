@@ -83,11 +83,6 @@ public class Snake extends Rectangle {
 			t.move();
 		}
 	}
-
-	public void resetSnakePosition() {
-		this.translate(0, 0);
-		this.setLocation(0, 0);
-	}
 	
 	public void draw(Graphics2D pb) {
 		for (Tile t : body) {

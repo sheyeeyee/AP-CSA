@@ -32,13 +32,14 @@ public class SnakeRunner extends GDV5 {
 	private int count = 0;
 	
 	private static int columns = winX / Tile.getTileSize();
-	private int rows = winY / Tile.getTileSize();
-	private int numTiles = columns * rows;
+	private static int rows = winY / Tile.getTileSize();
+	private static int numTiles = columns * rows;
 	private int colArray = 0;
 	
 	private static Tile[] board;
 	private Tile head;
 	private Snake s = new Snake(4);
+//	private Snake s;
 	
 	//gamestates
 	private static int gameState = 0;
@@ -69,7 +70,7 @@ public class SnakeRunner extends GDV5 {
 				s.moveSnake();
 			}
 		}
-		else if (gameState == 0) s.resetSnakePosition();
+//		else if (gameState == 0) resetSnake();
 	}
 
 	@Override
@@ -77,7 +78,6 @@ public class SnakeRunner extends GDV5 {
 		if (gameState == 0) {
 			SnakePages.home(win);
 			SnakePages.setScore(0);
-			BreakoutBall.setLives(5);
 		}
 		if (gameState == 4) {
 			SnakePages.pausedGame(win);
@@ -86,8 +86,6 @@ public class SnakeRunner extends GDV5 {
 			SnakePages.customize(win);
 		}
 		if (gameStart) {
-			GDV5.setMaxWindowX(600);
-			GDV5.setMaxWindowY(600);
 			drawBoard(win);
 			s.draw(win);
 			SnakePages.scoreboard(win);
@@ -118,6 +116,10 @@ public class SnakeRunner extends GDV5 {
 				colShade++;
 			}
 		}
+	}
+	
+	public void resetSnake() {
+		s = new Snake(4);
 	}
 	
 	public static void gameState() {
@@ -190,7 +192,7 @@ public class SnakeRunner extends GDV5 {
 		this.rows = rows;
 	}
 
-	public int getNumTiles() {
+	public static int getNumTiles() {
 		return numTiles;
 	}
 

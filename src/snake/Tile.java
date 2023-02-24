@@ -28,6 +28,7 @@ public class Tile extends Rectangle {
 	private static int winY = GDV5.getMaxWindowY();
 	
 	private int direction;
+	private static boolean snakeAlive;
 	
 	private Color col;
 	private int colorArray = 0;
@@ -40,7 +41,6 @@ public class Tile extends Rectangle {
 		this.setSize(tileSize, tileSize); //using object to call setSize() method to use the size variables that aren't static
 		col = c;
 		this.setDirection(1);
-//		setShade(initShade);
 	}
 	
 	public Tile(int x, int y, int direction, Color c) {
@@ -66,7 +66,7 @@ public class Tile extends Rectangle {
 		if (direction == 2) this.translate(0, -tileSize); //up
 		if (direction == 3) this.translate(tileSize, 0); //right
 		if (direction == 4) this.translate(0, tileSize); //down
-		if (this.getX() < 0 || this.getY() < 0 || this.getX() > winX || this.getY() > winY) SnakeRunner.setGameStart(false);
+		if (this.getX() < 0 || this.getY() < 0 || this.getX() > winX || this.getY() > winY) setSnakeAlive(false);
 	}
 
 	public void setHeadDirection() {
@@ -136,5 +136,13 @@ public class Tile extends Rectangle {
 
 	public int getDimension() {
 		return Tile.getTileSize();
+	}
+	
+	public static boolean getSnakeAlive() {
+		return snakeAlive;
+	}
+	
+	public static void setSnakeAlive(boolean isSnakeAlive) {
+		snakeAlive = isSnakeAlive;
 	}
 }
