@@ -206,7 +206,7 @@ public class SnakeRunner extends GDV5 {
 		this.colArray = colArray;
 	}
 
-	public int getGameState() {
+	public static int getGameState() {
 		return gameState;
 	}
 
