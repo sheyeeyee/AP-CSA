@@ -37,9 +37,10 @@ public class SnakeRunner extends GDV5 {
 	private int colArray = 0;
 	
 	private static Tile[] board;
+	private Snake s;
+//	private Snake s = new Snake(4);
 	private Tile head;
-	private Snake s = new Snake(4);
-//	private Snake s;
+	private Yummy f = new Yummy();
 	
 	//gamestates
 	private static int gameState = 0;
@@ -49,6 +50,7 @@ public class SnakeRunner extends GDV5 {
 	
 	public SnakeRunner() {
 		super();
+		s = new Snake(4);
 		head = s.body.get(0);
 		makeBoard();
 	}
@@ -68,6 +70,7 @@ public class SnakeRunner extends GDV5 {
 				head.updateDirection(board);
 				s.updateBodyDirection(board);
 				s.moveSnake();
+				f.spawnFood();
 			}
 		}
 //		else if (gameState == 0) resetSnake();
@@ -88,6 +91,7 @@ public class SnakeRunner extends GDV5 {
 		if (gameStart) {
 			drawBoard(win);
 			s.draw(win);
+//			win.fillRect(x,y,w,h);
 			SnakePages.scoreboard(win);
 			SnakePages.youWinLose(win);
 		}
@@ -184,7 +188,7 @@ public class SnakeRunner extends GDV5 {
 		this.columns = columns;
 	}
 
-	public int getRows() {
+	public static int getRows() {
 		return rows;
 	}
 

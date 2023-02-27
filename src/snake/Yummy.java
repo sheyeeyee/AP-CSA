@@ -11,6 +11,7 @@ import java.awt.event.MouseEvent;
 import java.awt.Graphics;
 import javax.swing.JFrame;
 import java.awt.Graphics;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -28,16 +29,16 @@ import utilities.GDV5;
 
 public class Yummy extends Rectangle {
 	//IDEA: if the snake eats smth, then have the next thing slide in ("fall") from the top rather than spawning, have the start and stop place of it be random but it only goes straight downward to the stop place
-	private int fStartX, fStartY;
+	private int fX, fY;	
 	
-	
-	public Yummy(int x, int y) {
-		super(x, y, 0, 0); //when the object is made, it automatically has rectangle object attributes (rectangle object)
+	public Yummy() {
+//		super(x, y, 0, 0); //when the object is made, it automatically has rectangle object attributes (rectangle object)
 		this.setSize(Tile.getTileSize(), Tile.getTileSize());
 	}
 	
 	
-	public void spawn() {
-		fStartX = (int) (Math.random() * SnakeRunner.getColumns());
+	public void spawnFood() {
+		fX = (int) (Math.random() * SnakeRunner.getColumns() * Tile.getTileSize());
+		fY = (int) (Math.random() * SnakeRunner.getRows() * Tile.getTileSize());
 	}
 }
