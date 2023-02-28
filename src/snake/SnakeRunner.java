@@ -71,6 +71,7 @@ public class SnakeRunner extends GDV5 {
 				s.updateBodyDirection(board);
 				s.moveSnake();
 				f.spawnFood();
+				snakeEat(s, f);
 			}
 		}
 //		else if (gameState == 0) resetSnake();
@@ -91,7 +92,8 @@ public class SnakeRunner extends GDV5 {
 		if (gameStart) {
 			drawBoard(win);
 			s.draw(win);
-//			win.fillRect(x,y,w,h);
+			win.setColor(Colors.pastelTan3);
+			win.fillRect((int) f.getX(), (int) f.getY(), (int) f.getWidth(), (int) f.getHeight());
 			SnakePages.scoreboard(win);
 			SnakePages.youWinLose(win);
 		}
@@ -118,6 +120,14 @@ public class SnakeRunner extends GDV5 {
 				tileX = 0;
 				tileY += Tile.getTileSize();
 				colShade++;
+			}
+		}
+	}
+	
+	public void snakeEat(Snake snake, Yummy food) {
+		if (gameStart) {
+			if (snake.intersects(food)) {
+				food.setLocation((int) (Math.random() * SnakeRunner.getColumns() * Tile.getTileSize()), (int) (Math.random() * SnakeRunner.getRows() * Tile.getTileSize()));
 			}
 		}
 	}

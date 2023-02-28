@@ -302,16 +302,16 @@ public class SnakePages {
 			font.drawString("Score: " + score.toString(), 50, 32);
 		}
 		
-		font.setColor(Colors.pastelTan4);
-		if (SnakeRunner.getGameState() == 1) {
-			font.drawString("Level: Easy", 10, 25);
-		}
-		if (SnakeRunner.getGameState() == 2) {
-			font.drawString("Level: Normal", 270, 32);
-		}
-		if (SnakeRunner.getGameState() == 3) {
-			font.drawString("Level: Hard", 270, 32);
-		}
+//		font.setColor(Colors.pastelTan4);
+//		if (SnakeRunner.getGameState() == 1) {
+//			font.drawString("Level: Easy", 10, 25);
+//		}
+//		if (SnakeRunner.getGameState() == 2) {
+//			font.drawString("Level: Normal", 270, 32);
+//		}
+//		if (SnakeRunner.getGameState() == 3) {
+//			font.drawString("Level: Hard", 270, 32);
+//		}
 	}
 	
 	public static void youWinLose(Graphics2D font) {
@@ -326,10 +326,10 @@ public class SnakePages {
 		}
 		
 		if (Tile.getSnakeAlive()) {
-			font.drawString("YOU LOSE!", 200, 650);
+			font.drawString("YOU LOSE!", 200, 200);
 			font.setColor(Color.darkGray);
 			font.setFont(new Font("Comic Sans MS", Font.ITALIC, 50));
-			font.drawString("Press ENTER to Leave the Game", 220, 750);
+			font.drawString("Press ENTER to Leave the Game", 220, 250);
 		}
 	}
 }
