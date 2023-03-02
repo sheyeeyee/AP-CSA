@@ -28,7 +28,7 @@ public class Tile extends Rectangle {
 	private static int winY = GDV5.getMaxWindowY();
 	
 	private int direction;
-	private static boolean snakeAlive;
+	private static boolean snakeAlive = true;
 	
 	private Color col;
 	private int colorArray = 0;
@@ -56,17 +56,20 @@ public class Tile extends Rectangle {
 			//the head is on that specific tile
 			if (this.getX() == board[i].getX() && this.getY() == board[i].getY()) {
 				board[i].setDirection(this.getDirection());
-				System.out.println("HEAD: " + board[i].getDirection());
+//				System.out.println("HEAD: " + board[i].getDirection());
 			}
 		}
 	}
 	
 	public void move() {
-		if (direction == 1) this.translate(-tileSize, 0); //left
-		if (direction == 2) this.translate(0, -tileSize); //up
-		if (direction == 3) this.translate(tileSize, 0); //right
-		if (direction == 4) this.translate(0, tileSize); //down
-		if (this.getX() < 0 || this.getY() < 0 || this.getX() > winX || this.getY() > winY) setSnakeAlive(false); //this needs to move
+		if (getSnakeAlive()) {
+			if (direction == 1) this.translate(-tileSize, 0); //left
+			if (direction == 2) this.translate(0, -tileSize); //up
+			if (direction == 3) this.translate(tileSize, 0); //right
+			if (direction == 4) this.translate(0, tileSize); //down
+			if (this.getX() < 0 || this.getY() < 0 || this.getX() > winX || this.getY() > winY) setSnakeAlive(false);
+		}
+		if (!getSnakeAlive()) this.translate(0, 0);
 	}
 
 	public void setHeadDirection() {

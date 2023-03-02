@@ -42,6 +42,13 @@ public class Snake extends Rectangle {
 		addBody(size - 1, body.get(0).getDirection()); //subtract 1 because we already have the head on it so we just need the rest
 	}
 	
+	public void checkCollision() {
+		Tile head = body.get(0);
+		for (int i = 1; i < body.size(); i++) {
+			if (head.intersects(body.get(i))) Tile.setSnakeAlive(false);
+		}
+	}
+	
 	public void addBody(int size) {
 		int x = (int) body.get(0).getX(); //getting x position of head
 		int y = (int) body.get(0).getY(); //getting y position of head
@@ -72,7 +79,7 @@ public class Snake extends Rectangle {
 				//the head is on that specific tile
 				if (body.get(j).getX() == board[i].getX() && body.get(j).getY() == board[i].getY()) {
 					body.get(j).setDirection(board[i].getDirection()); //get that part of the body to pick up the direction of the tile that was set by the head
-					System.out.println(board[i].getDirection() + " : " + body.get(j).getDirection());
+//					System.out.println(board[i].getDirection() + " : " + body.get(j).getDirection());
 				}
 			}
 		}

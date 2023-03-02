@@ -29,8 +29,8 @@ import utilities.GDV5;
 
 public class Yummy extends Rectangle {
 	//IDEA: if the snake eats smth, then have the next thing slide in ("fall") from the top rather than spawning, have the start and stop place of it be random but it only goes straight downward to the stop place
-	private static int fX = (int) (Math.random() * SnakeRunner.getColumns() * Tile.getTileSize());;
-	private static int fY = (int) (Math.random() * SnakeRunner.getRows() * Tile.getTileSize());;
+	private static int fX = (int) (Math.random() * SnakeRunner.getColumns() * Tile.getTileSize());
+	private static int fY = (int) (Math.random() * SnakeRunner.getRows() * Tile.getTileSize());
 	
 	public Yummy() {
 		super(fX, fY, 0, 0); //when the object is made, it automatically has rectangle object attributes (rectangle object)
@@ -48,15 +48,15 @@ public class Yummy extends Rectangle {
 		return fX;
 	}
 
-	public void setfX(int fX) {
-		this.fX = fX;
+	public void setfX(int newfX) {
+		fX = newfX;
 	}
 
 	public int getfY() {
 		return fY;
 	}
 
-	public void setfY(int fY) {
-		this.fY = fY;
+	public void setfY(int newfY) {
+		fY = newfY;
 	}
 }

@@ -316,20 +316,20 @@ public class SnakePages {
 	
 	public static void youWinLose(Graphics2D font) {
 		font.setColor(Color.white);
-		font.setFont(new Font("Comic Sans MS", Font.BOLD, 75));
+		font.setFont(new Font("Comic Sans MS", Font.BOLD, 40));
 		
 		if (score == SnakeRunner.getNumTiles()) {
 			font.drawString("YOU WIN!", 200, 650);
 			font.setColor(Color.darkGray);
-			font.setFont(new Font("Comic Sans MS", Font.ITALIC, 50));
-			font.drawString("Press ENTER to Leave the Game", 220, 750);
+			font.setFont(new Font("Comic Sans MS", Font.ITALIC, 25));
+			font.drawString("Press ENTER to Leave the Game", 110, 750);
 		}
 		
-		if (Tile.getSnakeAlive()) {
+		if (Tile.getSnakeAlive() == false) {
 			font.drawString("YOU LOSE!", 200, 200);
 			font.setColor(Color.darkGray);
-			font.setFont(new Font("Comic Sans MS", Font.ITALIC, 50));
-			font.drawString("Press ENTER to Leave the Game", 220, 250);
+			font.setFont(new Font("Comic Sans MS", Font.ITALIC, 25));
+			font.drawString("Press ENTER to Leave the Game", 110, 250);
 		}
 	}
 }

@@ -37,9 +37,9 @@ public class SnakeRunner extends GDV5 {
 	private int colArray = 0;
 	
 	private static Tile[] board;
-	private Snake s;
+	private static Snake s;
 //	private Snake s = new Snake(4);
-	private Tile head;
+	private static Tile head;
 	private Yummy f = new Yummy();
 	
 	//gamestates
@@ -50,8 +50,8 @@ public class SnakeRunner extends GDV5 {
 	
 	public SnakeRunner() {
 		super();
-		s = new Snake(4);
-		head = s.body.get(0);
+//		s = new Snake(4);
+//		head = s.body.get(0);
 		makeBoard();
 	}
 	
@@ -66,15 +66,11 @@ public class SnakeRunner extends GDV5 {
 		if (gameStart) {
 			count++;
 			head.setHeadDirection();
-			if (count % 20 == 0) {
-				head.updateDirection(board);
-				s.updateBodyDirection(board);
-				s.moveSnake();
-				f.spawnFood();
-				snakeEat(s, f);
-			}
+			updateSaveLines();
+			f.spawnFood();
+			snakeEat(head, f);
 		}
-//		else if (gameState == 0) resetSnake();
+		else if (gameState == 0) resetSnake();
 	}
 
 	@Override
@@ -124,16 +120,15 @@ public class SnakeRunner extends GDV5 {
 		}
 	}
 	
-	public void snakeEat(Snake snake, Yummy food) {
-		if (gameStart) {
-			if (snake.intersects(food)) {
-				food.setLocation((int) (Math.random() * SnakeRunner.getColumns() * Tile.getTileSize()), (int) (Math.random() * SnakeRunner.getRows() * Tile.getTileSize()));
-			}
+	public void snakeEat(Tile h, Yummy food) {
+		if (h.intersects(food)) {
+			food.setLocation((int) (Math.random() * SnakeRunner.getColumns() * Tile.getTileSize()), (int) (Math.random() * SnakeRunner.getRows() * Tile.getTileSize()));
+//			s.addBody(Tile.getTileSize());
 		}
 	}
 	
 	public void resetSnake() {
-		s = new Snake(4);
+		Tile.setSnakeAlive(true);
 	}
 	
 	public static void gameState() {
@@ -151,14 +146,23 @@ public class SnakeRunner extends GDV5 {
 			gameState = 0;
 		}
 		else if (GDV5.KeysPressed[KeyEvent.VK_1] && gameState == 0) {
+			s = new Snake(4);
+			head = s.body.get(0);
+			
 			gameState = 1;
 			gameStart = true;
 		}
 		else if (GDV5.KeysPressed[KeyEvent.VK_2] && gameState == 0) {
+			s = new Snake(4);
+			head = s.body.get(0);
+			
 			gameState = 2;
 			gameStart = true;
 		}
 		else if (GDV5.KeysPressed[KeyEvent.VK_3] && gameState == 0) {
+			s = new Snake(4);
+			head = s.body.get(0);
+			
 			gameState = 3;
 			gameStart = true;
 		}
@@ -185,6 +189,33 @@ public class SnakeRunner extends GDV5 {
 		
 		if (gameState == 0) {
 			if (startPage == true) startPage = false;
+		}
+	}
+	
+	public void updateSaveLines() {
+		if (gameState == 1) {
+			if (count % 20 == 0) {
+				head.updateDirection(board);
+				s.updateBodyDirection(board);
+				s.moveSnake();
+				s.checkCollision();
+			}
+		}
+		if (gameState == 2) {
+			if (count % 15 == 0) {
+				head.updateDirection(board);
+				s.updateBodyDirection(board);
+				s.moveSnake();
+				s.checkCollision();
+			}
+		}
+		if (gameState == 3) {
+			if (count % 10 == 0) {
+				head.updateDirection(board);
+				s.updateBodyDirection(board);
+				s.moveSnake();
+				s.checkCollision();
+			}
 		}
 	}
 
