@@ -40,6 +40,7 @@ public class SnakeRunner extends GDV5 {
 	private static Snake s;
 //	private Snake s = new Snake(4);
 	private static Tile head;
+	private static Tile chest;
 	private Yummy f = new Yummy();
 	
 	//gamestates
@@ -68,7 +69,7 @@ public class SnakeRunner extends GDV5 {
 			head.setHeadDirection();
 			updateSaveLines();
 			f.spawnFood();
-			snakeEat(head, f);
+			snakeEat(chest, f);
 		}
 		else if (gameState == 0) resetSnake();
 	}
@@ -87,11 +88,12 @@ public class SnakeRunner extends GDV5 {
 		}
 		if (gameStart) {
 			drawBoard(win);
-			s.draw(win);
 			win.setColor(Colors.pastelTan3);
 			win.fillRect((int) f.getX(), (int) f.getY(), (int) f.getWidth(), (int) f.getHeight());
+			s.draw(win);
 			SnakePages.scoreboard(win);
 			SnakePages.youWinLose(win);
+			System.out.println(Math.random() + " * " + SnakeRunner.getColumns() + " * " + Tile.getTileSize());
 		}
 	}
 	
@@ -120,8 +122,8 @@ public class SnakeRunner extends GDV5 {
 		}
 	}
 	
-	public void snakeEat(Tile h, Yummy food) {
-		if (h.intersects(food)) {
+	public void snakeEat(Tile c, Yummy food) {
+		if (c.intersects(food)) {
 			food.setLocation((int) (Math.random() * SnakeRunner.getColumns() * Tile.getTileSize()), (int) (Math.random() * SnakeRunner.getRows() * Tile.getTileSize()));
 //			s.addBody(Tile.getTileSize());
 		}
@@ -148,6 +150,7 @@ public class SnakeRunner extends GDV5 {
 		else if (GDV5.KeysPressed[KeyEvent.VK_1] && gameState == 0) {
 			s = new Snake(4);
 			head = s.body.get(0);
+			chest = s.body.get(1);
 			
 			gameState = 1;
 			gameStart = true;
@@ -155,6 +158,7 @@ public class SnakeRunner extends GDV5 {
 		else if (GDV5.KeysPressed[KeyEvent.VK_2] && gameState == 0) {
 			s = new Snake(4);
 			head = s.body.get(0);
+			chest = s.body.get(1);
 			
 			gameState = 2;
 			gameStart = true;
@@ -162,6 +166,7 @@ public class SnakeRunner extends GDV5 {
 		else if (GDV5.KeysPressed[KeyEvent.VK_3] && gameState == 0) {
 			s = new Snake(4);
 			head = s.body.get(0);
+			chest = s.body.get(1);
 			
 			gameState = 3;
 			gameStart = true;
