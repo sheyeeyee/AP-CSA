@@ -124,7 +124,7 @@ public class SnakeRunner extends GDV5 {
 	
 	public void snakeEat(Tile c, Yummy food) {
 		if (c.intersects(food)) {
-			food.setLocation((int) (Math.random() * SnakeRunner.getColumns() * Tile.getTileSize()), (int) (Math.random() * SnakeRunner.getRows() * Tile.getTileSize()));
+			food.setLocation((int) (Math.random() * SnakeRunner.getRows()) * Tile.getTileSize(), (int) (Math.random() * SnakeRunner.getRows()) * Tile.getTileSize());
 //			s.addBody(Tile.getTileSize());
 		}
 	}
