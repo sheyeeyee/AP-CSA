@@ -54,7 +54,26 @@ public class Snake extends Rectangle {
 		int y = (int) body.get(0).getY(); //getting y position of head
 		
 		for (int i = 0; i < size; i++) {
-			body.add(new Tile(x + body.get(0).getDimension(), y, Colors.pastelBlues[colShade + 1]));
+			//left
+			if (body.get(body.size() - 1).getDirection() == 1) {
+				x += Tile.getTileSize();
+			}
+			//up
+			if (body.get(body.size() - 1).getDirection() == 2) {
+				y += Tile.getTileSize();
+				x -= Tile.getTileSize();
+			}
+			//right
+			if (body.get(body.size() - 1).getDirection() == 3) {
+				x -= Tile.getTileSize() * 2;
+			}
+			//down
+			if (body.get(body.size() - 1).getDirection() == 4) {
+				y -= Tile.getTileSize();
+				x -= Tile.getTileSize();
+			}
+			
+			body.add(new Tile(x + body.get(0).getDimension(), y, body.get(body.size() - 1).getDirection(), Colors.pastelBlues[colShade + 1]));
 			x += body.get(0).getDimension();
 			colShade++;
 		}

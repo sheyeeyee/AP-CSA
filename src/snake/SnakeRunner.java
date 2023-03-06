@@ -69,7 +69,7 @@ public class SnakeRunner extends GDV5 {
 			head.setHeadDirection();
 			updateSaveLines();
 			f.spawnFood();
-			snakeEat(chest, f);
+			snakeEat(chest, s, f);
 		}
 		else if (gameState == 0) resetSnake();
 	}
@@ -93,7 +93,7 @@ public class SnakeRunner extends GDV5 {
 			s.draw(win);
 			SnakePages.scoreboard(win);
 			SnakePages.youWinLose(win);
-			System.out.println(Math.random() + " * " + SnakeRunner.getColumns() + " * " + Tile.getTileSize());
+//			System.out.println(Math.random() + " * " + SnakeRunner.getColumns() + " * " + Tile.getTileSize());
 		}
 	}
 	
@@ -122,10 +122,10 @@ public class SnakeRunner extends GDV5 {
 		}
 	}
 	
-	public void snakeEat(Tile c, Yummy food) {
+	public void snakeEat(Tile c, Snake snake, Yummy food) {
 		if (c.intersects(food)) {
 			food.setLocation((int) (Math.random() * SnakeRunner.getRows()) * Tile.getTileSize(), (int) (Math.random() * SnakeRunner.getRows()) * Tile.getTileSize());
-//			s.addBody(Tile.getTileSize());
+			s.addBody(1);
 		}
 	}
 	
