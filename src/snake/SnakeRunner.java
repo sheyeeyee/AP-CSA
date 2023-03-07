@@ -23,6 +23,7 @@ import breakout.Pages;
 import breakout.PowerUp;
 import pong.Score;
 import utilities.GDV5;
+import utilities.SoundDriver;
 
 public class SnakeRunner extends GDV5 {
 	//create variable for max window sizes
@@ -38,10 +39,12 @@ public class SnakeRunner extends GDV5 {
 	
 	private static Tile[] board;
 	private static Snake s;
-//	private Snake s = new Snake(4);
 	private static Tile head;
 	private static Tile chest;
 	private Yummy f = new Yummy();
+	
+	private SoundDriver sound;
+	private String[] fileNames = new String[1];
 	
 	//gamestates
 	private static int gameState = 0;
@@ -51,9 +54,11 @@ public class SnakeRunner extends GDV5 {
 	
 	public SnakeRunner() {
 		super();
-//		s = new Snake(4);
-//		head = s.body.get(0);
+		
 		makeBoard();
+		
+		fileNames[0] = "snakeEatNoise.wav";
+		sound = new SoundDriver(fileNames, this);
 	}
 	
 	public static void main(String[] args) {
@@ -126,6 +131,7 @@ public class SnakeRunner extends GDV5 {
 		if (c.intersects(food)) {
 			food.setLocation((int) (Math.random() * SnakeRunner.getRows()) * Tile.getTileSize(), (int) (Math.random() * SnakeRunner.getRows()) * Tile.getTileSize());
 			s.addBody(1);
+			sound.play(0);
 		}
 	}
 	
