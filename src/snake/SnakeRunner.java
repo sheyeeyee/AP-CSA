@@ -38,10 +38,11 @@ public class SnakeRunner extends GDV5 {
 	private int colArray = 0;
 	
 	private Tile[] board;
-	private static Snake s;
-	private static Tile head;
-	private static Tile chest;
-	private Yummy f = new Yummy();
+	private Snake s;
+	private Tile head;
+	private Tile chest;
+	private Yummy f;
+	Images images = new Images();
 	
 	private SoundDriver sound;
 	private String[] fileNames = new String[1];
@@ -72,7 +73,7 @@ public class SnakeRunner extends GDV5 {
 			head.setHeadDirection();
 			updateSaveLines();
 			f.spawnFood();
-			snakeEat(chest, s, f);
+			snakeEat(chest, head, s, f);
 		}
 		else if (gameState == 0) resetSnake();
 	}
@@ -82,6 +83,8 @@ public class SnakeRunner extends GDV5 {
 		if (gameState == 0) {
 			SnakePages.home(win);
 			SnakePages.setScore(0);
+			win.drawImage(images.loader("src/images/snakeimage.png"), 252, 197, this);
+			win.drawImage(images.loader("src/images/snaketailimage.png"), 433, 194, this);
 		}
 		if (gameState == 4) {
 			SnakePages.pausedGame(win);
@@ -91,8 +94,11 @@ public class SnakeRunner extends GDV5 {
 		}
 		if (gameStart) {
 			drawBoard(win);
-			win.setColor(Colors.pastelTeal1);
+			
+			win.setColor(new Color(7, 66, 43));
 			win.fillRect(0, 0, winX, 30);
+			win.drawImage(images.loader("src/images/trophy for score.png"), 4, 5, this);
+			
 			win.setColor(Colors.pastelTan3);
 			win.fillRect((int) f.getX(), (int) f.getY(), (int) f.getWidth(), (int) f.getHeight());
 			s.draw(win);
@@ -126,12 +132,14 @@ public class SnakeRunner extends GDV5 {
 		}
 	}
 	
-	public void snakeEat(Tile c, Snake snake, Yummy food) {
+	public void snakeEat(Tile c, Tile h, Snake snake, Yummy food) {
 		if (c.intersects(food)) {
 			food.setLocation((int) (Math.random() * SnakeRunner.getColumns()) * Tile.getTileSize(), (int) (Math.random() * (SnakeRunner.getRows() - 1)) * Tile.getTileSize() + Tile.getTileSize());
 			s.addBody(1);
-			sound.play(0);
 			SnakePages.addScore(1);
+		}
+		if (h.intersects(food)) {
+			sound.play(0);
 		}
 	}
 	
@@ -140,7 +148,7 @@ public class SnakeRunner extends GDV5 {
 		makeBoard();
 	}
 	
-	public static void gameState() {
+	public void gameState() {
 		//0: splash page
 		//1: easy mode
 		//2: medium mode
@@ -158,6 +166,7 @@ public class SnakeRunner extends GDV5 {
 			s = new Snake(4);
 			head = s.body.get(0);
 			chest = s.body.get(1);
+			f = new Yummy();
 			
 			gameState = 1;
 			gameStart = true;
@@ -166,6 +175,7 @@ public class SnakeRunner extends GDV5 {
 			s = new Snake(4);
 			head = s.body.get(0);
 			chest = s.body.get(1);
+			f = new Yummy();
 			
 			gameState = 2;
 			gameStart = true;
@@ -174,6 +184,7 @@ public class SnakeRunner extends GDV5 {
 			s = new Snake(4);
 			head = s.body.get(0);
 			chest = s.body.get(1);
+			f = new Yummy();
 			
 			gameState = 3;
 			gameStart = true;

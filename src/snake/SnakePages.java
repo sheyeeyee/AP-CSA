@@ -45,12 +45,13 @@ public class SnakePages {
 		font.setFont(new Font("Comic Sans MS", Font.BOLD, 75));
 		font.drawString("Snake", 180, 200);
 		
-		font.setColor(Colors.pastelGreen8);
+		font.setColor(new Color(1, 69, 60));
 		font.setFont(new Font("Comic Sans MS", Font.BOLD, 30));
 		font.drawString("MMORPG", 300, 230);
-		
+
+		font.setColor(Colors.pastelGreen8);
 		font.setFont(new Font("Arial", Font.ITALIC, 15));
-		font.drawString("Copyright Shelley Wei :)", 230, 260);
+		font.drawString("Copyright Shelley Wei :)", 215, 260);
 		
 		font.setColor(Colors.pastelTeal7);
 		font.setFont(new Font("Arial", Font.BOLD, 15));
@@ -295,23 +296,22 @@ public class SnakePages {
 	}
 	
 	public static void scoreboard(Graphics2D font) {		
-		font.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
+		font.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		
 		if (SnakeRunner.isGameStart() == true) {
-			font.setColor(Colors.pastelTan3);
-			font.drawString("Score: " + score.toString(), 8, 22);
+			font.setColor(Color.white);
+			font.drawString("Score: " + score.toString(), 30, 20);
 		}
 		
-//		font.setColor(Colors.pastelTan4);
-//		if (SnakeRunner.getGameState() == 1) {
-//			font.drawString("Level: Easy", 10, 25);
-//		}
-//		if (SnakeRunner.getGameState() == 2) {
-//			font.drawString("Level: Normal", 270, 32);
-//		}
-//		if (SnakeRunner.getGameState() == 3) {
-//			font.drawString("Level: Hard", 270, 32);
-//		}
+		if (SnakeRunner.getGameState() == 1) {
+			font.drawString("Level: Easy", 530, 20);
+		}
+		if (SnakeRunner.getGameState() == 2) {
+			font.drawString("Level: Normal", 512, 20);
+		}
+		if (SnakeRunner.getGameState() == 3) {
+			font.drawString("Level: Hard", 528, 20);
+		}
 	}
 	
 	public static void youWinLose(Graphics2D font) {
@@ -326,7 +326,7 @@ public class SnakePages {
 		}
 		
 		if (Tile.getSnakeAlive() == false) {
-			font.drawString("YOU LOSE!", 200, 200);
+			font.drawString("YOU LOSE!", 190, 200);
 			font.setColor(Color.darkGray);
 			font.setFont(new Font("Comic Sans MS", Font.ITALIC, 25));
 			font.drawString("Press ENTER to Leave the Game", 110, 250);
