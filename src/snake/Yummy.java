@@ -32,8 +32,8 @@ public class Yummy extends Rectangle {
 //	private static int fX = (int) (Math.random() * SnakeRunner.getColumns()) * Tile.getTileSize();
 //	private static int fY = (int) (Math.random() * SnakeRunner.getRows()) * Tile.getTileSize();
 	
-	private static int fX = (int) (0.3 * SnakeRunner.getColumns()) * Tile.getTileSize();
-	private static int fY = (int) (0.3 * SnakeRunner.getRows()) * Tile.getTileSize();
+	private static int fX = (int) (Math.random() * SnakeRunner.getColumns()) * Tile.getTileSize();
+	private static int fY = (int) (Math.random() * (SnakeRunner.getRows() - 1)) * Tile.getTileSize() + Tile.getTileSize();
 	
 	public Yummy() {
 		super(fX, fY, 0, 0); //when the object is made, it automatically has rectangle object attributes (rectangle object)
@@ -43,7 +43,7 @@ public class Yummy extends Rectangle {
 	
 	public void spawnFood() {
 		fX = (int) (Math.random() * SnakeRunner.getColumns()) * Tile.getTileSize();
-		fY = (int) (Math.random() * SnakeRunner.getRows()) * Tile.getTileSize();
+		fY = (int) (Math.random() * (SnakeRunner.getRows() - 1)) * Tile.getTileSize() + Tile.getTileSize();
 	}
 
 

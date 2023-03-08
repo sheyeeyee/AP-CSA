@@ -295,11 +295,11 @@ public class SnakePages {
 	}
 	
 	public static void scoreboard(Graphics2D font) {		
-		font.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+		font.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
 		
-		if (BreakoutRunner.getGameStart() == true) {
-			font.setColor(Colors.pastelTan);
-			font.drawString("Score: " + score.toString(), 50, 32);
+		if (SnakeRunner.isGameStart() == true) {
+			font.setColor(Colors.pastelTan3);
+			font.drawString("Score: " + score.toString(), 8, 22);
 		}
 		
 //		font.setColor(Colors.pastelTan4);

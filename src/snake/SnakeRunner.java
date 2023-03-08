@@ -37,7 +37,7 @@ public class SnakeRunner extends GDV5 {
 	private static int numTiles = columns * rows;
 	private int colArray = 0;
 	
-	private static Tile[] board;
+	private Tile[] board;
 	private static Snake s;
 	private static Tile head;
 	private static Tile chest;
@@ -54,8 +54,6 @@ public class SnakeRunner extends GDV5 {
 	
 	public SnakeRunner() {
 		super();
-		
-		makeBoard();
 		
 		fileNames[0] = "snakeEatNoise.wav";
 		sound = new SoundDriver(fileNames, this);
@@ -93,12 +91,13 @@ public class SnakeRunner extends GDV5 {
 		}
 		if (gameStart) {
 			drawBoard(win);
+			win.setColor(Colors.pastelTeal1);
+			win.fillRect(0, 0, winX, 30);
 			win.setColor(Colors.pastelTan3);
 			win.fillRect((int) f.getX(), (int) f.getY(), (int) f.getWidth(), (int) f.getHeight());
 			s.draw(win);
 			SnakePages.scoreboard(win);
 			SnakePages.youWinLose(win);
-//			System.out.println(Math.random() + " * " + SnakeRunner.getColumns() + " * " + Tile.getTileSize());
 		}
 	}
 	
@@ -129,14 +128,16 @@ public class SnakeRunner extends GDV5 {
 	
 	public void snakeEat(Tile c, Snake snake, Yummy food) {
 		if (c.intersects(food)) {
-			food.setLocation((int) (Math.random() * SnakeRunner.getRows()) * Tile.getTileSize(), (int) (Math.random() * SnakeRunner.getRows()) * Tile.getTileSize());
+			food.setLocation((int) (Math.random() * SnakeRunner.getColumns()) * Tile.getTileSize(), (int) (Math.random() * (SnakeRunner.getRows() - 1)) * Tile.getTileSize() + Tile.getTileSize());
 			s.addBody(1);
 			sound.play(0);
+			SnakePages.addScore(1);
 		}
 	}
 	
 	public void resetSnake() {
 		Tile.setSnakeAlive(true);
+		makeBoard();
 	}
 	
 	public static void gameState() {
@@ -272,7 +273,7 @@ public class SnakeRunner extends GDV5 {
 		this.gameState = gameState;
 	}
 
-	public boolean isGameStart() {
+	public static boolean isGameStart() {
 		return gameStart;
 	}
 

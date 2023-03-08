@@ -67,7 +67,7 @@ public class Tile extends Rectangle {
 			if (direction == 2) this.translate(0, -tileSize); //up
 			if (direction == 3) this.translate(tileSize, 0); //right
 			if (direction == 4) this.translate(0, tileSize); //down
-			if (this.getX() < 0 || this.getY() < 0 || this.getX() > winX || this.getY() > winY) setSnakeAlive(false);
+			if (this.getX() < 0 || this.getY() < 30 || this.getX() > winX || this.getY() > winY) setSnakeAlive(false);
 		}
 		if (!getSnakeAlive()) this.translate(0, 0);
 	}
