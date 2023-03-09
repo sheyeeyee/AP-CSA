@@ -56,7 +56,6 @@ public class SnakeRunner extends GDV5 {
 	//game states
 	private static int gameState = 0;
 	private static boolean gameStart = false;
-//	private static boolean gameStart = true;
 	private static boolean startPage = true;
 	
 	public SnakeRunner() {

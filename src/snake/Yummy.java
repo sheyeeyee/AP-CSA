@@ -42,7 +42,7 @@ public class Yummy extends Rectangle {
 		super(fStartX, fStartY, 0, 0); //when the object is made, it automatically has rectangle object attributes (rectangle object)
 		this.setSize(Tile.getTileSize(), Tile.getTileSize());
 		
-		this.setfDirection(fDirection);
+//		this.setfDirection(fDirection);
 	}
 	
 	

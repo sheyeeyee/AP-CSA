@@ -24,8 +24,8 @@ import utilities.GDV5;
 
 public class Tile extends Rectangle {
 	//create variable for max window sizes
-	private static int winX = GDV5.getMaxWindowX();
-	private static int winY = GDV5.getMaxWindowY();
+	private int winX = GDV5.getMaxWindowX();
+	private int winY = GDV5.getMaxWindowY();
 	
 	private int direction;
 	private static boolean snakeAlive = true;
