@@ -83,7 +83,7 @@ public class SnakeRunner extends GDV5 {
 		if (gameState == 0) {
 			SnakePages.home(win);
 			SnakePages.setScore(0);
-			win.drawImage(images.loader("src/images/snakeimage.png"), 252, 197, this);
+			win.drawImage(images.loader("src/images/snakeimage.png"), 251, 195, this);
 			win.drawImage(images.loader("src/images/snaketailimage.png"), 433, 194, this);
 		}
 		if (gameState == 4) {
@@ -217,14 +217,6 @@ public class SnakeRunner extends GDV5 {
 	
 	public void updateSaveLines() {
 		if (gameState == 1) {
-			if (count % 20 == 0) {
-				head.updateDirection(board);
-				s.updateBodyDirection(board);
-				s.moveSnake();
-				s.checkCollision();
-			}
-		}
-		if (gameState == 2) {
 			if (count % 15 == 0) {
 				head.updateDirection(board);
 				s.updateBodyDirection(board);
@@ -232,8 +224,16 @@ public class SnakeRunner extends GDV5 {
 				s.checkCollision();
 			}
 		}
-		if (gameState == 3) {
+		if (gameState == 2) {
 			if (count % 10 == 0) {
+				head.updateDirection(board);
+				s.updateBodyDirection(board);
+				s.moveSnake();
+				s.checkCollision();
+			}
+		}
+		if (gameState == 3) {
+			if (count % 5 == 0) {
 				head.updateDirection(board);
 				s.updateBodyDirection(board);
 				s.moveSnake();

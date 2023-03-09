@@ -164,28 +164,27 @@ public class SnakePages {
 	public static void customize(Graphics2D font) {
 		font.setFont(new Font("Comic Sans MS", Font.BOLD, 50/2));
 		font.setColor(Color.darkGray);
-		font.drawString("Customize Bricks", 545/2, 285);
-		font.drawString("Customize Ball", 155/2, 490);
-		font.drawString("Customize Paddles", 585/2, 610);
+		font.drawString("Customize Snake", 545/2, 285);
+		font.drawString("Customize Board", 155/2, 490);
 		
 		font.setColor(Colors.pastelBlue8);
-		font.drawString("Customize Bricks", 540/2, 280);
+		font.drawString("Customize Snake", 540/2, 280);
 		font.setFont(new Font("Comic Sans MS", Font.BOLD, 25/2));
-		font.drawString("PRESS THE CORRESPONDING LETTER FOR BRICK COLOR", 220/2, 318);
+		font.drawString("PRESS THE CORRESPONDING LETTER FOR SNAKE COLOR", 220/2, 318);
 		
 		font.setFont(new Font("Comic Sans MS", Font.BOLD, 50/2));
 		font.setColor(Colors.pastelTan8);
-		font.drawString("Customize Ball", 150/2, 485);
+		font.drawString("Customize Board", 150/2, 485);
 		font.setFont(new Font("Comic Sans MS", Font.BOLD, 25/2));
-		font.drawString("PRESS THE CORRESPONDING LETTER FOR BALL COLOR", 155/2, 430);
+		font.drawString("PRESS THE CORRESPONDING LETTER FOR BOARD COLOR", 155/2, 430);
 		
-		font.setFont(new Font("Comic Sans MS", Font.BOLD, 50/2));
-		font.setColor(Colors.pastelGreen8);
-		font.drawString("Customize Paddles", 580/2, 605);
-		font.setFont(new Font("Comic Sans MS", Font.BOLD, 25/2));
-		font.drawString("PRESS THE CORRESPONDING LETTER FOR PADDLE COLOR", 270/2, 643);
+//		font.setFont(new Font("Comic Sans MS", Font.BOLD, 50/2));
+//		font.setColor(Colors.pastelGreen8);
+//		font.drawString("Customize Paddles", 580/2, 605);
+//		font.setFont(new Font("Comic Sans MS", Font.BOLD, 25/2));
+//		font.drawString("PRESS THE CORRESPONDING LETTER FOR PADDLE COLOR", 270/2, 643);
 		
-		//brick colors
+		//snake colors
 		font.setFont(new Font("Comic Sans MS", Font.BOLD, 50/2));
 		font.setColor(Color.black);
 		if (BreakoutRunner.getBrickColor() == "W") {
@@ -200,10 +199,10 @@ public class SnakePages {
 		else if (BreakoutRunner.getBrickColor() == "I" || BreakoutRunner.getBrickColor() == "") {
 			font.setFont(new Font("Comic Sans MS", Font.BOLD, 25/2));
 			font.setColor(Color.black);
-			font.drawString("I for Default Brick Color", 458/2, 123);
+			font.drawString("I for Default Snake Color", 458/2, 123);
 		}
 		
-		//ball colors
+		//board colors
 		font.setFont(new Font("Comic Sans MS", Font.BOLD, 50/2));
 		font.setColor(Color.black);
 		if (BreakoutRunner.getBallColor() == "T") {
@@ -218,26 +217,26 @@ public class SnakePages {
 		else if (BreakoutRunner.getBallColor() == "O" || BreakoutRunner.getBallColor() == "") {
 			font.setFont(new Font("Comic Sans MS", Font.BOLD, 25/2));
 			font.setColor(Color.black);
-			font.drawString("O for Default Ball Color", 463/2, 153);
+			font.drawString("O for Default Board Color", 463/2, 153);
 		}
 		
 		//paddle colors
-		font.setFont(new Font("Comic Sans MS", Font.BOLD, 50/2));
-		font.setColor(Color.black);
-		if (BreakoutRunner.getPaddleColor() == "G") {
-			font.drawString("G", 405/2, 610);
-		}
-		else if (BreakoutRunner.getPaddleColor() == "H") {
-			font.drawString("H", 455/2, 610);
-		}
-		else if (BreakoutRunner.getPaddleColor() == "J") {
-			font.drawString("J", 505/2, 610);
-		}
-		else if (BreakoutRunner.getPaddleColor() == "P" || BreakoutRunner.getPaddleColor() == "") {
-			font.setFont(new Font("Comic Sans MS", Font.BOLD, 25/2));
-			font.setColor(Color.black);
-			font.drawString("P for Default Paddle Color", 453/2, 183);
-		}
+//		font.setFont(new Font("Comic Sans MS", Font.BOLD, 50/2));
+//		font.setColor(Color.black);
+//		if (BreakoutRunner.getPaddleColor() == "G") {
+//			font.drawString("G", 405/2, 610);
+//		}
+//		else if (BreakoutRunner.getPaddleColor() == "H") {
+//			font.drawString("H", 455/2, 610);
+//		}
+//		else if (BreakoutRunner.getPaddleColor() == "J") {
+//			font.drawString("J", 505/2, 610);
+//		}
+//		else if (BreakoutRunner.getPaddleColor() == "P" || BreakoutRunner.getPaddleColor() == "") {
+//			font.setFont(new Font("Comic Sans MS", Font.BOLD, 25/2));
+//			font.setColor(Color.black);
+//			font.drawString("P for Default Paddle Color", 453/2, 183);
+//		}
 		
 		font.setFont(new Font("Comic Sans MS", Font.BOLD, 50/2));
 		
@@ -248,12 +247,12 @@ public class SnakePages {
 		font.setColor(Colors.pastelBlue7);
 		font.drawString("W", 346/2, 280);
 		font.drawString("Y", 600/2, 485);
-		font.drawString("H", 450/2, 605);
+//		font.drawString("H", 450/2, 605);
 		
 		font.setColor(Colors.pastelGreen7);
 		font.drawString("E", 410/2, 280);
 		font.drawString("U", 650/2, 485);
-		font.drawString("J", 500/2, 605);
+//		font.drawString("J", 500/2, 605);
 		
 		font.setColor(Colors.pastelTan7);
 		font.drawString("R", 460/2, 280);
@@ -261,13 +260,13 @@ public class SnakePages {
 		font.setFont(new Font("Comic Sans MS", Font.BOLD, 25/2));
 		
 		font.setColor(Colors.pastelTeal7);
-		font.drawString("I for Default Brick Color", 455/2, 120);
+		font.drawString("I for Default Snake Color", 458/2, 120);
 		
 		font.setColor(Colors.pastelTan7);
-		font.drawString("O for Default Ball Color", 460/2, 150);
+		font.drawString("O for Default Board Color", 463/2, 150);
 		
-		font.setColor(Colors.pastelTan7);
-		font.drawString("P for Default Paddle Color", 450/2, 180);
+//		font.setColor(Colors.pastelTan7);
+//		font.drawString("P for Default Paddle Color", 450/2, 180);
 		
 		font.setColor(new Color(205, 205, 205));
 		font.drawString("PRESS Q TO GO BACK", 450/2, 750);
