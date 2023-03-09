@@ -242,7 +242,7 @@ public class SnakePages {
 		
 		font.setColor(Colors.pastelTeal7);
 		font.drawString("T", 550/2, 485);
-		font.drawString("G", 400/2, 605);
+//		font.drawString("G", 400/2, 605);
 		
 		font.setColor(Colors.pastelBlue7);
 		font.drawString("W", 346/2, 280);
@@ -324,7 +324,7 @@ public class SnakePages {
 			font.drawString("Press ENTER to Leave the Game", 110, 750);
 		}
 		
-		if (Tile.getSnakeAlive() == false) {
+		if (!Tile.getSnakeAlive()) {
 			font.drawString("YOU LOSE!", 190, 200);
 			font.setColor(Color.darkGray);
 			font.setFont(new Font("Comic Sans MS", Font.ITALIC, 25));

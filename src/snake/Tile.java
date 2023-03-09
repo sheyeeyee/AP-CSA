@@ -76,13 +76,13 @@ public class Tile extends Rectangle {
 		if ((GDV5.KeysPressed[KeyEvent.VK_A] || GDV5.KeysPressed[KeyEvent.VK_LEFT]) && direction != 3) {
 			direction = 1;
 		}
-		if ((GDV5.KeysPressed[KeyEvent.VK_W] || GDV5.KeysPressed[KeyEvent.VK_UP]) && direction != 4) {
+		else if ((GDV5.KeysPressed[KeyEvent.VK_W] || GDV5.KeysPressed[KeyEvent.VK_UP]) && direction != 4) {
 			direction = 2;
 		}
-		if ((GDV5.KeysPressed[KeyEvent.VK_D] || GDV5.KeysPressed[KeyEvent.VK_RIGHT]) && direction != 1) {
+		else if ((GDV5.KeysPressed[KeyEvent.VK_D] || GDV5.KeysPressed[KeyEvent.VK_RIGHT]) && direction != 1) {
 			direction = 3;
 		}
-		if ((GDV5.KeysPressed[KeyEvent.VK_S] || GDV5.KeysPressed[KeyEvent.VK_DOWN]) && direction != 2) {
+		else if ((GDV5.KeysPressed[KeyEvent.VK_S] || GDV5.KeysPressed[KeyEvent.VK_DOWN]) && direction != 2) {
 			direction = 4;
 		}
 	}

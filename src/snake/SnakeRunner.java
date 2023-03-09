@@ -32,22 +32,27 @@ public class SnakeRunner extends GDV5 {
 	
 	private int count = 0;
 	
+	//board stuff
 	private static int columns = winX / Tile.getTileSize();
 	private static int rows = winY / Tile.getTileSize();
 	private static int numTiles = columns * rows;
 	private int colArray = 0;
 	
+	//snake objects
 	private Tile[] board;
 	private Snake s;
 	private Tile head;
 	private Tile chest;
 	private Yummy f;
+	
+	//image object
 	Images images = new Images();
 	
+	//sound objects
 	private SoundDriver sound;
-	private String[] fileNames = new String[1];
+	private String[] fileNames = new String[2];
 	
-	//gamestates
+	//game states
 	private static int gameState = 0;
 	private static boolean gameStart = false;
 //	private static boolean gameStart = true;
@@ -56,7 +61,8 @@ public class SnakeRunner extends GDV5 {
 	public SnakeRunner() {
 		super();
 		
-		fileNames[0] = "snakeEatNoise.wav";
+		fileNames[0] = "snakeSound/snakeEatNoise1.wav";
+		fileNames[1] = "snakeSound/Fluffing-a-Duck.wav";
 		sound = new SoundDriver(fileNames, this);
 	}
 	
@@ -75,7 +81,36 @@ public class SnakeRunner extends GDV5 {
 			f.spawnFood();
 			snakeEat(chest, head, s, f);
 		}
-		else if (gameState == 0) resetSnake();
+		else if (gameState == 0) {
+			resetSnake();
+		}
+	}
+	
+	public void updateSaveLines() {		
+		if (gameState == 1) {
+			if (count % 15 == 0) {
+				head.updateDirection(board);
+				s.updateBodyDirection(board);
+				s.moveSnake();
+				s.checkCollision();
+			}
+		}
+		if (gameState == 2) {
+			if (count % 10 == 0) {
+				head.updateDirection(board);
+				s.updateBodyDirection(board);
+				s.moveSnake();
+				s.checkCollision();
+			}
+		}
+		if (gameState == 3) {
+			if (count % 5 == 0) {
+				head.updateDirection(board);
+				s.updateBodyDirection(board);
+				s.moveSnake();
+				s.checkCollision();
+			}
+		}
 	}
 
 	@Override
@@ -95,13 +130,14 @@ public class SnakeRunner extends GDV5 {
 		if (gameStart) {
 			drawBoard(win);
 			
+			win.setColor(Colors.pastelTan3);
+			win.fillRect((int) f.getX(), (int) f.getY(), (int) f.getWidth(), (int) f.getHeight());
+			s.draw(win);
+			
 			win.setColor(new Color(7, 66, 43));
 			win.fillRect(0, 0, winX, 30);
 			win.drawImage(images.loader("src/images/trophy for score.png"), 4, 5, this);
 			
-			win.setColor(Colors.pastelTan3);
-			win.fillRect((int) f.getX(), (int) f.getY(), (int) f.getWidth(), (int) f.getHeight());
-			s.draw(win);
 			SnakePages.scoreboard(win);
 			SnakePages.youWinLose(win);
 		}
@@ -197,14 +233,14 @@ public class SnakeRunner extends GDV5 {
 			gameState = 1; //resume game
 			gameStart = true;
 		}
-		else if (GDV5.KeysPressed[KeyEvent.VK_ENTER]) {
+		else if (GDV5.KeysPressed[KeyEvent.VK_ENTER] && !Tile.getSnakeAlive()) {
 			gameState = 0; //splash page
 			gameStart = false;
 		}
-		else if (GDV5.KeysPressed[KeyEvent.VK_ENTER]) {
-			gameState = 0; //splash page
-			gameStart = false;
-		}
+//		else if (GDV5.KeysPressed[KeyEvent.VK_ENTER]) {
+//			gameState = 0; //splash page
+//			gameStart = false;
+//		}
 		else if (GDV5.KeysPressed[KeyEvent.VK_Q] && gameState == 4) {
 			gameState = 0; //splash page
 			gameStart = false;
@@ -212,33 +248,6 @@ public class SnakeRunner extends GDV5 {
 		
 		if (gameState == 0) {
 			if (startPage == true) startPage = false;
-		}
-	}
-	
-	public void updateSaveLines() {
-		if (gameState == 1) {
-			if (count % 15 == 0) {
-				head.updateDirection(board);
-				s.updateBodyDirection(board);
-				s.moveSnake();
-				s.checkCollision();
-			}
-		}
-		if (gameState == 2) {
-			if (count % 10 == 0) {
-				head.updateDirection(board);
-				s.updateBodyDirection(board);
-				s.moveSnake();
-				s.checkCollision();
-			}
-		}
-		if (gameState == 3) {
-			if (count % 5 == 0) {
-				head.updateDirection(board);
-				s.updateBodyDirection(board);
-				s.moveSnake();
-				s.checkCollision();
-			}
 		}
 	}
 

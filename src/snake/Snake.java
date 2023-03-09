@@ -29,8 +29,6 @@ public class Snake extends Rectangle {
 	private static int winX = GDV5.getMaxWindowX();
 	private static int winY = GDV5.getMaxWindowY();
 	
-	private static int sVx, sVy;
-	
 	private int colShade = 0;
 	
 	ArrayList<Tile> body;
