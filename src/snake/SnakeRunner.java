@@ -31,6 +31,7 @@ public class SnakeRunner extends GDV5 {
 	private static int winY = GDV5.getMaxWindowY();
 	
 	private int count = 0;
+	private int countSong = 0;
 	
 	//board stuff
 	private static int columns = winX / Tile.getTileSize();
@@ -50,7 +51,7 @@ public class SnakeRunner extends GDV5 {
 	
 	//sound objects
 	private SoundDriver sound;
-	private String[] fileNames = new String[2];
+	private String[] fileNames = new String[3];
 	
 	//game states
 	private static int gameState = 0;
@@ -63,6 +64,7 @@ public class SnakeRunner extends GDV5 {
 		
 		fileNames[0] = "snakeSound/snakeEatNoise1.wav";
 		fileNames[1] = "snakeSound/Fluffing-a-Duck.wav";
+		fileNames[2] = "snakeSound/oh-no.wav";
 		sound = new SoundDriver(fileNames, this);
 	}
 	
@@ -83,7 +85,9 @@ public class SnakeRunner extends GDV5 {
 		}
 		else if (gameState == 0) {
 			resetSnake();
+			if (countSong % 4025 == 0) sound.play(1);
 		}
+		countSong++;
 	}
 	
 	public void updateSaveLines() {		

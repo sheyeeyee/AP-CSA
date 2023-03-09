@@ -64,9 +64,9 @@ public class Tile extends Rectangle {
 	public void move() {
 		if (getSnakeAlive()) {
 			if (direction == 1) this.translate(-tileSize, 0); //left
-			if (direction == 2) this.translate(0, -tileSize); //up
-			if (direction == 3) this.translate(tileSize, 0); //right
-			if (direction == 4) this.translate(0, tileSize); //down
+			else if (direction == 2) this.translate(0, -tileSize); //up
+			else if (direction == 3) this.translate(tileSize, 0); //right
+			else if (direction == 4) this.translate(0, tileSize); //down
 			if (this.getX() < 0 || this.getY() < 30 || this.getX() > winX || this.getY() > winY) setSnakeAlive(false);
 		}
 		if (!getSnakeAlive()) this.translate(0, 0);
