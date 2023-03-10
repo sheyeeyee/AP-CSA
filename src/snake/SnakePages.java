@@ -187,16 +187,16 @@ public class SnakePages {
 		//snake colors
 		font.setFont(new Font("Comic Sans MS", Font.BOLD, 50/2));
 		font.setColor(Color.black);
-		if (BreakoutRunner.getBrickColor() == "W") {
+		if (SnakeRunner.getSnakeColor() == "W") {
 			font.drawString("W", 351/2, 285);
 		}
-		else if (BreakoutRunner.getBrickColor() == "E") {
+		else if (SnakeRunner.getSnakeColor() == "E") {
 			font.drawString("E", 415/2, 285);
 		}
-		else if (BreakoutRunner.getBrickColor() == "R") {
+		else if (SnakeRunner.getSnakeColor() == "R") {
 			font.drawString("R", 465/2, 285);
 		}
-		else if (BreakoutRunner.getBrickColor() == "I" || BreakoutRunner.getBrickColor() == "") {
+		else if (SnakeRunner.getSnakeColor() == "I" || SnakeRunner.getSnakeColor() == "") {
 			font.setFont(new Font("Comic Sans MS", Font.BOLD, 25/2));
 			font.setColor(Color.black);
 			font.drawString("I for Default Snake Color", 458/2, 123);
@@ -205,16 +205,16 @@ public class SnakePages {
 		//board colors
 		font.setFont(new Font("Comic Sans MS", Font.BOLD, 50/2));
 		font.setColor(Color.black);
-		if (BreakoutRunner.getBallColor() == "T") {
+		if (SnakeRunner.getBoardColor() == "T") {
 			font.drawString("T", 555/2, 490);
 		}
-		else if (BreakoutRunner.getBallColor() == "Y") {
+		else if (SnakeRunner.getBoardColor() == "Y") {
 			font.drawString("Y", 605/2, 490);
 		}
-		else if (BreakoutRunner.getBallColor() == "U") {
+		else if (SnakeRunner.getBoardColor() == "U") {
 			font.drawString("U", 655/2, 490);
 		}
-		else if (BreakoutRunner.getBallColor() == "O" || BreakoutRunner.getBallColor() == "") {
+		else if (SnakeRunner.getBoardColor() == "O" || SnakeRunner.getBoardColor() == "") {
 			font.setFont(new Font("Comic Sans MS", Font.BOLD, 25/2));
 			font.setColor(Color.black);
 			font.drawString("O for Default Board Color", 463/2, 153);

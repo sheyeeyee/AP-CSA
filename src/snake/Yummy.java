@@ -31,9 +31,9 @@ public class Yummy extends Rectangle {
 	//IDEA: if the snake eats smth, then have the next thing slide in ("fall") from the top rather than spawning, have the start and stop place of it be random but it only goes straight downward to the stop place
 	
 	private static int fStartX = (int) (Math.random() * SnakeRunner.getColumns()) * Tile.getTileSize();
-	private static int fStartY = (int) (Math.random() * (SnakeRunner.getRows() - 1)) * Tile.getTileSize() + Tile.getTileSize();
-//	private static int fStartY = -30;
-//	private static int fEndY;
+//	private static int fStartY = (int) (Math.random() * (SnakeRunner.getRows() - 1)) * Tile.getTileSize() + Tile.getTileSize();
+	private static int fStartY = -30;
+	private static int fEndY = (int) (Math.random() * (SnakeRunner.getRows() - 1)) * Tile.getTileSize() + Tile.getTileSize();;
 	
 	private int fDirection = 1;
 
@@ -48,35 +48,43 @@ public class Yummy extends Rectangle {
 	
 	public void spawnFood() { //need to check whether snake is there or not
 		fStartX = (int) (Math.random() * SnakeRunner.getColumns()) * Tile.getTileSize();
-		fStartY = (int) (Math.random() * (SnakeRunner.getRows() - 1)) * Tile.getTileSize() + Tile.getTileSize();
-//		fEndY = (int) (Math.random() * (SnakeRunner.getRows() - 1)) * Tile.getTileSize() + Tile.getTileSize();
+//		fStartY = (int) (Math.random() * (SnakeRunner.getRows() - 1)) * Tile.getTileSize() + Tile.getTileSize();
+		fStartY = -30;
 		
-//		if (this.getY() != fEndY) this.translate(0, Tile.getTileSize());
-//		else this.translate(0, 0);
+		if (this.getY() != fEndY) this.translate(0, Tile.getTileSize());
+		else this.translate(0, 0);
 	}
 
-
-	public int getfX() {
+	
+	public static int getfStartX() {
 		return fStartX;
 	}
 
-	public void setfX(int newfX) {
-		fStartX = newfX;
+	public static void setfStartX(int fStartX) {
+		Yummy.fStartX = fStartX;
 	}
 
-	public int getfY() {
+	public static int getfStartY() {
 		return fStartY;
 	}
 
-	public void setfY(int newfY) {
-		fStartY = newfY;
+	public static void setfStartY(int fStartY) {
+		Yummy.fStartY = fStartY;
 	}
-	
+
 	public int getfDirection() {
 		return fDirection;
 	}
 
 	public void setfDirection(int fDirection) {
 		this.fDirection = fDirection;
+	}
+
+	public static int getfEndY() {
+		return fEndY;
+	}
+
+	public static void setfEndY(int fEndY) {
+		Yummy.fEndY = fEndY;
 	}
 }

@@ -46,6 +46,10 @@ public class SnakeRunner extends GDV5 {
 	private Tile chest;
 	private Yummy f;
 	
+	//customizing colors
+	private static String snakeColor = "";
+	private static String boardColor = "";
+	
 	//image object
 	Images images = new Images();
 	
@@ -128,13 +132,14 @@ public class SnakeRunner extends GDV5 {
 			SnakePages.pausedGame(win);
 		}
 		if (gameState == 5) {
-			SnakePages.customize(win);
+			SnakePages.customize(win);			
 		}
 		if (gameStart) {
 			drawBoard(win);
 			
 			win.setColor(Colors.pastelTan3);
 			win.fillRect((int) f.getX(), (int) f.getY(), (int) f.getWidth(), (int) f.getHeight());
+			
 			s.draw(win);
 			
 			win.setColor(new Color(7, 66, 43));
@@ -173,7 +178,18 @@ public class SnakeRunner extends GDV5 {
 	
 	public void snakeEat(Tile c, Tile h, Snake snake, Yummy food) {
 		if (c.intersects(food)) {
-			food.setLocation((int) (Math.random() * SnakeRunner.getColumns()) * Tile.getTileSize(), (int) (Math.random() * (SnakeRunner.getRows() - 1)) * Tile.getTileSize() + Tile.getTileSize());
+//			food.setLocation((int) (Math.random() * SnakeRunner.getColumns()) * Tile.getTileSize(), (int) (Math.random() * (SnakeRunner.getRows() - 1)) * Tile.getTileSize() + Tile.getTileSize());
+			
+//			int fStartX = (int) (Math.random() * SnakeRunner.getColumns()) * Tile.getTileSize();
+//			int fStartY = -30;
+//			int fEndY = (int) (Math.random() * (SnakeRunner.getRows() - 1)) * Tile.getTileSize();
+//			int fEndY = 60;
+			
+			f.setLocation(Yummy.getfStartX(), Yummy.getfStartY());
+			
+			if (food.getY() != Yummy.getfEndY()) food.translate(0, Tile.getTileSize());
+//			else food.translate(0, 0);
+			
 			s.addBody(1);
 			SnakePages.addScore(1);
 		}
@@ -193,12 +209,12 @@ public class SnakeRunner extends GDV5 {
 		//2: medium mode
 		//3: hard mode
 		//4: pause page
-		//5: customization page
+		//5: customization page (archive)
 				
-		if (GDV5.KeysPressed[KeyEvent.VK_ESCAPE] && gameState == 0) {
-			gameState = 5; //customization
-		}
-		else if (GDV5.KeysPressed[KeyEvent.VK_Q] && gameState == 5) {
+//		if (GDV5.KeysPressed[KeyEvent.VK_ESCAPE] && gameState == 0) {
+//			gameState = 5; //customization
+//		}
+		if (GDV5.KeysPressed[KeyEvent.VK_Q] && gameState == 5) {
 			gameState = 0;
 		}
 		else if (GDV5.KeysPressed[KeyEvent.VK_1] && gameState == 0) {
@@ -310,5 +326,21 @@ public class SnakeRunner extends GDV5 {
 
 	public void setStartPage(boolean startPage) {
 		this.startPage = startPage;
+	}
+
+	public static String getSnakeColor() {
+		return snakeColor;
+	}
+
+	public static void setSnakeColor(String initSnakeColor) {
+		snakeColor = initSnakeColor;
+	}
+
+	public static String getBoardColor() {
+		return boardColor;
+	}
+
+	public static void setBoardColor(String initBoardColor) {
+		boardColor = initBoardColor;
 	}
 }
