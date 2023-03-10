@@ -88,7 +88,7 @@ public class SnakeRunner extends GDV5 {
 		}
 		else if (gameState == 0) {
 			resetSnake();
-			if (countSong % 4025 == 0) sound.play(1);
+			if (countSong % 4025 == 0) sound.play(1); //CHALLENGE 2
 		}
 		countSong++;
 	}
@@ -182,7 +182,7 @@ public class SnakeRunner extends GDV5 {
 			
 			if (food.getY() != Yummy.getfEndY()) {
 				food.translate(0, Tile.getTileSize());
-				Yummy.setfEndY((int) (Math.random() * (SnakeRunner.getRows() - 1)) * Tile.getTileSize() + Tile.getTileSize());
+				Yummy.setfEndY((int) (Math.random() * (SnakeRunner.getRows() - 1)) * Tile.getTileSize() + Tile.getTileSize()); //CHALLENGE 3
 			}
 			else food.translate(0, 0);
 			

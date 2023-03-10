@@ -36,7 +36,7 @@ public class Snake extends Rectangle {
 	public Snake(int size) {
 		body = new ArrayList<Tile>();
 		body.add(new Tile(winX / 2 - (2 * Tile.getTileSize()), winY / 2, Colors.pastelBlues[colShade]));
-		body.get(0).setDirection(1); //CHALLENGE 2
+		body.get(0).setDirection(1);
 		addBody(size - 1, body.get(0).getDirection()); //subtract 1 because we already have the head on it so we just need the rest
 	}
 	
