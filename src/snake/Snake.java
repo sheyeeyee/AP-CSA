@@ -31,7 +31,7 @@ public class Snake extends Rectangle {
 	
 	private int colShade = 0;
 	
-	ArrayList<Tile> body;
+	private static ArrayList<Tile> body;
 	
 	public Snake(int size) {
 		body = new ArrayList<Tile>();
@@ -112,4 +112,22 @@ public class Snake extends Rectangle {
 			t.fill(pb);
 		}
 	}
+
+	public int getColShade() {
+		return colShade;
+	}
+
+	public void setColShade(int colShade) {
+		this.colShade = colShade;
+	}
+
+	public static ArrayList<Tile> getBody() {
+		return body;
+	}
+
+	public static void setBody(ArrayList<Tile> initBody) {
+		body = initBody;
+	}
+	
+	
 }

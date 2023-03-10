@@ -176,7 +176,7 @@ public class SnakeRunner extends GDV5 {
 	
 	public void snakeEat(Tile c, Tile h, Snake snake, Yummy food) {
 		if (c.intersects(food)) {
-			f.setLocation(food.getfStartX(), food.getfStartY());
+			f.setLocation(Yummy.getfStartX(), Yummy.getfStartY());
 			
 			if (food.getY() != Yummy.getfEndY()) {
 				food.translate(0, Tile.getTileSize());
@@ -209,8 +209,8 @@ public class SnakeRunner extends GDV5 {
 		}
 		else if (GDV5.KeysPressed[KeyEvent.VK_1] && gameState == 0) {
 			s = new Snake(4);
-			head = s.body.get(0);
-			chest = s.body.get(1);
+			head = Snake.getBody().get(0);
+			chest = Snake.getBody().get(1);
 			f = new Yummy();
 			
 			gameState = 1;
@@ -218,8 +218,8 @@ public class SnakeRunner extends GDV5 {
 		}
 		else if (GDV5.KeysPressed[KeyEvent.VK_2] && gameState == 0) {
 			s = new Snake(4);
-			head = s.body.get(0);
-			chest = s.body.get(1);
+			head = Snake.getBody().get(0);
+			chest = Snake.getBody().get(1);
 			f = new Yummy();
 			
 			gameState = 2;
@@ -227,8 +227,8 @@ public class SnakeRunner extends GDV5 {
 		}
 		else if (GDV5.KeysPressed[KeyEvent.VK_3] && gameState == 0) {
 			s = new Snake(4);
-			head = s.body.get(0);
-			chest = s.body.get(1);
+			head = Snake.getBody().get(0);
+			chest = Snake.getBody().get(1);
 			f = new Yummy();
 			
 			gameState = 3;

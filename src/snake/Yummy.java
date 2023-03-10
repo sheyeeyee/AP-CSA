@@ -44,6 +44,8 @@ public class Yummy extends Rectangle {
 		fStartX = (int) (Math.random() * SnakeRunner.getColumns()) * Tile.getTileSize();
 		fStartY = -30;
 		
+		if (fStartX == Snake.getBody().get(0).getX()) fStartX = (int) (Math.random() * SnakeRunner.getColumns()) * Tile.getTileSize();
+		
 		if (this.getY() != fEndY) this.translate(0, Tile.getTileSize());
 		else this.translate(0, 0);
 	}
