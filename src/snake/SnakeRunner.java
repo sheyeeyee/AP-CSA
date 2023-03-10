@@ -25,6 +25,14 @@ import pong.Score;
 import utilities.GDV5;
 import utilities.SoundDriver;
 
+/**
+ * NOTE: Some variables are static despite not technically being an attribute of the class because 
+ * those variables are used in methods such as draw() which can only have one parameter (specifically
+ * Graphics2D parameter). 
+ * 
+ * @author Shelley Wei
+ */
+
 public class SnakeRunner extends GDV5 {
 	//create variable for max window sizes
 	private static int winX = GDV5.getMaxWindowX();
@@ -46,10 +54,6 @@ public class SnakeRunner extends GDV5 {
 	private Tile chest;
 	private Yummy f;
 	
-	//customizing colors
-	private static String snakeColor = "";
-	private static String boardColor = "";
-	
 	//image object
 	Images images = new Images();
 	
@@ -60,7 +64,7 @@ public class SnakeRunner extends GDV5 {
 	//game states
 	private static int gameState = 0;
 	private static boolean gameStart = false;
-	private static boolean startPage = true;
+	private boolean startPage = true;
 	
 	public SnakeRunner() {
 		super();
@@ -82,42 +86,39 @@ public class SnakeRunner extends GDV5 {
 		if (gameStart) {
 			count++;
 			head.setHeadDirection();
-			updateSaveLines();
 			f.spawnFood();
 			snakeEat(chest, head, s, f);
+
+			if (gameState == 1) {
+				if (count % 15 == 0) {
+					head.updateDirection(board);
+					s.updateBodyDirection(board);
+					s.moveSnake();
+					s.checkCollision();
+				}
+			}
+			if (gameState == 2) {
+				if (count % 10 == 0) {
+					head.updateDirection(board);
+					s.updateBodyDirection(board);
+					s.moveSnake();
+					s.checkCollision();
+				}
+			}
+			if (gameState == 3) {
+				if (count % 5 == 0) {
+					head.updateDirection(board);
+					s.updateBodyDirection(board);
+					s.moveSnake();
+					s.checkCollision();
+				}
+			}
 		}
 		else if (gameState == 0) {
 			resetSnake();
 			if (countSong % 4025 == 0) sound.play(1); //CHALLENGE 2
 		}
 		countSong++;
-	}
-	
-	public void updateSaveLines() {		
-		if (gameState == 1) {
-			if (count % 15 == 0) {
-				head.updateDirection(board);
-				s.updateBodyDirection(board);
-				s.moveSnake();
-				s.checkCollision();
-			}
-		}
-		if (gameState == 2) {
-			if (count % 10 == 0) {
-				head.updateDirection(board);
-				s.updateBodyDirection(board);
-				s.moveSnake();
-				s.checkCollision();
-			}
-		}
-		if (gameState == 3) {
-			if (count % 5 == 0) {
-				head.updateDirection(board);
-				s.updateBodyDirection(board);
-				s.moveSnake();
-				s.checkCollision();
-			}
-		}
 	}
 
 	@Override
@@ -130,9 +131,6 @@ public class SnakeRunner extends GDV5 {
 		}
 		if (gameState == 4) {
 			SnakePages.pausedGame(win);
-		}
-		if (gameState == 5) {
-			SnakePages.customize(win);			
 		}
 		if (gameStart) {
 			drawBoard(win);
@@ -178,7 +176,7 @@ public class SnakeRunner extends GDV5 {
 	
 	public void snakeEat(Tile c, Tile h, Snake snake, Yummy food) {
 		if (c.intersects(food)) {
-			f.setLocation(Yummy.getfStartX(), Yummy.getfStartY());
+			f.setLocation(food.getfStartX(), food.getfStartY());
 			
 			if (food.getY() != Yummy.getfEndY()) {
 				food.translate(0, Tile.getTileSize());
@@ -205,11 +203,7 @@ public class SnakeRunner extends GDV5 {
 		//2: medium mode
 		//3: hard mode
 		//4: pause page
-		//5: customization page (archive)
-				
-//		if (GDV5.KeysPressed[KeyEvent.VK_ESCAPE] && gameState == 0) {
-//			gameState = 5; //customization
-//		}
+
 		if (GDV5.KeysPressed[KeyEvent.VK_Q] && gameState == 5) {
 			gameState = 0;
 		}
@@ -252,10 +246,6 @@ public class SnakeRunner extends GDV5 {
 			gameState = 0; //splash page
 			gameStart = false;
 		}
-//		else if (GDV5.KeysPressed[KeyEvent.VK_ENTER]) {
-//			gameState = 0; //splash page
-//			gameStart = false;
-//		}
 		else if (GDV5.KeysPressed[KeyEvent.VK_Q] && gameState == 4) {
 			gameState = 0; //splash page
 			gameStart = false;
@@ -272,24 +262,24 @@ public class SnakeRunner extends GDV5 {
 		return columns;
 	}
 
-	public void setColumns(int columns) {
-		this.columns = columns;
+	public static void setColumns(int initColumns) {
+		columns = initColumns;
 	}
 
 	public static int getRows() {
 		return rows;
 	}
 
-	public void setRows(int rows) {
-		this.rows = rows;
+	public static void setRows(int initRows) {
+		rows = initRows;
 	}
 
 	public static int getNumTiles() {
 		return numTiles;
 	}
 
-	public void setNumTiles(int numTiles) {
-		this.numTiles = numTiles;
+	public static void setNumTiles(int initNumTiles) {
+		numTiles = initNumTiles;
 	}
 
 	public int getColArray() {
@@ -304,8 +294,8 @@ public class SnakeRunner extends GDV5 {
 		return gameState;
 	}
 
-	public void setGameState(int gameState) {
-		this.gameState = gameState;
+	public static void setGameState(int initGameState) {
+		gameState = initGameState;
 	}
 
 	public static boolean isGameStart() {
@@ -322,21 +312,5 @@ public class SnakeRunner extends GDV5 {
 
 	public void setStartPage(boolean startPage) {
 		this.startPage = startPage;
-	}
-
-	public static String getSnakeColor() {
-		return snakeColor;
-	}
-
-	public static void setSnakeColor(String initSnakeColor) {
-		snakeColor = initSnakeColor;
-	}
-
-	public static String getBoardColor() {
-		return boardColor;
-	}
-
-	public static void setBoardColor(String initBoardColor) {
-		boardColor = initBoardColor;
 	}
 }

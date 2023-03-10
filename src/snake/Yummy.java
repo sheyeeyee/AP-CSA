@@ -28,10 +28,7 @@ import snake.SnakeRunner;
 import utilities.GDV5;
 
 public class Yummy extends Rectangle {
-	//IDEA: if the snake eats smth, then have the next thing slide in ("fall") from the top rather than spawning, have the start and stop place of it be random but it only goes straight downward to the stop place
-	
 	private static int fStartX = (int) (Math.random() * SnakeRunner.getColumns()) * Tile.getTileSize();
-//	private static int fStartY = (int) (Math.random() * (SnakeRunner.getRows() - 1)) * Tile.getTileSize() + Tile.getTileSize();
 	private static int fStartY = -30;
 	private static int fEndY = (int) (Math.random() * (SnakeRunner.getRows() - 1)) * Tile.getTileSize() + Tile.getTileSize();
 	
@@ -41,10 +38,7 @@ public class Yummy extends Rectangle {
 	public Yummy() {
 		super(fStartX, fStartY, 0, 0); //when the object is made, it automatically has rectangle object attributes (rectangle object)
 		this.setSize(Tile.getTileSize(), Tile.getTileSize());
-		
-//		this.setfDirection(fDirection);
 	}
-	
 	
 	public void spawnFood() { //need to check whether snake is there or not
 		fStartX = (int) (Math.random() * SnakeRunner.getColumns()) * Tile.getTileSize();
