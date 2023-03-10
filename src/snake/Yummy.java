@@ -33,7 +33,7 @@ public class Yummy extends Rectangle {
 	private static int fStartX = (int) (Math.random() * SnakeRunner.getColumns()) * Tile.getTileSize();
 //	private static int fStartY = (int) (Math.random() * (SnakeRunner.getRows() - 1)) * Tile.getTileSize() + Tile.getTileSize();
 	private static int fStartY = -30;
-	private static int fEndY = (int) (Math.random() * (SnakeRunner.getRows() - 1)) * Tile.getTileSize() + Tile.getTileSize();;
+	private static int fEndY = (int) (Math.random() * (SnakeRunner.getRows() - 1)) * Tile.getTileSize() + Tile.getTileSize();
 	
 	private int fDirection = 1;
 
@@ -48,7 +48,6 @@ public class Yummy extends Rectangle {
 	
 	public void spawnFood() { //need to check whether snake is there or not
 		fStartX = (int) (Math.random() * SnakeRunner.getColumns()) * Tile.getTileSize();
-//		fStartY = (int) (Math.random() * (SnakeRunner.getRows() - 1)) * Tile.getTileSize() + Tile.getTileSize();
 		fStartY = -30;
 		
 		if (this.getY() != fEndY) this.translate(0, Tile.getTileSize());
