@@ -83,6 +83,7 @@ public class SnakeRunner extends GDV5 {
 	@Override
 	public void update() {
 		gameState();
+		if (countSong % 4025 == 0) sound.play(1); //CHALLENGE 2
 		if (gameStart) {
 			count++;
 			head.setHeadDirection();
@@ -116,7 +117,6 @@ public class SnakeRunner extends GDV5 {
 		}
 		else if (gameState == 0) {
 			resetSnake();
-			if (countSong % 4025 == 0) sound.play(1); //CHALLENGE 2
 		}
 		countSong++;
 	}

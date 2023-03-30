@@ -53,13 +53,10 @@ public class SnakePages {
 		font.setFont(new Font("Arial", Font.ITALIC, 15));
 		font.drawString("Copyright Shelley Wei :)", 215, 260);
 		
-		font.setColor(Colors.pastelTeal7);
+		font.setColor(Colors.pastelTeal4);
 		font.setFont(new Font("Arial", Font.BOLD, 15));
-		font.drawString("PRESS THE CORRESPONDING NUMBER FOR GAME MODE", 85, 290);
+		font.drawString("PRESS THE CORRESPONDING NUMBER FOR GAME MODE", 85, 300);
 		
-		font.setColor(Colors.pastelTeal5);
-		font.setFont(new Font("Arial", Font.BOLD, 15));
-		font.drawString("PRESS ESCAPE FOR CUSTOMIZATION", 165, 310);
 		
 		font.setColor(Colors.pastelTeal5);
 		font.setFont(new Font("Comic Sans MS", Font.PLAIN, 25));
