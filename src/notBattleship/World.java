@@ -108,7 +108,7 @@ public class World {
 		return null;
 	}
 	
-	public String drawTeamMap(Boat[][] b, int view) {
+	public String drawTeamMap(Boat[] boat, int view) {
 		if (view == 1) {
 			//invis ###
 		}

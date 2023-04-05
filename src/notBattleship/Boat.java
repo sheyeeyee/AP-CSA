@@ -1,7 +1,5 @@
 package notBattleship;
 
-import notBattleship.World;
-
 public abstract class Boat {
 	private int team; //team number of this Boat
 	private Coordinates location; //holds the position of the Boat
@@ -40,8 +38,41 @@ public abstract class Boat {
 				this.setLocation(newLocation);
 				return thisBoat + " moves from " + currLocation + " to " + newLocation;
 			}
+			else return thisBoat + " cannot move to " + movedLocation + " as it is occupied.";
+		}
+		else return thisBoat + " cannot move off the map";
+	}
+	
+	public String turn(int dir) {
+		String returned = this.getID();
+		
+		if (dir == -1) returned += " turned left";
+		else returned += " turned right";
+		
+		this.direction += dir;
+		if (direction < 0) dir = 7;
+		if (direction > 7) dir = 0;
+		returned += ", now facing " + this.getDirection();
+		return returned;
+	}
+	
+	public String takeHit(int attack) {
+		String returned = this.toString();
+		
+		if (strength > this.health) {
+			this.setHealth(0);
+			returned += " has been sunk!";
+		}
+		else {
+			this.setHealth(this.health - attack);
+			returned += " takes " + attack + " damage.";
 		}
 		
+		return returned;
+	}
+	
+	public String toString() {
+		return this.getID();
 	}
 
 	public int getTeam() {
@@ -56,8 +87,8 @@ public abstract class Boat {
 		return location;
 	}
 
-	public void setLocation(Coordinates location) {
-		this.location = location;
+	public void setLocation(Coordinates c) {
+		this.location = c;
 	}
 
 	public int getDirection() {
