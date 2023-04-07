@@ -10,8 +10,8 @@ public abstract class Boat {
 		//not dependent on which direction the Boat is facing
 
 	public Boat(int team, Coordinates location, int direction, int health, int strength, int vision) {
-		int x = location.getX();
-		int y = location.getY();
+//		int x = location.getX();
+//		int y = location.getY();
 		
 		this.team = team;
 		this.location = location;
@@ -91,17 +91,29 @@ public abstract class Boat {
 		this.location = c;
 	}
 
-	public int getDirection() {
-		if (direction == 0) return '\u2191';
-		if (direction == 1) return '\u2197';
-		if (direction == 2) return '\u2192';
-		if (direction == 3) return '\u2198';
-		if (direction == 4) return '\u2193';
-		if (direction == 5) return '\u2199';
-		if (direction == 6) return '\u2190';
-		if (direction == 7) return '\u2196';
+	public char getDirection() {
+		if (direction == 0) return '↑';
+		if (direction == 1) return '↗';
+		if (direction == 2) return '→';
+		if (direction == 3) return '↘';
+		if (direction == 4) return '↓';
+		if (direction == 5) return '↙';
+		if (direction == 6) return '←';
+		if (direction == 7) return '↖';
 		return ' ';
 	}
+	
+//	public char getDirection() {
+//		if (direction == 0) return '\u2191';
+//		if (direction == 1) return '\u2197';
+//		if (direction == 2) return '\u2192';
+//		if (direction == 3) return '\u2198';
+//		if (direction == 4) return '\u2193';
+//		if (direction == 5) return '\u2199';
+//		if (direction == 6) return '\u2190';
+//		if (direction == 7) return '\u2196';
+//		return ' ';
+//	}
 	
 	public String getLetterDirection() {
 		if (direction == 0) return "North";
