@@ -52,7 +52,7 @@ public abstract class Boat {
 		this.direction += dir;
 		if (direction < 0) dir = 7;
 		if (direction > 7) dir = 0;
-		returned += ", now facing " + this.getDirection();
+		returned += ", now facing " + this.getLetterDirection();
 		return returned;
 	}
 	
@@ -101,6 +101,18 @@ public abstract class Boat {
 		if (direction == 6) return '\u2190';
 		if (direction == 7) return '\u2196';
 		return ' ';
+	}
+	
+	public String getLetterDirection() {
+		if (direction == 0) return "North";
+		if (direction == 1) return "Northeast";
+		if (direction == 2) return "East";
+		if (direction == 3) return "Southeast";
+		if (direction == 4) return "South";
+		if (direction == 5) return "Southwest";
+		if (direction == 6) return "West";
+		if (direction == 7) return "Northwest";
+		return "";
 	}
 
 	public void setDirection(int direction) {

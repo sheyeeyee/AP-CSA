@@ -109,14 +109,77 @@ public class World {
 	}
 	
 	public String drawTeamMap(Boat[] boat, int view) {
-		if (view == 1) {
-			//invis ###
+		//unoccupied visible: ~~~
+		//invisible: ###
+		int rows = this.getHeight();
+		int columns = this.getWidth();
+		
+		String start = "@";
+		String[][] board = new String[rows][columns];
+		
+		for (int i = 0; i < columns; i++) {
+			for (int j = 0; j < rows; j++) {
+				board[i][j] = "###";
+			}
 		}
+		
+//		if (view == 1) {
+//			//every spot invis
+//		}
 		if (view == 2) {
 			//boat dir, type, team
+			
+			for (Boat b: boat) {
+				Coordinates c = b.getLocation();
+				
+				int vision = b.getVision();
+				
+				int x = c.getX();
+				int y = c.getY();
+				
+				int startX = Math.max(0, x - vision);
+				int startY = Math.max(0, x - vision);
+				int visLimX = Math.min(columns - 1, x + vision);
+				int visLimY = Math.min(rows - 1, y + vision);
+				
+				board[y][x] = b.getDirection() + b.toString();
+				
+				for (int i = startY; i <= visLimY; i++) {
+					for (int j = startX; j <= visLimX; j++) {
+						Coordinates check = new Coordinates(j, i);
+						if (isLocationOccupied(check)) {
+							if (map[i][j].getTeam() != b.getTeam()) {
+								board[i][j] = map[i][j].getDirection() + map[i][j].toString();
+							}
+						}
+						//change all ### to ~~~ if in vision
+						if (board[i][j].equals("###")) {
+							board[i][j] = "~~~";
+						}
+					}
+				}
+			}
 		}
 		if (view == 3) {
-			//boat health, type, team number
+			//boat health, type, team
 		}
+		
+		//number labels
+		for (int i = 0; i < this.getWidth(); i++) {
+			int add = i + 1;
+			start += " ";
+			start += add;
+			start += " ";
+		}
+		//letter labels
+		for (int i = 0; i < board.length; i++) {
+			start += "\n";
+			start += (char)(65 + i) + " ";
+			
+			for (int j = 0; j < board[0].length; j++) {
+				
+			}
+		}
+		return start;
 	}
 }
