@@ -3,8 +3,9 @@ package notBattleship;
 public class Submarine extends ScoutBoat implements Attacker {
 	private int numOfTorpedoes;
 	
-	public Submarine(int teamID, Coordinates c, int direction) {
-		super(teamID, c, direction, 3, 2);
+	public Submarine(int team, Coordinates location, int direction, int numOfTorpedoes) {
+		super(team, location, direction, 3, 2);
+		this.numOfTorpedoes = numOfTorpedoes;
 	}
 	
 	public String getID() {
@@ -30,7 +31,7 @@ public class Submarine extends ScoutBoat implements Attacker {
 			if (choices[i] == 1) returned += this.move(w);
 			if (choices[i] == 2) returned += this.turn(left);
 			if (choices[i] == 3) returned += this.turn(right);
-			if (choices[i] == 4) returned += this.submerge();
+			if (choices[i] == 4) returned += this.submerge(w);
 			if (choices[i] == 5) returned += this.attack(w);
 		}
 		return returned;
@@ -48,7 +49,7 @@ public class Submarine extends ScoutBoat implements Attacker {
 		
 		if (numOfTorpedoes > 0) {
 			if (dir == "N") {
-				for (int i = 0; i < vis; i++) {
+				for (int i = 1; i <= vis; i++) {
 					int x = thisX;
 					int y = thisY - i;
 					Boat b = w.getOccupant(new Coordinates(x, y));
@@ -61,7 +62,7 @@ public class Submarine extends ScoutBoat implements Attacker {
 				return "There are no boats in range currently.";
 			}
 			if (dir == "NE") {
-				for (int i = 0; i < vis; i++) {
+				for (int i = 1; i <= vis; i++) {
 					int x = thisX + i;
 					int y = thisY - i;
 					Boat b = w.getOccupant(new Coordinates(x, y));
@@ -74,7 +75,7 @@ public class Submarine extends ScoutBoat implements Attacker {
 				return "There are no boats in range currently.";
 			}
 			if (dir == "E") {
-				for (int i = 0; i < vis; i++) {
+				for (int i = 1; i <= vis; i++) {
 					int x = thisX + i;
 					int y = thisY;
 					Boat b = w.getOccupant(new Coordinates(x, y));
@@ -87,7 +88,7 @@ public class Submarine extends ScoutBoat implements Attacker {
 				return "There are no boats in range currently.";
 			}
 			if (dir == "SE") {
-				for (int i = 0; i < vis; i++) {
+				for (int i = 1; i <= vis; i++) {
 					int x = thisX + i;
 					int y = thisY + i;
 					Boat b = w.getOccupant(new Coordinates(x, y));
@@ -100,7 +101,7 @@ public class Submarine extends ScoutBoat implements Attacker {
 				return "There are no boats in range currently.";
 			}
 			if (dir == "S") {
-				for (int i = 0; i < vis; i++) {
+				for (int i = 1; i <= vis; i++) {
 					int x = thisX;
 					int y = thisY + i;
 					Boat b = w.getOccupant(new Coordinates(x, y));
@@ -113,7 +114,7 @@ public class Submarine extends ScoutBoat implements Attacker {
 				return "There are no boats in range currently.";
 			}
 			if (dir == "SW") {
-				for (int i = 0; i < vis; i++) {
+				for (int i = 1; i <= vis; i++) {
 					int x = thisX - i;
 					int y = thisY + i;
 					Boat b = w.getOccupant(new Coordinates(x, y));
@@ -126,7 +127,7 @@ public class Submarine extends ScoutBoat implements Attacker {
 				return "There are no boats in range currently.";
 			}
 			if (dir == "W") {
-				for (int i = 0; i < vis; i++) {
+				for (int i = 1; i <= vis; i++) {
 					int x = thisX - i;
 					int y = thisY;
 					Boat b = w.getOccupant(new Coordinates(x, y));
@@ -139,7 +140,7 @@ public class Submarine extends ScoutBoat implements Attacker {
 				return "There are no boats in range currently.";
 			}
 			if (dir == "NW") {
-				for (int i = 0; i < vis; i++) {
+				for (int i = 1; i <= vis; i++) {
 					int x = thisX - i;
 					int y = thisY - i;
 					Boat b = w.getOccupant(new Coordinates(x, y));
@@ -161,14 +162,17 @@ public class Submarine extends ScoutBoat implements Attacker {
 			int currY = this.getLocation().getY();
 			int newX = (int) (Math.random() * w.getWidth());
 			int newY = (int) (Math.random() * w.getHeight());
+			Coordinates oldLoc = new Coordinates(currX, currY);
 			int minMove = 2;
 			
 			if (newX > currX + minMove || newX < currX - minMove) {
 				if (newY > currY + minMove || newY < currY - minMove) {
 					Coordinates newLoc = new Coordinates(newX, newY);
 					if (!w.isLocationOccupied(newLoc)) {
-						
+						w.setOccupant(null, oldLoc);
+						w.setOccupant(this, newLoc);
 					}
+					return getID() + " moves from " + oldLoc + " to " + newLoc;
 				}
 			}
 		}
