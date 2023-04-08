@@ -12,7 +12,7 @@ public class World {
 	public static int WEST = 6;
 	public static int NORTHWEST = 7;
 	
-	private int view;
+//	private int view;
 	
 	public World(int mWidth, int mHeight) {
 		if (mWidth < 4) mWidth = 4;
@@ -167,15 +167,15 @@ public class World {
 			int num = i + 1;
 			start += " ";
 			start += num;
-			start += " ";
+			start += "  ";
 		}
 		//letter labels
 		for (int i = 0; i < rows; i++) {
 			start += "\n";
-			start += (char)(65 + i) + " ";
+			start += (char)(65 + i);
 			
 			for (int j = 0; j < columns; j++) {
-				start += board[i][j];
+				start += " " + board[i][j];
 			}
 		}
 		return start;

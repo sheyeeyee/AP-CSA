@@ -9,7 +9,7 @@ public class BoatRunner extends Boat {
         return "BA";
     }
     
-    public String act(int[] choices, World world){
+    public String act(int[] choices, World world) {
         return "Not implemented in Part A";
     }
     

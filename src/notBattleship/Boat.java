@@ -67,7 +67,6 @@ public abstract class Boat {
 			this.setHealth(this.health - attack);
 			returned += " takes " + attack + " damage.";
 		}
-		
 		return returned;
 	}
 	
@@ -90,18 +89,22 @@ public abstract class Boat {
 	public void setLocation(Coordinates c) {
 		this.location = c;
 	}
-
-	public char getDirection() {
-		if (direction == 0) return '↑';
-		if (direction == 1) return '↗';
-		if (direction == 2) return '→';
-		if (direction == 3) return '↘';
-		if (direction == 4) return '↓';
-		if (direction == 5) return '↙';
-		if (direction == 6) return '←';
-		if (direction == 7) return '↖';
-		return ' ';
+	
+	public int getDirection() {
+		return direction;
 	}
+
+//	public char getDirection() {
+//		if (direction == 0) return '↑';
+//		if (direction == 1) return '↗';
+//		if (direction == 2) return '→';
+//		if (direction == 3) return '↘';
+//		if (direction == 4) return '↓';
+//		if (direction == 5) return '↙';
+//		if (direction == 6) return '←';
+//		if (direction == 7) return '↖';
+//		return ' ';
+//	}
 	
 //	public char getDirection() {
 //		if (direction == 0) return '\u2191';
@@ -116,14 +119,14 @@ public abstract class Boat {
 //	}
 	
 	public String getLetterDirection() {
-		if (direction == 0) return "North";
-		if (direction == 1) return "Northeast";
-		if (direction == 2) return "East";
-		if (direction == 3) return "Southeast";
-		if (direction == 4) return "South";
-		if (direction == 5) return "Southwest";
-		if (direction == 6) return "West";
-		if (direction == 7) return "Northwest";
+		if (direction == 0) return "N";
+		if (direction == 1) return "NE";
+		if (direction == 2) return "E";
+		if (direction == 3) return "SE";
+		if (direction == 4) return "S";
+		if (direction == 5) return "SW";
+		if (direction == 6) return "W";
+		if (direction == 7) return "NW";
 		return "";
 	}
 
