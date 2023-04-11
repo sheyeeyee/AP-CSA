@@ -65,7 +65,7 @@ public abstract class Boat {
 		}
 		else {
 			this.setHealth(this.health - attack);
-			returned += " takes " + attack + " damage.";
+			returned += " takes " + attack + " damage. ";
 		}
 		return returned;
 	}
@@ -78,9 +78,9 @@ public abstract class Boat {
 		return team;
 	}
 
-	public void setTeam(int team) {
-		this.team = team;
-	}
+//	public void setTeam(int team) {
+//		this.team = team;
+//	}
 
 	public Coordinates getLocation() {
 		return location;
