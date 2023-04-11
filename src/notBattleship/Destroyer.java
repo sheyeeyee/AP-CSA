@@ -48,10 +48,10 @@ public class Destroyer extends Boat implements Attacker {
 				
 				if (b != null) {
 					if (b.getTeam() != this.getTeam()) return "" + b.takeHit(strength);
-					else return "Should be okay...";
+					else return "Should be okay... ";
 				}
 			}
-			return "There are no boats in range currently.";
+			return "There are no boats in range currently. ";
 		}
 		if (dir == "NE") {
 			for (int i = 1; i <= vis; i++) {
@@ -61,10 +61,10 @@ public class Destroyer extends Boat implements Attacker {
 				
 				if (b != null) {
 					if (b.getTeam() != this.getTeam()) return "" + b.takeHit(strength);
-					else return "Should be okay...";
+					else return "Should be okay... ";
 				}
 			}
-			return "There are no boats in range currently.";
+			return "There are no boats in range currently. ";
 		}
 		if (dir == "E") {
 			for (int i = 1; i <= vis; i++) {
@@ -74,10 +74,10 @@ public class Destroyer extends Boat implements Attacker {
 				
 				if (b != null) {
 					if (b.getTeam() != this.getTeam()) return "" + b.takeHit(strength);
-					else return "Should be okay...";
+					else return "Should be okay... ";
 				}
 			}
-			return "There are no boats in range currently.";
+			return "There are no boats in range currently. ";
 		}
 		if (dir == "SE") {
 			for (int i = 1; i <= vis; i++) {
@@ -87,10 +87,10 @@ public class Destroyer extends Boat implements Attacker {
 				
 				if (b != null) {
 					if (b.getTeam() != this.getTeam()) return "" + b.takeHit(strength);
-					else return "Should be okay...";
+					else return "Should be okay... ";
 				}
 			}
-			return "There are no boats in range currently.";
+			return "There are no boats in range currently. ";
 		}
 		if (dir == "S") {
 			for (int i = 1; i <= vis; i++) {
@@ -100,10 +100,10 @@ public class Destroyer extends Boat implements Attacker {
 				
 				if (b != null) {
 					if (b.getTeam() != this.getTeam()) return "" + b.takeHit(strength);
-					else return "Should be okay...";
+					else return "Should be okay... ";
 				}
 			}
-			return "There are no boats in range currently.";
+			return "There are no boats in range currently. ";
 		}
 		if (dir == "SW") {
 			for (int i = 1; i <= vis; i++) {
@@ -113,10 +113,10 @@ public class Destroyer extends Boat implements Attacker {
 				
 				if (b != null) {
 					if (b.getTeam() != this.getTeam()) return "" + b.takeHit(strength);
-					else return "Should be okay...";
+					else return "Should be okay... ";
 				}
 			}
-			return "There are no boats in range currently.";
+			return "There are no boats in range currently. ";
 		}
 		if (dir == "W") {
 			for (int i = 1; i <= vis; i++) {
@@ -126,10 +126,10 @@ public class Destroyer extends Boat implements Attacker {
 				
 				if (b != null) {
 					if (b.getTeam() != this.getTeam()) return "" + b.takeHit(strength);
-					else return "Should be okay...";
+					else return "Should be okay... ";
 				}
 			}
-			return "There are no boats in range currently.";
+			return "There are no boats in range currently. ";
 		}
 		if (dir == "NW") {
 			for (int i = 1; i <= vis; i++) {
@@ -139,10 +139,10 @@ public class Destroyer extends Boat implements Attacker {
 				
 				if (b != null) {
 					if (b.getTeam() != this.getTeam()) return "" + b.takeHit(strength);
-					else return "Should be okay...";
+					else return "Should be okay... ";
 				}
 			}
-			return "There are no boats in range currently.";
+			return "There are no boats in range currently. ";
 		}
 		return "bruh";
 	}
@@ -152,7 +152,7 @@ public class Destroyer extends Boat implements Attacker {
 		
 		if (ran == 1) {
 			this.takeHit(strength);
-			return this.getID() + " takes " + strength + " damage.";
+			return this.getID() + " takes " + strength + " damage. ";
 		}
 		else return this.getID() + " avoids the attack!";
 	}

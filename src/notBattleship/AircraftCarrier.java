@@ -54,17 +54,17 @@ public class AircraftCarrier extends Boat implements Attacker {
 							
 							if (Math.random() > successRate) {
 								hasPlanes = false;
-								returned += "The planes have been destroyed.\n";
+								returned += "The planes have been destroyed. \n";
 								return returned;
 							}
 						}
 					}
-					else returned += "There are no boats in this range currently.";
+					else returned += "There are no boats in this range currently. ";
 				}
 			}
 		}
 		if (!hasPlanes) {
-			returned += this.getID() + " has no planes remaining.";
+			returned += this.getID() + " has no planes remaining. ";
 		}
 		return returned;
 	}
