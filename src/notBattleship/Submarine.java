@@ -49,7 +49,7 @@ public class Submarine extends ScoutBoat implements Attacker {
 		
 		if (numOfTorpedoes > 0) {
 			if (dir == "N") {
-				for (int i = 1; i <= vis; i++) {
+				for (int i = 0; i < vis; i++) {
 					int x = thisX;
 					int y = thisY - i;
 					Boat b = w.getOccupant(new Coordinates(x, y));
@@ -62,7 +62,7 @@ public class Submarine extends ScoutBoat implements Attacker {
 				return "There are no boats in range currently.";
 			}
 			if (dir == "NE") {
-				for (int i = 1; i <= vis; i++) {
+				for (int i = 0; i < vis; i++) {
 					int x = thisX + i;
 					int y = thisY - i;
 					Boat b = w.getOccupant(new Coordinates(x, y));
@@ -75,7 +75,7 @@ public class Submarine extends ScoutBoat implements Attacker {
 				return "There are no boats in range currently.";
 			}
 			if (dir == "E") {
-				for (int i = 1; i <= vis; i++) {
+				for (int i = 0; i < vis; i++) {
 					int x = thisX + i;
 					int y = thisY;
 					Boat b = w.getOccupant(new Coordinates(x, y));
@@ -88,7 +88,7 @@ public class Submarine extends ScoutBoat implements Attacker {
 				return "There are no boats in range currently.";
 			}
 			if (dir == "SE") {
-				for (int i = 1; i <= vis; i++) {
+				for (int i = 0; i < vis; i++) {
 					int x = thisX + i;
 					int y = thisY + i;
 					Boat b = w.getOccupant(new Coordinates(x, y));
@@ -101,7 +101,7 @@ public class Submarine extends ScoutBoat implements Attacker {
 				return "There are no boats in range currently.";
 			}
 			if (dir == "S") {
-				for (int i = 1; i <= vis; i++) {
+				for (int i = 0; i < vis; i++) {
 					int x = thisX;
 					int y = thisY + i;
 					Boat b = w.getOccupant(new Coordinates(x, y));
@@ -114,7 +114,7 @@ public class Submarine extends ScoutBoat implements Attacker {
 				return "There are no boats in range currently.";
 			}
 			if (dir == "SW") {
-				for (int i = 1; i <= vis; i++) {
+				for (int i = 0; i < vis; i++) {
 					int x = thisX - i;
 					int y = thisY + i;
 					Boat b = w.getOccupant(new Coordinates(x, y));
@@ -127,7 +127,7 @@ public class Submarine extends ScoutBoat implements Attacker {
 				return "There are no boats in range currently.";
 			}
 			if (dir == "W") {
-				for (int i = 1; i <= vis; i++) {
+				for (int i = 0; i < vis; i++) {
 					int x = thisX - i;
 					int y = thisY;
 					Boat b = w.getOccupant(new Coordinates(x, y));
@@ -140,7 +140,7 @@ public class Submarine extends ScoutBoat implements Attacker {
 				return "There are no boats in range currently.";
 			}
 			if (dir == "NW") {
-				for (int i = 1; i <= vis; i++) {
+				for (int i = 0; i < vis; i++) {
 					int x = thisX - i;
 					int y = thisY - i;
 					Boat b = w.getOccupant(new Coordinates(x, y));

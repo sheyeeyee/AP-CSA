@@ -41,7 +41,7 @@ public class Destroyer extends Boat implements Attacker {
 		int strength = this.getStrength();
 		
 		if (dir == "N") {
-			for (int i = 1; i <= vis; i++) {
+			for (int i = 0; i < vis; i++) {
 				int x = thisX;
 				int y = thisY - i;
 				Boat b = w.getOccupant(new Coordinates(x, y));
@@ -54,7 +54,7 @@ public class Destroyer extends Boat implements Attacker {
 			return "There are no boats in range currently. ";
 		}
 		if (dir == "NE") {
-			for (int i = 1; i <= vis; i++) {
+			for (int i = 0; i < vis; i++) {
 				int x = thisX + i;
 				int y = thisY - i;
 				Boat b = w.getOccupant(new Coordinates(x, y));
@@ -67,7 +67,7 @@ public class Destroyer extends Boat implements Attacker {
 			return "There are no boats in range currently. ";
 		}
 		if (dir == "E") {
-			for (int i = 1; i <= vis; i++) {
+			for (int i = 0; i < vis; i++) {
 				int x = thisX + i;
 				int y = thisY;
 				Boat b = w.getOccupant(new Coordinates(x, y));
@@ -80,7 +80,7 @@ public class Destroyer extends Boat implements Attacker {
 			return "There are no boats in range currently. ";
 		}
 		if (dir == "SE") {
-			for (int i = 1; i <= vis; i++) {
+			for (int i = 0; i < vis; i++) {
 				int x = thisX + i;
 				int y = thisY + i;
 				Boat b = w.getOccupant(new Coordinates(x, y));
@@ -93,7 +93,7 @@ public class Destroyer extends Boat implements Attacker {
 			return "There are no boats in range currently. ";
 		}
 		if (dir == "S") {
-			for (int i = 1; i <= vis; i++) {
+			for (int i = 0; i < vis; i++) {
 				int x = thisX;
 				int y = thisY + i;
 				Boat b = w.getOccupant(new Coordinates(x, y));
@@ -106,7 +106,7 @@ public class Destroyer extends Boat implements Attacker {
 			return "There are no boats in range currently. ";
 		}
 		if (dir == "SW") {
-			for (int i = 1; i <= vis; i++) {
+			for (int i = 0; i < vis; i++) {
 				int x = thisX - i;
 				int y = thisY + i;
 				Boat b = w.getOccupant(new Coordinates(x, y));
@@ -119,7 +119,7 @@ public class Destroyer extends Boat implements Attacker {
 			return "There are no boats in range currently. ";
 		}
 		if (dir == "W") {
-			for (int i = 1; i <= vis; i++) {
+			for (int i = 0; i < vis; i++) {
 				int x = thisX - i;
 				int y = thisY;
 				Boat b = w.getOccupant(new Coordinates(x, y));
@@ -132,7 +132,7 @@ public class Destroyer extends Boat implements Attacker {
 			return "There are no boats in range currently. ";
 		}
 		if (dir == "NW") {
-			for (int i = 1; i <= vis; i++) {
+			for (int i = 0; i < vis; i++) {
 				int x = thisX - i;
 				int y = thisY - i;
 				Boat b = w.getOccupant(new Coordinates(x, y));
@@ -154,6 +154,6 @@ public class Destroyer extends Boat implements Attacker {
 			this.takeHit(strength);
 			return this.getID() + " takes " + strength + " damage. ";
 		}
-		else return this.getID() + " avoids the attack!";
+		else return this.getID() + " avoids the attack! ";
 	}
 }

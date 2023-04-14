@@ -1,8 +1,8 @@
 package notBattleship;
 
 public class Cruiser extends ScoutBoat {
-	public Cruiser(int teamID, Coordinates location, int direction) {
-		super(direction, location, direction, 3, 3);
+	public Cruiser(int team, Coordinates location, int direction) {
+		super(team, location, direction, 3, 3);
 	}
 	
 	public String getID() {

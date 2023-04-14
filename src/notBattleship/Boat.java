@@ -50,8 +50,8 @@ public abstract class Boat {
 		else returned += " turned right";
 		
 		this.direction += dir;
-		if (direction < 0) dir = 7;
-		if (direction > 7) dir = 0;
+		if (direction < 0) direction = 7;
+		if (direction > 7) direction = 0;
 		returned += ", now facing " + this.getLetterDirection() + ". ";
 		return returned;
 	}
@@ -61,7 +61,7 @@ public abstract class Boat {
 		
 		if (strength > this.health) {
 			this.setHealth(0);
-			returned += " has been sunk!";
+			returned += " has been sunk! ";
 		}
 		else {
 			this.setHealth(this.health - attack);
