@@ -6,7 +6,6 @@ public class NotBattleshipTester {
 	public static void main(String[] args) throws InterruptedException {
 		World ocean = new World(10,10);
 		Boat[] teamOne = new Boat[5];
-		
 		Boat[] teamTwo = new Boat[5];
 
 		setTeam(teamTwo, ocean, 2);

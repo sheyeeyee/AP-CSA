@@ -48,7 +48,7 @@ public class Battleship extends Boat implements Attacker {
 				
 				if (b != null) {
 					if (b.getTeam() != this.getTeam()) return "Fire cannons! " + b.takeHit(strength) + b.takeHit(strength);
-					else return "Should be okay... ";
+					else return "Friendly fire?? ";
 				}
 			}
 			return "There are no boats in range currently. ";
@@ -61,7 +61,7 @@ public class Battleship extends Boat implements Attacker {
 				
 				if (b != null) {
 					if (b.getTeam() != this.getTeam()) return "Fire cannons! " + b.takeHit(strength) + b.takeHit(strength);
-					else return "Should be okay... ";
+					else return "Friendly fire?? ";
 				}
 			}
 			return "There are no boats in range currently. ";
@@ -74,7 +74,7 @@ public class Battleship extends Boat implements Attacker {
 				
 				if (b != null) {
 					if (b.getTeam() != this.getTeam()) return "Fire cannons! " + b.takeHit(strength) + b.takeHit(strength);
-					else return "Should be okay... ";
+					else return "Friendly fire?? ";
 				}
 			}
 			return "There are no boats in range currently. ";
@@ -87,7 +87,7 @@ public class Battleship extends Boat implements Attacker {
 				
 				if (b != null) {
 					if (b.getTeam() != this.getTeam()) return "Fire cannons! " + b.takeHit(strength) + b.takeHit(strength);
-					else return "Should be okay... ";
+					else return "Friendly fire?? ";
 				}
 			}
 			return "There are no boats in range currently. ";
@@ -100,7 +100,7 @@ public class Battleship extends Boat implements Attacker {
 				
 				if (b != null) {
 					if (b.getTeam() != this.getTeam()) return "Fire cannons! " + b.takeHit(strength) + b.takeHit(strength);
-					else return "Should be okay... ";
+					else return "Friendly fire?? ";
 				}
 			}
 			return "There are no boats in range currently. ";
@@ -117,7 +117,7 @@ public class Battleship extends Boat implements Attacker {
 				
 				if (b != null) {
 					if (b.getTeam() != this.getTeam()) return "Fire cannons! " + b.takeHit(strength) + b.takeHit(strength);
-					else return "Should be okay... ";
+					else return "Friendly fire?? ";
 				}
 			}
 			return "There are no boats in range currently. ";
@@ -130,7 +130,7 @@ public class Battleship extends Boat implements Attacker {
 				
 				if (b != null) {
 					if (b.getTeam() != this.getTeam()) return "Fire cannons! " + b.takeHit(strength) + b.takeHit(strength);
-					else return "Should be okay... ";
+					else return "Friendly fire?? ";
 				}
 			}
 			return "There are no boats in range currently. ";
@@ -143,7 +143,7 @@ public class Battleship extends Boat implements Attacker {
 				
 				if (b != null) {
 					if (b.getTeam() != this.getTeam()) return "Fire cannons! " + b.takeHit(strength) + b.takeHit(strength);
-					else return "Should be okay... ";
+					else return "Friendly fire?? ";
 				}
 			}
 			return "There are no boats in range currently. ";

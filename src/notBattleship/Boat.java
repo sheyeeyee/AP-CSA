@@ -27,14 +27,15 @@ public abstract class Boat {
 	
 	public String move(World w) {
 		String thisBoat = this.toString();
-		
-		String currLocation = this.location.toString(); //need this bc that position will be null
+
+		Coordinates currLocation = this.location;
 		Coordinates newLocation = w.getAdjacentLocation(this.location, this.direction);
 		
 		if (newLocation != null && w.isLocationValid(newLocation)) {
 			String movedLocation = newLocation.toString();
 			if(w.setOccupant(this, newLocation)) {
 				this.location = null;
+//				w.setNull(currLocation);
 				this.setLocation(newLocation);
 				return thisBoat + " moves from " + currLocation + " to " + newLocation + ". ";
 			}
@@ -90,9 +91,21 @@ public abstract class Boat {
 		this.location = c;
 	}
 	
-	public int getDirection() {
-		return direction;
-	}
+//	public int getDirection() {
+//		return direction;
+//	}
+	
+	public String getDirection() {
+	if (direction == 0) return "Y";
+	if (direction == 1) return "U";
+	if (direction == 2) return "J";
+	if (direction == 3) return "M";
+	if (direction == 4) return "N";
+	if (direction == 5) return "B";
+	if (direction == 6) return "G";
+	if (direction == 7) return "T";
+	return "";
+}
 
 //	public char getDirection() {
 //		if (direction == 0) return '↑';

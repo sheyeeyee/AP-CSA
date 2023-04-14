@@ -45,7 +45,7 @@ public class Submarine extends ScoutBoat implements Attacker {
 		int vis = this.getVision();
 		int strength = (int) (Math.random() * this.getStrength() + 1);
 		
-		if (numOfTorpedoes <= 0) return this.getID() + " has no torpedoes remaining.";
+		if (numOfTorpedoes <= 0) return this.getID() + " has no torpedoes remaining. ";
 		
 		if (numOfTorpedoes > 0) {
 			if (dir == "N") {
@@ -56,10 +56,10 @@ public class Submarine extends ScoutBoat implements Attacker {
 					
 					if (b != null) {
 						if (b.getTeam() != this.getTeam()) return "Fire torpedoes! " + b.takeHit(strength);
-						else return "Should be okay...";
+						else return "Friendly fire?? ";
 					}
 				}
-				return "There are no boats in range currently.";
+				return "There are no boats in range currently. ";
 			}
 			if (dir == "NE") {
 				for (int i = 0; i < vis; i++) {
@@ -69,10 +69,10 @@ public class Submarine extends ScoutBoat implements Attacker {
 					
 					if (b != null) {
 						if (b.getTeam() != this.getTeam()) return "Fire torpedoes! " + b.takeHit(strength);
-						else return "Should be okay...";
+						else return "Friendly fire?? ";
 					}
 				}
-				return "There are no boats in range currently.";
+				return "There are no boats in range currently. ";
 			}
 			if (dir == "E") {
 				for (int i = 0; i < vis; i++) {
@@ -82,10 +82,10 @@ public class Submarine extends ScoutBoat implements Attacker {
 					
 					if (b != null) {
 						if (b.getTeam() != this.getTeam()) return "Fire torpedoes! " + b.takeHit(strength);
-						else return "Should be okay...";
+						else return "Friendly fire?? ";
 					}
 				}
-				return "There are no boats in range currently.";
+				return "There are no boats in range currently. ";
 			}
 			if (dir == "SE") {
 				for (int i = 0; i < vis; i++) {
@@ -95,10 +95,10 @@ public class Submarine extends ScoutBoat implements Attacker {
 					
 					if (b != null) {
 						if (b.getTeam() != this.getTeam()) return "Fire torpedoes! " + b.takeHit(strength);
-						else return "Should be okay...";
+						else return "Friendly fire?? ";
 					}
 				}
-				return "There are no boats in range currently.";
+				return "There are no boats in range currently. ";
 			}
 			if (dir == "S") {
 				for (int i = 0; i < vis; i++) {
@@ -108,10 +108,10 @@ public class Submarine extends ScoutBoat implements Attacker {
 					
 					if (b != null) {
 						if (b.getTeam() != this.getTeam()) return "Fire torpedoes! " + b.takeHit(strength);
-						else return "Should be okay...";
+						else return "Friendly fire?? ";
 					}
 				}
-				return "There are no boats in range currently.";
+				return "There are no boats in range currently. ";
 			}
 			if (dir == "SW") {
 				for (int i = 0; i < vis; i++) {
@@ -121,10 +121,10 @@ public class Submarine extends ScoutBoat implements Attacker {
 					
 					if (b != null) {
 						if (b.getTeam() != this.getTeam()) return "Fire torpedoes! " + b.takeHit(strength);
-						else return "Should be okay...";
+						else return "Friendly fire?? ";
 					}
 				}
-				return "There are no boats in range currently.";
+				return "There are no boats in range currently. ";
 			}
 			if (dir == "W") {
 				for (int i = 0; i < vis; i++) {
@@ -134,10 +134,10 @@ public class Submarine extends ScoutBoat implements Attacker {
 					
 					if (b != null) {
 						if (b.getTeam() != this.getTeam()) return "Fire torpedoes! " + b.takeHit(strength);
-						else return "Should be okay...";
+						else return "Friendly fire?? ";
 					}
 				}
-				return "There are no boats in range currently.";
+				return "There are no boats in range currently. ";
 			}
 			if (dir == "NW") {
 				for (int i = 0; i < vis; i++) {
@@ -147,10 +147,10 @@ public class Submarine extends ScoutBoat implements Attacker {
 					
 					if (b != null) {
 						if (b.getTeam() != this.getTeam()) return "Fire torpedoes! " + b.takeHit(strength);
-						else return "Should be okay...";
+						else return "Friendly fire?? ";
 					}
 				}
-				return "There are no boats in range currently.";
+				return "There are no boats in range currently. ";
 			}
 		}
 		return "bruh";
@@ -172,7 +172,7 @@ public class Submarine extends ScoutBoat implements Attacker {
 						w.setOccupant(null, oldLoc);
 						w.setOccupant(this, newLoc);
 					}
-					return getID() + " moves from " + oldLoc + " to " + newLoc;
+					return getID() + " moves from " + oldLoc + " to " + newLoc + ". ";
 				}
 			}
 		}

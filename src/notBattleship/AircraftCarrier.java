@@ -2,6 +2,7 @@ package notBattleship;
 
 public class AircraftCarrier extends Boat implements Attacker {
 	private boolean hasPlanes;
+	private double successRate = 1;
 	
 	public AircraftCarrier(int team, Coordinates location, int direction) {
 		super(team, location, direction, 5, 1, 2);
@@ -36,8 +37,6 @@ public class AircraftCarrier extends Boat implements Attacker {
 	
 	public String attack(World w) {
 		String returned = "";
-		
-		double successRate = 1;
 		
 		int vis = this.getVision();
 		int attackR = Math.max(0, vis);

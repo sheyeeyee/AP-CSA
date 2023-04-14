@@ -48,7 +48,7 @@ public class Destroyer extends Boat implements Attacker {
 				
 				if (b != null) {
 					if (b.getTeam() != this.getTeam()) return "" + b.takeHit(strength);
-					else return "Should be okay... ";
+					else return "Friendly fire?? ";
 				}
 			}
 			return "There are no boats in range currently. ";
@@ -61,7 +61,7 @@ public class Destroyer extends Boat implements Attacker {
 				
 				if (b != null) {
 					if (b.getTeam() != this.getTeam()) return "" + b.takeHit(strength);
-					else return "Should be okay... ";
+					else return "Friendly fire?? ";
 				}
 			}
 			return "There are no boats in range currently. ";
@@ -74,7 +74,7 @@ public class Destroyer extends Boat implements Attacker {
 				
 				if (b != null) {
 					if (b.getTeam() != this.getTeam()) return "" + b.takeHit(strength);
-					else return "Should be okay... ";
+					else return "Friendly fire?? ";
 				}
 			}
 			return "There are no boats in range currently. ";
@@ -87,7 +87,7 @@ public class Destroyer extends Boat implements Attacker {
 				
 				if (b != null) {
 					if (b.getTeam() != this.getTeam()) return "" + b.takeHit(strength);
-					else return "Should be okay... ";
+					else return "Friendly fire?? ";
 				}
 			}
 			return "There are no boats in range currently. ";
@@ -100,7 +100,7 @@ public class Destroyer extends Boat implements Attacker {
 				
 				if (b != null) {
 					if (b.getTeam() != this.getTeam()) return "" + b.takeHit(strength);
-					else return "Should be okay... ";
+					else return "Friendly fire?? ";
 				}
 			}
 			return "There are no boats in range currently. ";
@@ -113,7 +113,7 @@ public class Destroyer extends Boat implements Attacker {
 				
 				if (b != null) {
 					if (b.getTeam() != this.getTeam()) return "" + b.takeHit(strength);
-					else return "Should be okay... ";
+					else return "Friendly fire?? ";
 				}
 			}
 			return "There are no boats in range currently. ";
@@ -126,7 +126,7 @@ public class Destroyer extends Boat implements Attacker {
 				
 				if (b != null) {
 					if (b.getTeam() != this.getTeam()) return "" + b.takeHit(strength);
-					else return "Should be okay... ";
+					else return "Friendly fire?? ";
 				}
 			}
 			return "There are no boats in range currently. ";
@@ -139,7 +139,7 @@ public class Destroyer extends Boat implements Attacker {
 				
 				if (b != null) {
 					if (b.getTeam() != this.getTeam()) return "" + b.takeHit(strength);
-					else return "Should be okay... ";
+					else return "Friendly fire?? ";
 				}
 			}
 			return "There are no boats in range currently. ";

@@ -69,6 +69,12 @@ public class World {
 		return false;
 	}
 	
+	public void setNull(Coordinates c) {
+		int x = c.getX();
+		int y = c.getY();
+		map[y][x] = null;
+	}
+	
 	public Coordinates getAdjacentLocation(Coordinates c, int direction) {
 		int x = c.getX();
 		int y = c.getY();
@@ -126,6 +132,7 @@ public class World {
 			
 			for (Boat b: boat) {
 				Coordinates c = b.getLocation();
+				setOccupant(b, c);
 				
 				int vision = b.getVision();
 				
@@ -137,21 +144,21 @@ public class World {
 				int visLimX = Math.min(columns - 1, x + vision);
 				int visLimY = Math.min(rows - 1, y + vision);
 				
-				board[y][x] = b.getDirection() + b.toString();
+				//board[y][x] = b.getDirection() + b.toString();
 				
 				for (int i = startY; i <= visLimY; i++) {
 					for (int j = startX; j <= visLimX; j++) {
 						Coordinates check = new Coordinates(j, i);
 						if (isLocationOccupied(check)) {
-							if (map[i][j].getTeam() != b.getTeam()) {
-								if (view == 2) {
-									board[i][j] = "" + map[i][j].getDirection() + map[i][j].getID();
-								}
-								if (view == 3) {
-									board[i][j] = "" + map[i][j].getHealth() + map[i][j].getID();
-//									board[i][j] = "1  ";
-								}
+							if (view == 2) {
+								board[i][j] = "" + map[i][j].getDirection() + map[i][j].getID();
 							}
+							else if (view == 3) {
+								board[i][j] = "" + map[i][j].getHealth() + map[i][j].getID();
+//								board[i][j] = "1  ";
+							}
+//							if (map[i][j].getTeam() != b.getTeam()) {
+//							}
 						}
 						//change all ### to ~~~ if in vision
 						if (board[i][j].equals("###")) {
