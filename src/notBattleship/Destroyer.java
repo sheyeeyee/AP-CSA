@@ -46,9 +46,9 @@ public class Destroyer extends Boat implements Attacker {
 				int y = thisY - i;
 				Boat b = w.getOccupant(new Coordinates(x, y));
 				
-				if (b != null) {
+				if (b != null && w.isLocationValid(b.getLocation())) {
 					if (b.getTeam() != this.getTeam()) return "" + b.takeHit(strength);
-					else return "Friendly fire?? ";
+					else return this.getID() + " can't attack because of friendly fire?? ";
 				}
 			}
 			return "There are no boats in range currently. ";
@@ -59,9 +59,9 @@ public class Destroyer extends Boat implements Attacker {
 				int y = thisY - i;
 				Boat b = w.getOccupant(new Coordinates(x, y));
 				
-				if (b != null) {
+				if (b != null && w.isLocationValid(b.getLocation())) {
 					if (b.getTeam() != this.getTeam()) return "" + b.takeHit(strength);
-					else return "Friendly fire?? ";
+					else return this.getID() + " can't attack because of friendly fire?? ";
 				}
 			}
 			return "There are no boats in range currently. ";
@@ -72,9 +72,9 @@ public class Destroyer extends Boat implements Attacker {
 				int y = thisY;
 				Boat b = w.getOccupant(new Coordinates(x, y));
 				
-				if (b != null) {
+				if (b != null && w.isLocationValid(b.getLocation())) {
 					if (b.getTeam() != this.getTeam()) return "" + b.takeHit(strength);
-					else return "Friendly fire?? ";
+					else return this.getID() + " can't attack because of friendly fire?? ";
 				}
 			}
 			return "There are no boats in range currently. ";
@@ -85,9 +85,9 @@ public class Destroyer extends Boat implements Attacker {
 				int y = thisY + i;
 				Boat b = w.getOccupant(new Coordinates(x, y));
 				
-				if (b != null) {
+				if (b != null && w.isLocationValid(b.getLocation())) {
 					if (b.getTeam() != this.getTeam()) return "" + b.takeHit(strength);
-					else return "Friendly fire?? ";
+					else return this.getID() + " can't attack because of friendly fire?? ";
 				}
 			}
 			return "There are no boats in range currently. ";
@@ -98,9 +98,9 @@ public class Destroyer extends Boat implements Attacker {
 				int y = thisY + i;
 				Boat b = w.getOccupant(new Coordinates(x, y));
 				
-				if (b != null) {
+				if (b != null && w.isLocationValid(b.getLocation())) {
 					if (b.getTeam() != this.getTeam()) return "" + b.takeHit(strength);
-					else return "Friendly fire?? ";
+					else return this.getID() + " can't attack because of friendly fire?? ";
 				}
 			}
 			return "There are no boats in range currently. ";
@@ -111,9 +111,9 @@ public class Destroyer extends Boat implements Attacker {
 				int y = thisY + i;
 				Boat b = w.getOccupant(new Coordinates(x, y));
 				
-				if (b != null) {
+				if (b != null && w.isLocationValid(b.getLocation())) {
 					if (b.getTeam() != this.getTeam()) return "" + b.takeHit(strength);
-					else return "Friendly fire?? ";
+					else return this.getID() + " can't attack because of friendly fire?? ";
 				}
 			}
 			return "There are no boats in range currently. ";
@@ -124,9 +124,9 @@ public class Destroyer extends Boat implements Attacker {
 				int y = thisY;
 				Boat b = w.getOccupant(new Coordinates(x, y));
 				
-				if (b != null) {
+				if (b != null && w.isLocationValid(b.getLocation())) {
 					if (b.getTeam() != this.getTeam()) return "" + b.takeHit(strength);
-					else return "Friendly fire?? ";
+					else return this.getID() + " can't attack because of friendly fire?? ";
 				}
 			}
 			return "There are no boats in range currently. ";
@@ -137,9 +137,9 @@ public class Destroyer extends Boat implements Attacker {
 				int y = thisY - i;
 				Boat b = w.getOccupant(new Coordinates(x, y));
 				
-				if (b != null) {
+				if (b != null && w.isLocationValid(b.getLocation())) {
 					if (b.getTeam() != this.getTeam()) return "" + b.takeHit(strength);
-					else return "Friendly fire?? ";
+					else return this.getID() + " can't attack because of friendly fire?? ";
 				}
 			}
 			return "There are no boats in range currently. ";
