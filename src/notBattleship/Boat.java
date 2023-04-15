@@ -28,13 +28,14 @@ public abstract class Boat {
 	public String move(World w) {
 		String thisBoat = this.toString();
 
-		Coordinates currLocation = this.location;
-		Coordinates newLocation = w.getAdjacentLocation(this.location, this.direction);
+		Coordinates currLocation = getLocation();
+		Coordinates newLocation = w.getAdjacentLocation(getLocation(), this.direction);
 		
 		if (newLocation != null && w.isLocationValid(newLocation)) {
 			if(w.setOccupant(this, newLocation)) {
 //				this.location = null;
 //				w.setNull(currLocation);
+				this.setLocation(newLocation);
 				w.setOccupant(null, currLocation);
 				return thisBoat + " moves from " + currLocation + " to " + newLocation + ". ";
 			}

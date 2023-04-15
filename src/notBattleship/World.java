@@ -70,12 +70,6 @@ public class World {
 		return false;
 	}
 	
-	public void setNull(Coordinates c) {
-		int x = c.getX();
-		int y = c.getY();
-		map[y][x] = null;
-	}
-	
 	public Coordinates getAdjacentLocation(Coordinates c, int direction) {
 		int x = c.getX();
 		int y = c.getY();
@@ -141,7 +135,7 @@ public class World {
 				int y = c.getY();
 				
 				int startX = Math.max(0, x - vision);
-				int startY = Math.max(0, x - vision);
+				int startY = Math.max(0, y - vision);
 				int visLimX = Math.min(columns - 1, x + vision);
 				int visLimY = Math.min(rows - 1, y + vision);
 				

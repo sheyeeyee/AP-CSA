@@ -128,7 +128,7 @@ public class Submarine extends ScoutBoat implements Attacker {
 			}
 			if (dir == "W") {
 				for (int i = 0; i < vis; i++) {
-					int x = thisX - i;
+					int x = thisX + i;
 					int y = thisY;
 					Boat b = w.getOccupant(new Coordinates(x, y));
 					
