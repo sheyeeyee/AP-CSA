@@ -142,6 +142,10 @@ public abstract class Boat {
 		if (direction == 7) return "NW";
 		return "";
 	}
+	
+	public int getNumDirection() {
+		return direction;
+	}
 
 	public void setDirection(int direction) {
 		this.direction = direction;

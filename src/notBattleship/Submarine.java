@@ -38,122 +38,27 @@ public class Submarine extends ScoutBoat implements Attacker {
 	}
 	
 	public String attack(World w) {
-		Coordinates us = this.getLocation();
-		int thisX = us.getX();
-		int thisY = us.getY();
-		String dir = this.getLetterDirection();
-		int vis = this.getVision();
+		int vision = this.getVision();
 		int strength = (int) (Math.random() * this.getStrength() + 1);
+		Coordinates currCoord = this.getLocation();
 		
 		if (numOfTorpedoes <= 0) return this.getID() + " has no torpedoes remaining. ";
 		
-		if (numOfTorpedoes > 0) {
-			if (dir == "N") {
-				for (int i = 0; i < vis; i++) {
-					int x = thisX;
-					int y = thisY - i;
-					Boat b = w.getOccupant(new Coordinates(x, y));
-					
-					if (b != null && w.isLocationValid(b.getLocation())) {
-						if (b.getTeam() != this.getTeam()) return "Fire torpedoes! " + b.takeHit(strength);
+		else if (numOfTorpedoes > 0) {
+			for (int i = 0; i < vision; i++) {
+				currCoord = w.getAdjacentLocation(currCoord, this.getNumDirection());
+				
+				if (currCoord != null) {
+					Boat b = w.getOccupant(currCoord);
+					if (b != null) {
+						if (b.getTeam() != this.getTeam()) return "Fire cannons! " + b.takeHit(strength) + b.takeHit(strength);
 						else return this.getID() + " can't attack because of friendly fire?? ";
 					}
 				}
-				return "There are no boats in range currently. ";
-			}
-			if (dir == "NE") {
-				for (int i = 0; i < vis; i++) {
-					int x = thisX + i;
-					int y = thisY - i;
-					Boat b = w.getOccupant(new Coordinates(x, y));
-					
-					if (b != null && w.isLocationValid(b.getLocation())) {
-						if (b.getTeam() != this.getTeam()) return "Fire torpedoes! " + b.takeHit(strength);
-						else return this.getID() + " can't attack because of friendly fire?? ";
-					}
-				}
-				return "There are no boats in range currently. ";
-			}
-			if (dir == "E") {
-				for (int i = 0; i < vis; i++) {
-					int x = thisX + i;
-					int y = thisY;
-					Boat b = w.getOccupant(new Coordinates(x, y));
-					
-					if (b != null && w.isLocationValid(b.getLocation())) {
-						if (b.getTeam() != this.getTeam()) return "Fire torpedoes! " + b.takeHit(strength);
-						else return this.getID() + " can't attack because of friendly fire?? ";
-					}
-				}
-				return "There are no boats in range currently. ";
-			}
-			if (dir == "SE") {
-				for (int i = 0; i < vis; i++) {
-					int x = thisX + i;
-					int y = thisY + i;
-					Boat b = w.getOccupant(new Coordinates(x, y));
-					
-					if (b != null && w.isLocationValid(b.getLocation())) {
-						if (b.getTeam() != this.getTeam()) return "Fire torpedoes! " + b.takeHit(strength);
-						else return this.getID() + " can't attack because of friendly fire?? ";
-					}
-				}
-				return "There are no boats in range currently. ";
-			}
-			if (dir == "S") {
-				for (int i = 0; i < vis; i++) {
-					int x = thisX;
-					int y = thisY + i;
-					Boat b = w.getOccupant(new Coordinates(x, y));
-					
-					if (b != null && w.isLocationValid(b.getLocation())) {
-						if (b.getTeam() != this.getTeam()) return "Fire torpedoes! " + b.takeHit(strength);
-						else return this.getID() + " can't attack because of friendly fire?? ";
-					}
-				}
-				return "There are no boats in range currently. ";
-			}
-			if (dir == "SW") {
-				for (int i = 0; i < vis; i++) {
-					int x = thisX - i;
-					int y = thisY + i;
-					Boat b = w.getOccupant(new Coordinates(x, y));
-					
-					if (b != null && w.isLocationValid(b.getLocation())) {
-						if (b.getTeam() != this.getTeam()) return "Fire torpedoes! " + b.takeHit(strength);
-						else return this.getID() + " can't attack because of friendly fire?? ";
-					}
-				}
-				return "There are no boats in range currently. ";
-			}
-			if (dir == "W") {
-				for (int i = 0; i < vis; i++) {
-					int x = thisX + i;
-					int y = thisY;
-					Boat b = w.getOccupant(new Coordinates(x, y));
-					
-					if (b != null && w.isLocationValid(b.getLocation())) {
-						if (b.getTeam() != this.getTeam()) return "Fire torpedoes! " + b.takeHit(strength);
-						else return this.getID() + " can't attack because of friendly fire?? ";
-					}
-				}
-				return "There are no boats in range currently. ";
-			}
-			if (dir == "NW") {
-				for (int i = 0; i < vis; i++) {
-					int x = thisX - i;
-					int y = thisY - i;
-					Boat b = w.getOccupant(new Coordinates(x, y));
-					
-					if (b != null && w.isLocationValid(b.getLocation())) {
-						if (b.getTeam() != this.getTeam()) return "Fire torpedoes! " + b.takeHit(strength);
-						else return this.getID() + " can't attack because of friendly fire?? ";
-					}
-				}
-				return "There are no boats in range currently. ";
+				else return "There are no boats in range currently. ";
 			}
 		}
-		return "bruh";
+		return "";
 	}
 	
 	public String submerge(World w) {
