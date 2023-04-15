@@ -160,17 +160,17 @@ public class Submarine extends ScoutBoat implements Attacker {
 		while (true) {
 			int currX = this.getLocation().getX();
 			int currY = this.getLocation().getY();
+			Coordinates oldLoc = new Coordinates(currX, currY);
 			int newX = (int) (Math.random() * w.getWidth());
 			int newY = (int) (Math.random() * w.getHeight());
-			Coordinates oldLoc = new Coordinates(currX, currY);
 			int minMove = 2;
 			
 			if (newX > currX + minMove || newX < currX - minMove) {
 				if (newY > currY + minMove || newY < currY - minMove) {
 					Coordinates newLoc = new Coordinates(newX, newY);
-					if (!w.isLocationOccupied(newLoc)) {
+					if (newLoc != null && w.isLocationValid(newLoc)) {
+						this.setLocation(newLoc);
 						w.setOccupant(null, oldLoc);
-						w.setOccupant(this, newLoc);
 					}
 					return getID() + " moves from " + oldLoc + " to " + newLoc + ". ";
 				}
