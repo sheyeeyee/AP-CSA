@@ -58,12 +58,12 @@ public class AircraftCarrier extends Boat implements Attacker {
 							}
 						}
 					}
-					else returned += "There are no boats in this range currently. ";
+					else returned += "There are no boats in this range currently. \n";
 				}
 			}
 		}
 		if (!hasPlanes) {
-			returned += this.getID() + " has no planes remaining. ";
+			returned += this.getID() + " has no planes remaining. \n";
 		}
 		return returned;
 	}

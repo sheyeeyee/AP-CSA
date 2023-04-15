@@ -33,6 +33,8 @@ public class Destroyer extends Boat implements Attacker {
 	}
 
 	public String attack(World w) {
+		String result = "";
+		
 		Coordinates us = this.getLocation();
 		Coordinates opp = w.getAdjacentLocation(us, this.getNumDirection());
 		int strength = this.getStrength();
@@ -40,11 +42,12 @@ public class Destroyer extends Boat implements Attacker {
 		if (opp != null) {
 			Boat b = w.getOccupant(opp);
 			if (b != null) {
-				if (b.getTeam() != this.getTeam()) return this.getID() + ": Fire cannons! " + b.takeHit(strength) + b.takeHit(strength);
-				else return this.getID() + " can't attack because of friendly fire?? ";
+				if (b.getTeam() != this.getTeam()) result += this.getID() + ": Fire cannons! " + b.takeHit(strength) + b.takeHit(strength) + "\n";
+				else result += this.getID() + " can't attack because of friendly fire?? \n";
 			}
 		}
-		return "There are no boats in range currently. ";
+		else result += "There are no boats in range currently. \n";
+		return result;
 	}
 	
 	public String takeHit(int strength) {
@@ -52,8 +55,8 @@ public class Destroyer extends Boat implements Attacker {
 		
 		if (ran == 1) {
 			this.takeHit(strength);
-			return this.getID() + " takes " + strength + " damage. ";
+			return this.getID() + " takes " + strength + " damage. \n";
 		}
-		else return this.getID() + " avoids the attack! ";
+		else return this.getID() + " avoids the attack! \n";
 	}
 }

@@ -38,27 +38,43 @@ public class Submarine extends ScoutBoat implements Attacker {
 	}
 	
 	public String attack(World w) {
+		String result = "";
+		
 		int vision = this.getVision();
 		int strength = (int) (Math.random() * this.getStrength() + 1);
 		Coordinates currCoord = this.getLocation();
 		
-		if (numOfTorpedoes <= 0) return this.getID() + " has no torpedoes remaining. ";
+		if (numOfTorpedoes <= 0) result += this.getID() + " has no torpedoes remaining. \n";
 		
 		else if (numOfTorpedoes > 0) {
 			for (int i = 0; i < vision; i++) {
 				currCoord = w.getAdjacentLocation(currCoord, this.getNumDirection());
-				
-				if (currCoord != null) {
-					Boat b = w.getOccupant(currCoord);
-					if (b != null) {
-						if (b.getTeam() != this.getTeam()) return "Fire cannons! " + b.takeHit(strength) + b.takeHit(strength);
-						else return this.getID() + " can't attack because of friendly fire?? ";
+				Boat b = w.getOccupant(currCoord);
+				if (b != null) {
+					if (b.getTeam() != this.getTeam()) {
+						result += this.getID() + ": Fire cannons! " + b.takeHit(strength) + b.takeHit(strength) + "\n";
+						numOfTorpedoes -= 1;
 					}
+					else result += this.getID() + " can't attack because of friendly fire?? \n";
 				}
-				else return "There are no boats in range currently. ";
+//				if (currCoord != null) {
+//					currCoord = w.getAdjacentLocation(currCoord, this.getNumDirection());
+//					Boat b = w.getOccupant(currCoord);
+//					if (b != null) {
+//						if (b.getTeam() != this.getTeam()) {
+//							result += this.getID() + ": Fire cannons! " + b.takeHit(strength) + b.takeHit(strength) + "\n";
+//							numOfTorpedoes -= 1;
+//						}
+//						else result += this.getID() + " can't attack because of friendly fire?? \n";
+//					}
+//				}
+//				if (w.isLocationOccupied(currCoord)) {
+//					
+//				}
+				else result += "There are no boats in range currently. \n";
 			}
 		}
-		return "";
+		return result;
 	}
 	
 	public String submerge(World w) {

@@ -37,11 +37,11 @@ public abstract class Boat {
 //				w.setNull(currLocation);
 				this.setLocation(newLocation);
 				w.setOccupant(null, currLocation);
-				return thisBoat + " moves from " + currLocation + " to " + newLocation + ". ";
+				return thisBoat + " moves from " + currLocation + " to " + newLocation + ". \n";
 			}
-			else return thisBoat + " cannot move to " + newLocation + " as it is occupied. ";
+			else return thisBoat + " cannot move to " + newLocation + " as it is occupied. \n";
 		}
-		else return thisBoat + " cannot move off the map. ";
+		else return thisBoat + " cannot move off the map. \n";
 	}
 	
 	public String turn(int dir) {
@@ -53,7 +53,7 @@ public abstract class Boat {
 		this.direction += dir;
 		if (direction < 0) direction = 7;
 		if (direction > 7) direction = 0;
-		returned += ", now facing " + this.getLetterDirection() + ". ";
+		returned += ", now facing " + this.getLetterDirection() + ". \n";
 		return returned;
 	}
 	
@@ -62,11 +62,11 @@ public abstract class Boat {
 		
 		if (strength > this.health) {
 			this.setHealth(0);
-			returned += " has been sunk! ";
+			returned += " has been sunk! \n";
 		}
 		else {
 			this.setHealth(this.health - attack);
-			returned += " takes " + attack + " damage. ";
+			returned += " takes " + attack + " damage. \n";
 		}
 		return returned;
 	}
