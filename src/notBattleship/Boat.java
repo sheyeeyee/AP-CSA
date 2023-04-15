@@ -32,14 +32,13 @@ public abstract class Boat {
 		Coordinates newLocation = w.getAdjacentLocation(this.location, this.direction);
 		
 		if (newLocation != null && w.isLocationValid(newLocation)) {
-			String movedLocation = newLocation.toString();
 			if(w.setOccupant(this, newLocation)) {
-				this.location = null;
+//				this.location = null;
 //				w.setNull(currLocation);
-				this.setLocation(newLocation);
+				w.setOccupant(null, currLocation);
 				return thisBoat + " moves from " + currLocation + " to " + newLocation + ". ";
 			}
-			else return thisBoat + " cannot move to " + movedLocation + " as it is occupied. ";
+			else return thisBoat + " cannot move to " + newLocation + " as it is occupied. ";
 		}
 		else return thisBoat + " cannot move off the map. ";
 	}

@@ -39,6 +39,7 @@ public class World {
 	public Boat getOccupant(Coordinates c) {
 		int x = c.getX();
 		int y = c.getY();
+		
 		return map[y][x];
 	}
 	
@@ -62,7 +63,7 @@ public class World {
 		int x = c.getX();
 		int y = c.getY();
 		
-		if (!isLocationOccupied(c)) {
+		if (!isLocationOccupied(c) || b == null) {
 			map[y][x] = b;
 			return true;
 		}
@@ -152,6 +153,7 @@ public class World {
 						if (isLocationOccupied(check)) {
 							if (view == 2) {
 								board[i][j] = "" + map[i][j].getDirection() + map[i][j].getID();
+//								board[i][j] = "ooo";
 							}
 							else if (view == 3) {
 								board[i][j] = "" + map[i][j].getHealth() + map[i][j].getID();

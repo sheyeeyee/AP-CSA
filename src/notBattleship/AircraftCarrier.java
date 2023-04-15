@@ -13,7 +13,7 @@ public class AircraftCarrier extends Boat implements Attacker {
 	}
 	
 	public String getActions() {
-		String ret1 = "Choose any of the following actions for the Submarine:\n";
+		String ret1 = "Choose any of the following actions for the Aircraft Carrier:\n";
 		String ret2 = "1. Move\n";
 		String ret3 = "2. Turn left\n";
 		String ret4 = "3. Turn right\n";
@@ -25,13 +25,13 @@ public class AircraftCarrier extends Boat implements Attacker {
 		String returned = "";
 		int left = -1;
 		int right = 1;
+		int choice = choices[0];
 		
-		for (int i = 0; i < choices.length; i++) {
-			if (choices[i] == 1) returned += this.move(w);
-			if (choices[i] == 2) returned += this.turn(left);
-			if (choices[i] == 3) returned += this.turn(right);
-			if (choices[i] == 4) returned += this.attack(w);
-		}
+		if (choice == 1) returned += this.move(w);
+		if (choice == 2) returned += this.turn(left);
+		if (choice == 3) returned += this.turn(right);
+		if (choice == 4) returned += this.attack(w);
+		
 		return returned;
 	}
 	

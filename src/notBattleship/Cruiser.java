@@ -27,6 +27,7 @@ public class Cruiser extends ScoutBoat {
 			if (choices[i] == 2) returned += this.turn(left);
 			if (choices[i] == 3) returned += this.turn(right);
 		}
+		
 		return returned;
 	}
 }
