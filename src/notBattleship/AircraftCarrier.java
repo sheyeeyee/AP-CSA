@@ -1,11 +1,12 @@
 package notBattleship;
 
 public class AircraftCarrier extends Boat implements Attacker {
-	private boolean hasPlanes = true;
+	private boolean hasPlanes;
 	private double successRate = 1;
 	
 	public AircraftCarrier(int team, Coordinates location, int direction) {
 		super(team, location, direction, 5, 1, 1);
+		this.hasPlanes = true;
 	}
 	
 	public String getID() {
@@ -62,8 +63,9 @@ public class AircraftCarrier extends Boat implements Attacker {
 						}
 					}
 				}
-				else result += this.getID() + ": There are no boats in range currently. \n";
+//				else result += this.getID() + ": There are no boats in range currently. \n";
 			}
+			result += this.getID() + ": There are no boats in range currently. \n";
 		}
 		if (!hasPlanes) {
 			result += this.getID() + " has no planes remaining. \n";
