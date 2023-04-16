@@ -38,28 +38,31 @@ public class AircraftCarrier extends Boat implements Attacker {
 	public String attack(World w) {
 		String result = "";
 		
-		int vis = this.getVision();
 		int strength = this.getStrength();
 		
 		if (hasPlanes) {
-			for (int i = 0; i < vis; i++) {
-				for (int j = 0; j < vis; j++) {
-					Coordinates check = new Coordinates(i, j);
-					
-					if (w.isLocationOccupied(check)) {
-						if (w.getOccupant(check).getTeam() != this.getTeam()) {
-							result += "Air raid!\n" + w.getOccupant(check).takeHit(strength, w) + "\n";
-							successRate *= 0.8;
-							
-							if (Math.random() > successRate) {
-								hasPlanes = false;
-								result += "The planes have been destroyed. \n";
-								return result;
-							}
+			for (int i = 0; i < 8; i++) {
+				Boat opp;
+				
+				if (w.getAdjacentLocation(getLocation(), i) != null) opp = w.getOccupant(w.getAdjacentLocation(getLocation(), i));
+				else opp = null;
+				
+				if (opp != null) {
+					if (opp.getTeam() != this.getTeam()) {
+						if (successRate == 1) {
+							result += "Air raid!\n";
+						}
+						result += opp.takeHit(strength, w) + "\n";
+						successRate *= 0.8;
+						
+						if (Math.random() > successRate) {
+							hasPlanes = false;
+							result += "The planes have been destroyed. \n";
+							break;
 						}
 					}
-					else result += this.getID() + ": There are no boats in range currently. \n";
 				}
+				else result += this.getID() + ": There are no boats in range currently. \n";
 			}
 		}
 		if (!hasPlanes) {

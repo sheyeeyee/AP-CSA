@@ -10,8 +10,7 @@ public abstract class ScoutBoat extends Boat {
 		int randomAttack = (int) ((Math.random() * 3) + 1);
 		
 		if (randomAttack == attacked) {
-			super.takeHit(numAttack, w);
-			return this.getID() + " takes 1 damage. \n";
+			return super.takeHit(numAttack, w);
 		}
 		else return this.getID() + " has avoided the attack! \n";
 	}

@@ -62,8 +62,8 @@ public abstract class Boat {
 		
 		if (strength > this.health) {
 			this.setHealth(0);
-			result += " has been sunk! \n";
 			w.setOccupant(null, this.getLocation());
+			result += " has been sunk! \n";
 		}
 		else {
 			this.setHealth(this.health - attack);
@@ -97,40 +97,16 @@ public abstract class Boat {
 //	}
 	
 	public String getDirection() {
-	if (direction == 0) return "Y";
-	if (direction == 1) return "U";
-	if (direction == 2) return "J";
-	if (direction == 3) return "M";
-	if (direction == 4) return "N";
-	if (direction == 5) return "B";
-	if (direction == 6) return "G";
-	if (direction == 7) return "T";
-	return "";
-}
-
-//	public char getDirection() {
-//		if (direction == 0) return '↑';
-//		if (direction == 1) return '↗';
-//		if (direction == 2) return '→';
-//		if (direction == 3) return '↘';
-//		if (direction == 4) return '↓';
-//		if (direction == 5) return '↙';
-//		if (direction == 6) return '←';
-//		if (direction == 7) return '↖';
-//		return ' ';
-//	}
-	
-//	public char getDirection() {
-//		if (direction == 0) return '\u2191';
-//		if (direction == 1) return '\u2197';
-//		if (direction == 2) return '\u2192';
-//		if (direction == 3) return '\u2198';
-//		if (direction == 4) return '\u2193';
-//		if (direction == 5) return '\u2199';
-//		if (direction == 6) return '\u2190';
-//		if (direction == 7) return '\u2196';
-//		return ' ';
-//	}
+		if (direction == 0) return "Y";
+		if (direction == 1) return "U";
+		if (direction == 2) return "J";
+		if (direction == 3) return "M";
+		if (direction == 4) return "N";
+		if (direction == 5) return "B";
+		if (direction == 6) return "G";
+		if (direction == 7) return "T";
+		return "";
+	}
 	
 	public String getLetterDirection() {
 		if (direction == 0) return "N";
