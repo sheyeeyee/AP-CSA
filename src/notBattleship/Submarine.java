@@ -46,20 +46,37 @@ public class Submarine extends ScoutBoat implements Attacker {
 		Coordinates currCoord = this.getLocation();
 		
 		if (numOfTorpedoes <= 0) result += this.getID() + " has no torpedoes remaining. \n";
-		
 		else {
 			for (int i = 0; i < vision; i++) {
-				currCoord = w.getAdjacentLocation(currCoord, this.getNumDirection());
-				Boat opp = w.getOccupant(currCoord);
+				Boat opp;
+				
+				if (w.isLocationValid(currCoord)) opp = w.getOccupant(w.getAdjacentLocation(currCoord, this.getNumDirection()));
+				else opp = null;
 				
 				if (opp != null) {
 					if (opp.getTeam() != this.getTeam()) {
 						result += this.getID() + ": Fire cannons! " + opp.takeHit(strength) + opp.takeHit(strength) + "\n";
 						numOfTorpedoes -= 1;
 					}
-					else result += this.getID() + " can't attack because of friendly fire?? \n";			
+					else result += this.getID() + " can't attack because of friendly fire?? \n";
 				}
 				else result += "There are no boats in range currently. \n";
+//				currCoord = w.getAdjacentLocation(currCoord, this.getNumDirection());
+//				Boat opp;
+//				
+//				if (currCoord != null) {
+//					opp = w.getOccupant(currCoord);
+//					
+//					if (opp != null) {
+//						if (opp.getTeam() != this.getTeam()) {
+//							result += this.getID() + ": Fire cannons! " + opp.takeHit(strength) + opp.takeHit(strength) + "\n";
+//							numOfTorpedoes -= 1;
+//						}
+//						else result += this.getID() + " can't attack because of friendly fire?? \n";
+//					}
+//				}
+//				else result += "There are no boats in range currently. \n";
+				
 //				if (currCoord != null) {
 //					currCoord = w.getAdjacentLocation(currCoord, this.getNumDirection());
 //					Boat b = w.getOccupant(currCoord);
