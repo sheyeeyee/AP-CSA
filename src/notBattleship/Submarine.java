@@ -23,18 +23,18 @@ public class Submarine extends ScoutBoat implements Attacker {
 	}
 	
 	public String act(int[] choices, World w) {
-		String returned = "";
+		String result = "";
 		int left = -1;
 		int right = 1;
 		int choice = choices[0];
 		
-		if (choice == 1) returned += this.move(w);
-		if (choice == 2) returned += this.turn(left);
-		if (choice == 3) returned += this.turn(right);
-		if (choice == 4) returned += this.submerge(w);
-		if (choice == 5) returned += this.attack(w);
+		if (choice == 1) result += this.move(w);
+		if (choice == 2) result += this.turn(left);
+		if (choice == 3) result += this.turn(right);
+		if (choice == 4) result += this.submerge(w);
+		if (choice == 5) result += this.attack(w);
 
-		return returned;
+		return result;
 	}
 	
 	public String attack(World w) {
@@ -50,17 +50,17 @@ public class Submarine extends ScoutBoat implements Attacker {
 			for (int i = 0; i < vision; i++) {
 				Boat opp;
 				
-				if (w.isLocationValid(currCoord)) opp = w.getOccupant(w.getAdjacentLocation(currCoord, this.getNumDirection()));
+				if (w.getAdjacentLocation(currCoord, this.getNumDirection()) != null) opp = w.getOccupant(w.getAdjacentLocation(currCoord, this.getNumDirection()));
 				else opp = null;
 				
 				if (opp != null) {
 					if (opp.getTeam() != this.getTeam()) {
-						result += this.getID() + ": Fire cannons! " + opp.takeHit(strength) + opp.takeHit(strength) + "\n";
-						numOfTorpedoes -= 1;
+						result += this.getID() + ": Fire torpedoes! " + opp.takeHit(strength, w) + opp.takeHit(strength, w) + "\n";
+						numOfTorpedoes --;
 					}
 					else result += this.getID() + " can't attack because of friendly fire?? \n";
 				}
-				else result += "There are no boats in range currently. \n";
+				else result += this.getID() + ": There are no boats in range currently. \n";
 //				currCoord = w.getAdjacentLocation(currCoord, this.getNumDirection());
 //				Boat opp;
 //				

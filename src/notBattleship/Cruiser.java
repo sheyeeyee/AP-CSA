@@ -18,16 +18,16 @@ public class Cruiser extends ScoutBoat {
 	}
 	
 	public String act(int[] choices, World w) {
-		String returned = "";
+		String result = "";
 		int left = -1;
 		int right = 1;
 		
 		for (int i = 0; i < choices.length; i++) {
-			if (choices[i] == 1) returned += this.move(w);
-			if (choices[i] == 2) returned += this.turn(left);
-			if (choices[i] == 3) returned += this.turn(right);
+			if (choices[i] == 1) result += this.move(w);
+			if (choices[i] == 2) result += this.turn(left);
+			if (choices[i] == 3) result += this.turn(right);
 		}
 		
-		return returned;
+		return result;
 	}
 }

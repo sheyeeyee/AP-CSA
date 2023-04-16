@@ -45,30 +45,31 @@ public abstract class Boat {
 	}
 	
 	public String turn(int dir) {
-		String returned = this.getID();
+		String result = this.getID();
 		
-		if (dir == -1) returned += " turned left";
-		else returned += " turned right";
+		if (dir == -1) result += " turned left";
+		else result += " turned right";
 		
 		this.direction += dir;
 		if (direction < 0) direction = 7;
 		if (direction > 7) direction = 0;
-		returned += ", now facing " + this.getLetterDirection() + ". \n";
-		return returned;
+		result += ", now facing " + this.getLetterDirection() + ". \n";
+		return result;
 	}
 	
-	public String takeHit(int attack) {
-		String returned = this.toString();
+	public String takeHit(int attack, World w) {
+		String result = this.toString();
 		
 		if (strength > this.health) {
 			this.setHealth(0);
-			returned += " has been sunk! \n";
+			result += " has been sunk! \n";
+			w.setOccupant(null, this.getLocation());
 		}
 		else {
 			this.setHealth(this.health - attack);
-			returned += " takes " + attack + " damage. \n";
+			result += " takes " + attack + " damage. \n";
 		}
-		return returned;
+		return result;
 	}
 	
 	public String toString() {

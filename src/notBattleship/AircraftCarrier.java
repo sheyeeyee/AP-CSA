@@ -22,21 +22,21 @@ public class AircraftCarrier extends Boat implements Attacker {
 	}
 	
 	public String act(int[] choices, World w) {
-		String returned = "";
+		String result = "";
 		int left = -1;
 		int right = 1;
 		int choice = choices[0];
 		
-		if (choice == 1) returned += this.move(w);
-		if (choice == 2) returned += this.turn(left);
-		if (choice == 3) returned += this.turn(right);
-		if (choice == 4) returned += this.attack(w);
+		if (choice == 1) result += this.move(w);
+		if (choice == 2) result += this.turn(left);
+		if (choice == 3) result += this.turn(right);
+		if (choice == 4) result += this.attack(w);
 		
-		return returned;
+		return result;
 	}
 	
 	public String attack(World w) {
-		String returned = "";
+		String result = "";
 		
 		int vis = this.getVision();
 		int strength = this.getStrength();
@@ -48,23 +48,23 @@ public class AircraftCarrier extends Boat implements Attacker {
 					
 					if (w.isLocationOccupied(check)) {
 						if (w.getOccupant(check).getTeam() != this.getTeam()) {
-							returned += "Air raid!\n" + w.getOccupant(check).takeHit(strength) + "\n";
+							result += "Air raid!\n" + w.getOccupant(check).takeHit(strength, w) + "\n";
 							successRate *= 0.8;
 							
 							if (Math.random() > successRate) {
 								hasPlanes = false;
-								returned += "The planes have been destroyed. \n";
-								return returned;
+								result += "The planes have been destroyed. \n";
+								return result;
 							}
 						}
 					}
-					else returned += "There are no boats in this range currently. \n";
+					else result += this.getID() + ": There are no boats in range currently. \n";
 				}
 			}
 		}
 		if (!hasPlanes) {
-			returned += this.getID() + " has no planes remaining. \n";
+			result += this.getID() + " has no planes remaining. \n";
 		}
-		return returned;
+		return result;
 	}
 }

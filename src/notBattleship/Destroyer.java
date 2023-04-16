@@ -19,31 +19,34 @@ public class Destroyer extends Boat implements Attacker {
 	}
 	
 	public String act(int[] choices, World w) {
-		String returned = "";
+		String result = "";
 		int left = -1;
 		int right = 1;
 		
 		for (int i = 0; i < choices.length; i++) {
-			if (choices[i] == 1) returned += this.move(w);
-			if (choices[i] == 2) returned += this.turn(left);
-			if (choices[i] == 3) returned += this.turn(right);
-			if (choices[i] == 4) returned += this.attack(w);
+			if (choices[i] == 1) result += this.move(w);
+			if (choices[i] == 2) result += this.turn(left);
+			if (choices[i] == 3) result += this.turn(right);
+			if (choices[i] == 4) result += this.attack(w);
 		}
-		return returned;
+		return result;
 	}
 
 	public String attack(World w) {
 		Coordinates oppLocation = w.getAdjacentLocation(this.getLocation(), this.getNumDirection());
-		Boat opp = w.getOccupant(oppLocation);
+		Boat opp;
 		int strength = this.getStrength();
+		
+		if (oppLocation != null) opp = w.getOccupant(oppLocation);
+		else opp = null;
 		
 		if (opp != null) {
 			if (opp.getTeam() != this.getTeam()) {
-				return this.getID() + ": Fire cannons! " + opp.takeHit(strength) + opp.takeHit(strength) + "\n";
+				return this.getID() + ": Fire cannons! " + opp.takeHit(strength, w) + opp.takeHit(strength, w) + "\n";
 			}
 			else return this.getID() + " can't attack because of friendly fire?? \n";			
 		}
-		else return "There are no boats in range currently. \n";
+		else return this.getID() + ": There are no boats in range currently. \n";
 //		String result = "";
 //		
 //		Coordinates c = this.getLocation();

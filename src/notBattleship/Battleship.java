@@ -19,17 +19,17 @@ public class Battleship extends Boat implements Attacker {
 	}
 	
 	public String act(int[] choices, World w) {
-		String returned = "";
+		String result = "";
 		int left = -1;
 		int right = 1;
 		int choice = choices[0];
 		
-		if (choice == 1) returned += this.move(w);
-		if (choice == 2) returned += this.turn(left);
-		if (choice == 3) returned += this.turn(right);
-		if (choice == 4) returned += this.attack(w);
+		if (choice == 1) result += this.move(w);
+		if (choice == 2) result += this.turn(left);
+		if (choice == 3) result += this.turn(right);
+		if (choice == 4) result += this.attack(w);
 		
-		return returned;
+		return result;
 	}
 	
 	public String attack(World w) {
@@ -42,11 +42,11 @@ public class Battleship extends Boat implements Attacker {
 		if (opp != null) {
 			Boat b = w.getOccupant(opp);
 			if (b != null) {
-				if (b.getTeam() != this.getTeam()) result += this.getID() + ": Fire cannons! " + b.takeHit(strength) + b.takeHit(strength) + "\n";
+				if (b.getTeam() != this.getTeam()) result += this.getID() + ": Fire cannons! " + b.takeHit(strength, w) + b.takeHit(strength, w) + "\n";
 				else result += this.getID() + " can't attack because of friendly fire?? \n";
 			}
 		}
-		else result += "There are no boats in range currently. \n";
+		else result += this.getID() + ": There are no boats in range currently. \n";
 		return result;
 	}
 }

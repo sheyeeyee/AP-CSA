@@ -36,43 +36,43 @@ public class World {
 		return this.map.length;
 	}
 	
-	public Boat getOccupant(Coordinates c) {
-		int x = c.getX();
-		int y = c.getY();
+	public Boat getOccupant(Coordinates cGetOcc) {
+		int x = cGetOcc.getX();
+		int y = cGetOcc.getY();
 		
 		return map[y][x];
 	}
 	
-	public boolean isLocationOccupied(Coordinates c) {
-		int x = c.getX();
-		int y = c.getY();
+	public boolean isLocationOccupied(Coordinates cIsOcc) {
+		int x = cIsOcc.getX();
+		int y = cIsOcc.getY();
 		
 		return map[y][x] != null;
 	}
 	
-	public boolean isLocationValid(Coordinates c) {
-		int x = c.getX();
-		int y = c.getY();
+	public boolean isLocationValid(Coordinates cValid) {
+		int x = cValid.getX();
+		int y = cValid.getY();
 		
 		if (x < 0 || x >= this.getWidth()) return false;
 		if (y < 0 || y >= this.getHeight()) return false;
 		return true;
 	}
 	
-	public boolean setOccupant(Boat b, Coordinates c) {
-		int x = c.getX();
-		int y = c.getY();
+	public boolean setOccupant(Boat b, Coordinates cSetOcc) {
+		int x = cSetOcc.getX();
+		int y = cSetOcc.getY();
 		
-		if (!isLocationOccupied(c) || b == null) {
+		if (!isLocationOccupied(cSetOcc) || b == null) {
 			map[y][x] = b;
 			return true;
 		}
 		return false;
 	}
 	
-	public Coordinates getAdjacentLocation(Coordinates c, int direction) {
-		int x = c.getX();
-		int y = c.getY();
+	public Coordinates getAdjacentLocation(Coordinates cAdj, int direction) {
+		int x = cAdj.getX();
+		int y = cAdj.getY();
 		
 		if (direction == 0) { //north
 			Coordinates adj = new Coordinates(x, y-1);
