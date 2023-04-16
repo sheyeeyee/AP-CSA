@@ -13,6 +13,6 @@ public abstract class ScoutBoat extends Boat {
 			return this.getID() + " has avoided the attack! \n";
 		}
 		else return super.takeHit(numAttack, w);
-//		return super.takeHit(numAttack, w);
+//		return super.takeHit(numAttack, w); //taking out random component
 	}
 }
