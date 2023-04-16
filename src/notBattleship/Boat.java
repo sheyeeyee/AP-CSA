@@ -66,7 +66,7 @@ public abstract class Boat {
 			result += " has been sunk! \n";
 		}
 		else {
-			this.setHealth(this.health - attack);
+			this.setHealth(this.getHealth() - attack);
 			result += " takes " + attack + " damage. \n";
 		}
 		return result;

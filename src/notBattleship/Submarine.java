@@ -55,7 +55,7 @@ public class Submarine extends ScoutBoat implements Attacker {
 				
 				if (opp != null) {
 					if (opp.getTeam() != this.getTeam()) {
-						result += this.getID() + ": Fire torpedoes! " + opp.takeHit(strength, w) + opp.takeHit(strength, w) + "\n";
+						result += this.getID() + ": Fire torpedoes! " + opp.takeHit(strength, w) + "\n";
 						numOfTorpedoes --;
 					}
 					else result += this.getID() + " can't attack because of friendly fire?? \n";

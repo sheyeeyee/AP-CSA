@@ -6,12 +6,13 @@ public abstract class ScoutBoat extends Boat {
 	}
 	
 	public String takeHit(int numAttack, World w) {
-		int attacked = 1;
-		int randomAttack = (int) ((Math.random() * 3) + 1);
+		int attacked = 0;
+		int randomAttack = (int) (Math.random() * 4);
 		
-		if (randomAttack == attacked) {
-			return super.takeHit(numAttack, w);
+		if (randomAttack != attacked) {
+			return this.getID() + " has avoided the attack! \n";
 		}
-		else return this.getID() + " has avoided the attack! \n";
+		else return super.takeHit(numAttack, w);
+//		return super.takeHit(numAttack, w);
 	}
 }

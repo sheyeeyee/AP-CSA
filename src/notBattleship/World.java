@@ -21,9 +21,9 @@ public class World {
 		if (mHeight > 10) mHeight = 10;
 		
 		map = new Boat[mWidth][mHeight];
-		for (Boat[] row: map) {
-			for (Boat b: row) {
-				b = null;
+		for (int i = 0; i < mHeight; i++) {
+			for (int j = 0; j < mWidth; j++) {
+				map[i][j] = null;
 			}
 		}
 	}

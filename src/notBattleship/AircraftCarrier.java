@@ -38,22 +38,19 @@ public class AircraftCarrier extends Boat implements Attacker {
 	
 	public String attack(World w) {
 		String result = "";
-		
+
 		int strength = this.getStrength();
-		
+		Boat opp;
+
 		if (hasPlanes) {
 			for (int i = 0; i < 8; i++) {
-				Boat opp;
-				
-				if (w.getAdjacentLocation(getLocation(), i) != null) opp = w.getOccupant(w.getAdjacentLocation(getLocation(), i));
-				else opp = null;
-				
-				if (opp != null) {
-					if (opp.getTeam() != this.getTeam()) {
+				if (w.getAdjacentLocation(getLocation(), i) != null) {
+					opp = w.getOccupant(w.getAdjacentLocation(getLocation(), i));
+					if (opp != null && opp.getTeam() != this.getTeam()) {
 						if (successRate == 1) {
 							result += "Air raid!\n";
+							result += opp.takeHit(strength, w) + "\n";
 						}
-						result += opp.takeHit(strength, w) + "\n";
 						successRate *= 0.8;
 						
 						if (Math.random() > successRate) {
@@ -61,14 +58,60 @@ public class AircraftCarrier extends Boat implements Attacker {
 							result += "The planes have been destroyed. \n";
 							break;
 						}
+						else {
+							result += "Air raid!\n";
+							result += opp.takeHit(strength, w) + "\n";
+						}
 					}
 				}
-				else result = this.getID() + ": There are no boats in range currently. \n";
 			}
-		}
-		if (!hasPlanes) {
+		} 
+		else {
 			result += this.getID() + " has no planes remaining. \n";
+		}
+		
+		if (result.equals("")) {
+			result = this.getID() + ": There are no boats in range currently. \n";
 		}
 		return result;
 	}
+
+	
+//	public String attack(World w) {
+//		String result = "";
+//		
+//		int strength = this.getStrength();
+//		Boat opp;
+//		
+//		if (hasPlanes) {
+//			for (int i = 0; i < 8; i++) {
+////				Boat opp;
+//				
+//				if (w.getAdjacentLocation(getLocation(), i) != null) opp = w.getOccupant(w.getAdjacentLocation(getLocation(), i));
+////				if (w.getOccupant(w.getAdjacentLocation(getLocation(), i)) != null) opp = w.getOccupant(w.getAdjacentLocation(getLocation(), i));
+//				else opp = null;
+//				
+//				if (opp != null) {
+//					if (opp.getTeam() != this.getTeam()) {
+//						if (successRate == 1) {
+//							result += "Air raid!\n";
+//						}
+//						result += opp.takeHit(strength, w) + "\n";
+//						successRate *= 0.8;
+//						
+//						if (Math.random() > successRate) {
+//							hasPlanes = false;
+//							result += "The planes have been destroyed. \n";
+//							break;
+//						}
+//					}
+//				}
+//				else result = this.getID() + ": There are no boats in range currently. \n";
+//			}
+//		}
+//		if (!hasPlanes) {
+//			result += this.getID() + " has no planes remaining. \n";
+//		}
+//		return result;
+//	}
 }
