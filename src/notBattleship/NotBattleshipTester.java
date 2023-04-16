@@ -51,7 +51,7 @@ public class NotBattleshipTester {
 		
 		
 		System.out.println("*************");
-		System.out.println("TEAM TWO MOVING/ATTACKING");
+		System.out.println("TEAM ONE MOVING/ATTACKING");
 		System.out.println("*************");
 		setTeam(teamOne, ocean, 1);
 		System.out.println(ocean.drawTeamMap(teamOne, 2));
@@ -66,6 +66,22 @@ public class NotBattleshipTester {
 			}
 			
 		}
+//		System.out.println("*************");
+//		System.out.println("TEAM TWO MOVING/ATTACKING");
+//		System.out.println("*************");
+//		setTeam(teamTwo, ocean, 2);
+//		System.out.println(ocean.drawTeamMap(teamTwo, 2));
+//		for (int i = 0; i < 4; i++) {
+//			for (Boat b : teamTwo) {
+//				System.out.println(b.move(ocean));
+//				System.out.println(ocean.drawTeamMap(teamTwo, 2));
+//				TimeUnit.SECONDS.sleep(1);
+//				if (b instanceof Attacker) System.out.println(((Attacker)b).attack(ocean));
+//				System.out.println(ocean.drawTeamMap(teamTwo, 2));
+//				TimeUnit.SECONDS.sleep(1);
+//			}
+//			
+//		}
 		System.out.println("*************");
 		System.out.println("  ATTACKS!");
 		System.out.println("*************");
