@@ -1,2 +1,3 @@
 # AP Computer Science A
-Projects and in-class coding practice
+Java projects and in-class coding practice\
+Editor: Eclipse IDE\
